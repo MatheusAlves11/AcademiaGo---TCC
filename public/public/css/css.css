@@ -1,0 +1,75 @@
+*{
+    margin-left: 0px;
+}
+
+
+body{
+    background-color: lightblue;
+}
+
+.container{
+    border-radius: 20px;
+    box-shadow: .5px 10px 15px rgba(0, 0, 0, 0.2);
+    margin-top: 2%;
+    padding: 2%;
+    background-color: #FFF;
+}
+
+.form-control {
+    border: none;
+    background-color: #f3f3f5;
+  }
+
+.form-control-perfil{
+    margin: 1vw;
+    border: none;
+    background-color: #f3f3f5;
+}
+
+.destacar{
+    background-color: rgb(156, 203, 244);
+}
+
+a{
+    color: black;
+    text-decoration: none;
+}
+
+.texto {
+    text-align: center;
+  }
+
+  
+.fotoPerfil {
+    padding: 1.5rem; 
+    border-radius: 50%; 
+    border: none;
+}
+
+.filtrarMes{
+    width: fit-content;
+}
+.rolagem {
+    overflow-y: scroll;
+    max-height: 300px;
+}
+
+.table {
+    position: relative;
+}
+thead {
+    position: sticky;
+    background-color: white;
+}
+
+/* thead > tr > th {
+    position: sticky;
+    top: -1px;
+} */
+/*thead>tr{
+    position: fixed;
+}*/
+.final{
+    bottom: 0;
+    left: 0;
+}
