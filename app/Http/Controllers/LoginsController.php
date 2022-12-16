@@ -11,19 +11,17 @@ class LoginsController extends Controller
     //Login
         public function login(Request $request)
         {
-            //dd(Hash::make('1'));
             return view('Login.login');
         }
-        
         public function loginForms(Request $request)
-            {
-                $adm=User::where('email',$request->email)->first(); 
-                if($adm && Hash::check($request->password,$adm->password)){
-                    Auth::loginUsingId($adm->id);
-                    if($adm->nivelAcesso==1){
+        {
+             $entidade=User::where('email',$request->email)->first(); 
+                if($entidade && Hash::check($request->password,$entidade->password)){
+                    Auth::loginUsingId($entidade->id);
+                    if($entidade->nivelAcesso==1){
                         return redirect('/homeAdm');
                     }
-                    elseif($adm->nivelAcesso==2)
+                    elseif($entidade->nivelAcesso==2)
                     {
                         return redirect('/homePersonal');
                     }else{
@@ -32,7 +30,7 @@ class LoginsController extends Controller
                 }else{
                     return redirect()->back()->with('danger','Email ou senha invalida!');
                 }
-            }
+        }
     //Esqueceu senha
         public function indexSenha()
         {
@@ -41,17 +39,16 @@ class LoginsController extends Controller
         public function esqueceuSenhaFormsEmail(Request $request)
         {
             $email=$request->email;
-            $entidade=User::where('email', 'like', '%'.$email.'%')->first();
-                if(empty($entidade)){
-                    return redirect('/')->with('msg','Esse usuario não existe!');
-                }
-                return view('Login.novaSenha',['entidade'=>$entidade]);
-            
+            $usuario=User::where('email', 'like', '%'.$email.'%')->first();
+            if(empty($usuario)){
+                 return redirect('/esqueceuSenha')->with('msg','Esse usuario não existe!');
+             }
+             return view('Login.novaSenha',['entidade'=>$usuario]);
         }
         public function esqueceuSenhaForms (Request $request)
         {
             User::findOrFail($request->entidade)->update([
-                'password'=>Hash::make($request->senhaAtualizada),
+                'password'=>Hash::make($request->password),
             ]);  
             return redirect('/');
         }

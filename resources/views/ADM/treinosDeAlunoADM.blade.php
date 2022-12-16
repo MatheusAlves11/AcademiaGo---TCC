@@ -33,10 +33,10 @@ crossorigin="anonymous"></script>
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
         <ul class="navbar-nav">
             <li class="nav-item">
-              <a class="nav-link " href="ListagemPersonaisADM.html">Personais</a>
+              <a class="nav-link " href="/homeAdm">Personais</a>
           </li>
           <li class="nav-item ">
-              <a class="nav-link active" href="ListagemAlunosADM.html">Alunos</a>
+              <a class="nav-link active" href="/homeAdm-aluno">Alunos</a>
           </li>
         </ul>
     </div>

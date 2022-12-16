@@ -15,14 +15,32 @@
 
 <body>
     <div class="container col-md-6 form-container ">
+    @if ($errors->any())
+          <div>
+            <div class="alert alert-danger">
+              <ul>
+              @foreach ($errors->all() as $error)
+                  <li>{{ $error }}</li>
+                  @break;
+              @endforeach
+            </ul>
+          </div>
+        </div>
+      @endif
+      @if (session('danger'))
+        <div class="alert alert-danger">
+          {{ session('danger') }}
+        </div>
+      @endif 
         <h1 class="mb-5 m-auto">Nova Senha</h1>
-
-        <form class="col-md-8 m-auto">
+        <form class="col-md-8 m-auto" action="{{route('recSenhaEntidade')}}" method="POST">
+            @csrf    
+            <input type="hidden" name="entidade" value="{{$entidade->id}}">
             <div class="mb-3">
                 <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Nova Senha:">
             </div>
             <div class="mb-3">
-                <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Confirmar Senha:">
+                <input type="password" name="password" class="form-control" id="exampleInputPassword1" placeholder="Confirmar Senha:">
             </div>
             <div class="d-flex flex-row-reverse bd-highlight">
                 <div class="p-2 bd-highlight">

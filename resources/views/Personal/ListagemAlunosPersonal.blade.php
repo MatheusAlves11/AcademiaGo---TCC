@@ -44,31 +44,28 @@
     </nav>
 </nav>
 
-<body>
-    <div class="container bg-light " style="text-align: center;">
+<body>    
+    <div class="container bg-light " style="width: 90%;text-align: center;">
+        @if (session('msg'))
+        <p class="alert alert-success">{{session('msg')}}</p>
+        @endif
         <div class="row ">
-
-            <div class="col-sm-2">
-                <h4>
-                    Olá, NomePersonal
-                </h4>
+        <div class="col-sm-2" style="display: flex;flex-direction: column;justify-content: space-around;">
+                <h4 id="saudacao"></h4>
                 <div>
                     <button type="file" class="fotoPerfil">
-                        <img src="../public/img/user.png" alt="" class="fotoUsuario" style="height: 3.5rem; width:3.5rem;">
+                    @if(!empty($usuario->foto))
+                            <img src="../public/img/{{$usuario->foto}}" alt="" style="height: 3.5rem; width:3.5rem;">
+                        @else
+                            <img src="../public/img/user.png" alt="" style="height: 3.5rem; width:3.5rem;">
+                        @endif
                     </button>
                 </div>
-                <p><b>NomePERSONAL</b></p>
-                <p>
-                    1631
-                </p>
-                <p>
-                    Centro
-                </p>
-                <p>
-                    CREF:
-                </p>
-               
-                <button class="btn btn-danger">Sair</button>
+                <p><b>{{$usuario->name}}</b></p>
+                <p class="mb-4">ID: {{$usuario->id}}</p>
+                <p>{{$personal->filial}}</p>
+                <p>{{$personal->cref}}</p> 
+                <a class="btn btn-danger" href="/logout">Sair</a>
                 <p>Garanhuns - PE</p>
             </div>
 
@@ -206,6 +203,8 @@
     <script src="../public/js/jquery.js"></script>
     <script>window.jQuery || document.write('<script src="../../assets/js/vendor/jquery.min.js"><\/script>')</script>
     <script src="../public/js/script.js"></script>
+    <script src="../public/js/saudacao.js"></script>
+
 </body>
 
 </html>

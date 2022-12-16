@@ -61,15 +61,15 @@
                  {{ session('danger') }}
              </div>
         @endif 
-        <form class="row needs-validation" novalidate method="POST" action="{{route('adm.formsPersonal')}}" enctype="multipart/form-data">
+        <form class="row needs-validation" novalidate method="POST" action="/Forms-atualizar-personal/{{$entidade->id}}" enctype="multipart/form-data">
              @csrf
-            <h2 class="mb-4 texto"><b> Cadastro do Personal</b></h2>
+            <h2 class="mb-4 texto"><b> Atualizar Personal</b></h2>
 
             <!--PARTE DE ENVIAR IMAGEM-->
             <div class=" col-md-12">
                 <hr>
                 <div class="input-group mb-3">
-                    <input type="file" class="form-control" id="inputGroupFile02">
+                    <input type="file" class="form-control" id="inputGroupFile02" alt="{{$entidade->foto}}">
                     <label class="input-group-text" for="inputGroupFile02">Upload</label>
                 </div>
                 <hr>
@@ -78,32 +78,29 @@
             <!--SEGUNDA COLUNA DO FORMULARIO-->
             <div class="col-md-6 order-2">
                     <div class="mb-3">
-                        <input type="name" class="form-control" id="filial" name="filial" placeholder="Filial" required>
+                        <input type="name" class="form-control" id="filial" name="filial" placeholder="Filial" value="{{$personal->filial}}" required>
                     </div>
                     <div class="mb-3">
-                        <input type="email" class="form-control" id="email" name="email" placeholder="Email *" required>
+                        <input type="email" class="form-control" id="email" name="email" placeholder="Email *" value="{{$entidade->email}}" required >
 
-                    </div>
-                    <div class=" mb-3">
-                        <input type="password" class="form-control" id="password" name="password" placeholder="Senha *" required>
                     </div>
             </div>
 
             <!--PRIMEIRA COLUNA DO FORMULARIO-->
             <div class="col-md-6 order-1">
                 <div class="mb-3">
-                    <input type="name" class="form-control" id="nome" name="name" placeholder="Nome *" required>
+                    <input type="name" class="form-control" id="nome" name="name" placeholder="Nome *" value="{{$entidade->name}}" required>
                 </div>
                 <div class="mb-3">
-                    <input type="number" class="form-control" id="cref" name="cref" placeholder="CREF *" required>
+                    <input type="number" class="form-control" id="cref" name="cref" placeholder="CREF *" value="{{$personal->cref}}" required>
                 </div>
                 <div class="mb-3">
-                    <input type="tel" class="form-control" id="telefone" name="telefone" placeholder="Telefone *" required>
+                    <input type="tel" class="form-control" id="telefone" name="telefone" placeholder="Telefone *" value="{{$personal->telefone}}" required>
                 </div>
                 </div>
             </div>
             <!--BOTÃO-->
-            <button class="btn btn-primary" type="submit">Cadastrar</button>
+            <button class="btn btn-primary" type="submit">Atualizar</button>
         </form>
     </div>
     </div>

@@ -4,9 +4,9 @@ use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
 /**
- * Class CreateAlunosTable.
+ * Class CreatePersonalsTable.
  */
-class CreateAlunosTable extends Migration
+class CreatePersonalsTable extends Migration
 {
 	/**
 	 * Run the migrations.
@@ -15,13 +15,15 @@ class CreateAlunosTable extends Migration
 	 */
 	public function up()
 	{
-		Schema::create('alunos', function(Blueprint $table) {
+		Schema::create('personals', function(Blueprint $table) {
             $table->increments('id');
-            
-			$table->unsignedBigInteger('id_usuario');
+            $table->string('cref');
+            $table->string('filial')->nullable();
+            $table->string('telefone');
+            $table->unsignedBigInteger('id_usuario');
             $table->timestamps();
 		});
-		Schema::table('alunos', function (Blueprint $table) {
+		Schema::table('personals', function (Blueprint $table) {
             //Aqui vamo s adicionar a chave extrangeira
             $table->foreign('id_usuario')->references('id')->on('users')->onDelete('cascade');
         });
@@ -34,6 +36,6 @@ class CreateAlunosTable extends Migration
 	 */
 	public function down()
 	{
-		Schema::drop('alunos');
+		Schema::drop('personals');
 	}
 }

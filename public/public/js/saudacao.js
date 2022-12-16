@@ -10,3 +10,4 @@ const greetingMessage = () => {
         $("#saudacao").append('Boa noite');
     }
   }
+  console.log(greetingMessage())

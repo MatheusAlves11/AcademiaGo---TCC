@@ -32,22 +32,22 @@
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul class="navbar-nav">
                     <li class="nav-item">
-                        <a class="nav-link active" href="ListagemPersonaisADM.html">Personais</a>
+                        <a class="nav-link active" href="/homeAdm">Personais</a>
                     </li>
                     <li class="nav-item ">
-                        <a class="nav-link" href="ListagemAlunosADM.html">Alunos</a>
+                        <a class="nav-link" href="/homeAdm-aluno">Alunos</a>
                     </li>
                 </ul>
             </div>
     </nav>
 
-    <div class="container bg-light " style="text-align: center;">
+    <div class="container bg-light " style="width: 90%;text-align: center;">
+        @if (session('msg'))
+        <p class="alert alert-success">{{session('msg')}}</p>
+        @endif
         <div class="row ">
-
-            <div class="col-sm-2">
-                <h4 id="saudacao">
-                    
-                </h4>
+        <div class="col-sm-2" style="display: flex;flex-direction: column;justify-content: space-around;">
+                <h4 id="saudacao"></h4>
                 <div>
                     <button type="file" class="fotoPerfil">
                     @if(!empty($usuario->foto))
@@ -58,179 +58,60 @@
                     </button>
                 </div>
                 <p><b>{{$usuario->name}}</b></p>
-                <p class="mb-4">
-                {{$usuario->id}}
-                </p>
+                <p class="mb-4">ID: {{$usuario->id}}</p>
                 <a class="btn btn-danger" href="/logout">Sair</a>
                 <p>Garanhuns - PE</p>
             </div>
 
             <div class="col-sm-10">
                 <h2 class="mb-4 texto"><b>Personais Cadastrados</b></h2>
-                <input class="input form-control me-2" placeholder="Procure personal" />
-                <div class="table-responsive rolagem">
+                <form class="forms-pesquisa" action="/homeAdm" method="get">
+                    <input type="text" name="search" class="input form-control me-2" placeholder="Procure personal" id="search">
+                </form>
+                
+            <div class="table-responsive rolagem">
+             @if (empty($personais) && $busca)
+                 <p><a href="/homeAdm">Personal não encontrado</a></p>
+             @else
                     <table class="table">
                         <thead>
                             <tr>
-                                <th>
-                                    ID
-                                </th>
-                                <th>
-                                    Nome
-                                </th>
-                                <th>
-                                    Contato
-                                </th>
-                                <th>
-                                    Endereço
-                                </th>
-                                <th>
-                                    CREF
-                                </th>
-                                <th>
-
-                                </th>
+                                <th>ID</th>
+                                <th>Nome</th>
+                                <th>Contato</th>
+                                <th>Filial</th>
+                                <th>CREF</th>
+                                <th>*</th>
                             </tr>
                         </thead>
                         <tbody>
+                        @foreach ($personais as $personal)
                             <tr>
-                                <td>
-                                    1234
-                                </td>
-                                <td>
-                                    Joao Cariani
-                                </td>
-                                <td>
-                                    (87)981123-4567
-                                </td>
-                                <td>
-                                    Rua 123, bairro pequeno
-                                </td>
-                                <td>
-                                    1233-567
-                                </td>
-
-                                <td>
-                                    <a href="#"><button class="btn btn-primary" href="">Editar</button></a>
-                                    <button class="btn btn-danger"><i class="bi bi-trash"></i></button>
-                                </td>
+                                @foreach ($entidade as $entidades)
+                                    @if($personal->id_usuario==$entidades->id)
+                                        <td>{{$personal->id}}</td>
+                                        <td>{{$entidades->name}}</td>
+                                        <td>{{$personal->telefone}}</td>
+                                        <td>{{$personal->filial}}</td>
+                                        <td>{{$personal->cref}}</td>
+                                        <td style="display: flex;flex-direction: row;justify-content: space-around;align-items: center;">
+                                            <a href="editarPersonal/{{$personal->id}}" class="btn btn-primary" style="height: auto">Editar</a>    
+                                            <form action="/destruirPersonal/{{$personal->id}}" method="POST">
+                                                    @csrf
+                                                    @method('DELETE')
+                                                    <button type="submit" class="btn btn-danger delete-btn"><i class="bi bi-trash"></i></button>
+                                            </form> 
+                                        </td>
+                                    @endif
+                                @endforeach
                             </tr>
-                            <tr>
-                                <td>
-                                    1234
-                                </td>
-                                <td>
-                                    Joao Cariani
-                                </td>
-                                <td>
-                                    (87)981123-4567
-                                </td>
-                                <td>
-                                    Rua 123, bairro pequeno
-                                </td>
-                                <td>
-                                    1233-567
-                                </td>
-
-                                <td>
-                                    <a href="#"><button class="btn btn-primary" href="">Editar</button></a>
-                                    <button class="btn btn-danger"><i class="bi bi-trash"></i></button>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>
-                                    1234
-                                </td>
-                                <td>
-                                    Joao Cariani
-                                </td>
-                                <td>
-                                    (87)981123-4567
-                                </td>
-                                <td>
-                                    Rua 123, bairro pequeno
-                                </td>
-                                <td>
-                                    1233-567
-                                </td>
-
-                                <td>
-                                    <a href="#"><button class="btn btn-primary" href="">Editar</button></a>
-                                    <button class="btn btn-danger"><i class="bi bi-trash"></i></button>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>
-                                    1234
-                                </td>
-                                <td>
-                                    Joao Cariani
-                                </td>
-                                <td>
-                                    (87)981123-4567
-                                </td>
-                                <td>
-                                    Rua 123, bairro pequeno
-                                </td>
-                                <td>
-                                    1233-567
-                                </td>
-
-                                <td>
-                                    <a href="#"><button class="btn btn-primary" href="">Editar</button></a>
-                                    <button class="btn btn-danger"><i class="bi bi-trash"></i></button>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>
-                                    1234
-                                </td>
-                                <td>
-                                    Joao Cariani
-                                </td>
-                                <td>
-                                    (87)981123-4567
-                                </td>
-                                <td>
-                                    Rua 123, bairro pequeno
-                                </td>
-                                <td>
-                                    1233-567
-                                </td>
-
-                                <td>
-                                    <a href="#"><button class="btn btn-primary" href="">Editar</button></a>
-                                    <button class="btn btn-danger"><i class="bi bi-trash"></i></button>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>
-                                    1234
-                                </td>
-                                <td>
-                                    Joao Cariani
-                                </td>
-                                <td>
-                                    (87)981123-4567
-                                </td>
-                                <td>
-                                    Rua 123, bairro pequeno
-                                </td>
-                                <td>
-                                    1233-567
-                                </td>
-
-                                <td>
-                                    <a href="#"><button class="btn btn-primary" href="">Editar</button></a>
-                                    <button class="btn btn-danger"><i class="bi bi-trash"></i></button>
-                                </td>
-                            </tr>
-
+                        @endforeach
                         </tbody>
                     </table>
+                    @endif
                 </div>
                 <a href="CadastrarPersonalADM.html">
-                    <button class="btn btn-primary">Cadastrar</button>
+                    <a class="btn btn-primary" href="/cadastroPersonal">Cadastrar</a>
                 </a>
             </div>
         </div>

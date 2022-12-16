@@ -23,6 +23,7 @@
               <ul>
               @foreach ($errors->all() as $error)
                   <li>{{ $error }}</li>
+                  @break;
               @endforeach
             </ul>
           </div>

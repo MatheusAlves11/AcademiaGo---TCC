@@ -18,14 +18,15 @@
 <body>
 
   <div class="container col-md-6 form-container ">
+    @if (session('msg'))
+       <p class="alert alert-danger">{{session('msg')}}</p>
+    @endif
     <h1 class="mb-5 m-auto">Redefinir Senha</h1>
-
-    <form class="col-md-8 m-auto confirmaEmail" id="">
+    <form class="col-md-8 m-auto confirmaEmail" action="{{route('recSenhaToEmail')}}" method="POST">
       @csrf
       <div class="mb-3">
         <label for="">Confirme seu email</label>
-        <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp"
-          placeholder="Email:" required>
+        <input type="email" class="form-control" id="email" name="email" aria-describedby="emailHelp" placeholder="Email:" required>
       </div>
       <div class="d-flex justify-content-center">
         <button type="submit" class="btn btn-primary mb-3 align-center" onclick="troca" id="EnviarEmail">Enviar</button>
