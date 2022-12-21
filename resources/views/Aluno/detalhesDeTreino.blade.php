@@ -1,26 +1,24 @@
 <!DOCTYPE html>
 <html lang="pt-br">
-<!--TREINO DE HOJE-->
 
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Academias Go</title>
-    <link rel="stylesheet" href="../style/style.css">
-
     <!-- JavaScript Bundle with Popper -->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-OERcA2EqjJCMA+/3y+gxIOqMEjwtxJY7qPCqsdltbNJuaOe923+mo//f6V8Qbsw3" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-OERcA2EqjJCMA+/3y+gxIOqMEjwtxJY7qPCqsdltbNJuaOe923+mo//f6V8Qbsw3"
+        crossorigin="anonymous"></script>
 
     <!-- CSS only -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
     <!--CSS pessoal-->
     <link rel="stylesheet" href="../public/css/css.css">
-
 </head>
 
 <body>
-
     <nav class="navbar navbar-expand-lg bg-light">
         <div class="container-fluid">
             <!--Só aparece no celular--->
@@ -46,10 +44,7 @@
             </div>
         </div>
     </nav>
-
     <div class="container bg-light " style="width: 90%;text-align: center;">
-        <!-- <div class="row "> -->
-
         @if (session('msg'))
         <p class="alert alert-success">{{session('msg')}}</p>
         @endif
@@ -59,7 +54,7 @@
                 <div>
                     @if(!empty($usuario->foto))
                     <a type="file" href="/detalhes" class="fotoPerfil" style="padding:0px!important">
-                        <img src="img/{{$usuario->foto}}" alt="" style="height: 6rem;width: 6rem;border-radius: inherit;">
+                        <img src="/img/{{$usuario->foto}}" alt="" style="height: 6rem;width: 6rem;border-radius: inherit;">
                     </a>
                     @else
                     <a type="file" href="/detalhes" class="fotoPerfil">
@@ -78,13 +73,12 @@
                 <a class="btn btn-danger" href="/logout">Sair</a>
                 <p>Garanhuns - PE</p>
             </div>
-
             <div class="col-sm-10">
                 <h2 class="texto mb-4"> 
                      @if(!empty($treino))
-                         <b>Treino  @foreach ($treino as $treinos) {{$treinos->nome}} @break;@endforeach de {{$usuario->name}} </b>
+                         <b>Treino  @foreach ($treino as $treinos) @if($treinos->id==$_GET['treino']) {{$treinos->nome}} @break; @endif @endforeach de {{$usuario->name}} </b>
                     @else
-                        <b>Treino não existe</b>
+                        <b>Esse treino não existe</b>
                     @endif
                 </h2>
                 <div class="table-responsive">
@@ -96,7 +90,6 @@
                                 <th>Série</th>
                                 <th>Repetição</th>
                                 <th>Descanso</th>
-                                <th>Carga</th>
                                 <th>Meta(cal)</th>
                                 <th>Musculo</th>
                             </tr>
@@ -111,7 +104,6 @@
                                     <td>{{$exercicio->serie}}</td>
                                     <td>{{$exercicio->repeticoes}}</td>
                                     <td>{{$exercicio->descanso}} {{$exercicio->tipoTempoDuracao}}</td>
-                                    <td><input type="number" min="0" placeholder="Peso em kg"></td>
                                     <td>{{$exercicio->meta}}</td>
                                     <td>{{$exercicio->musculo}}</td>
                                 </tr>
@@ -133,13 +125,13 @@
                         </thead>
                         <tbody>
                         @foreach ($cardio as $cardioGeral)
-                        @foreach ($cardios as $cardios)
+                        @foreach ($cardios as $cardioss)
                         @foreach ($cardioGeral->cardio as $cardioExpecifico)
-                        @if($cardios->id==$cardioExpecifico)   
+                        @if($cardioExpecifico==$cardioss->id)   
                             <tr>
-                              <td>{{$cardios->exercicio}}</td>
-                              <td>{{$cardios->duracao}} {{$cardios->tipoTempoDuracao}}</td>
-                              <td>{{$cardios->meta}}</td>
+                              <td>{{$cardioss->exercicio}}</td>
+                              <td>{{$cardioss->duracao}} {{$cardioss->tipoTempoDuracao}}</td>
+                              <td>{{$cardioss->meta}}</td>
                             </tr>
                         @endif
                         @endforeach
@@ -147,25 +139,15 @@
                         @endforeach
                         </tbody>
                     </table>
-                    <div class="col-md-12">
-                        <button class="btn btn-primary" id="finalizarTreino" type="submit">Concluir treino</button>
-                    </div>
                     @endif
+                </div>
             </div>
         </div>
     </div>
+
     <script src="../public/js/jquery.js"></script>
-    <script>
-        window.jQuery || document.write('<script src="../../assets/js/vendor/jquery.min.js"><\/script>')
-    </script>
+    <script>window.jQuery || document.write('<script src="../../assets/js/vendor/jquery.min.js"><\/script>')</script>
     <script src="../public/js/script.js"></script>
-    <script type="text/javascript">
-        $(function() {
-            $("#finalizarTreino").click(function() {
-                window.location.href = 'Front-main\Aluno\seusTreinos.html';
-            });
-        })
-    </script>
     <script src="../public/js/saudacao.js"></script>
 </body>
 

@@ -63,35 +63,29 @@
               {{ session('danger') }}
             </div>
           @endif 
-          <h2 class="mb-4 texto"><b> Cadastro do Aluno</b></h2>
-          <form class="row needs-validation" novalidate method="POST" action="{{route('personal.forms.aluno')}}" enctype="multipart/form-data">
+          <h2 class="mb-4 texto"><b> Atualizar Aluno</b></h2>
+          <form class="row needs-validation" novalidate method="POST" action="/Forms-atualizar-aluno/{{$aluno->id}}" enctype="multipart/form-data">
           @csrf
           <hr>
           <div class="input-group mb-3">
-            <input type="file" class="form-control" name="foto" id="inputGroupFile02">
+            <input type="file" class="form-control" name="foto" id="inputGroupFile02" alt="{{$entidade->foto}}">
             <label class="input-group-text" for="inputGroupFile02">Upload</label>
           </div>
           <hr>
           <h5 class="g-4 mb-4 texto">Dados de Login:</h5>
-          <div class="col-md-6 mb-4">
-            <input type="email" class="form-control" id="email" name="email" placeholder="Digite seu e-mail *" required>
+          <div class="col-md-6 mb-4 mx-auto">
+            <input type="email" class="form-control" id="email" name="email" placeholder="Digite seu e-mail *" value="{{$entidade->email}}" readonly>
             <div class="valid-feedback">
               Ok!
             </div>
-          </div>
-          <div class="col-md-6 mb-4">
-            <input type="password" class="form-control" id="password" name="password" placeholder="Digite uma senha *" required>
-            <div class="valid-feedback">
-              Ok!
             </div>
-          </div>
           </hr>
           <hr>
           <h5 class="g-4 mb-4 texto">Dados pessoais:</h5>
 
           <!--NOME-->
           <div class="col-md-12 mb-4">
-            <input type="name" class="form-control" id="name" name="name" placeholder="Digite seu nome *" required>
+            <input type="name" class="form-control" id="name" name="name" placeholder="Digite seu nome *" value="{{$entidade->name}}"required>
             <div class="valid-feedback">
               Ok!
             </div>
@@ -99,56 +93,56 @@
 
           <!--ENDEREÇO-->
           <div class="col-md-5 mb-4">
-            <input type="text" class="form-control" id="cep" placeholder="Digite seu CEP *"  name="cep" maxlength="8" minlength="8" required data-cep>
+            <input type="text" class="form-control" id="cep" placeholder="Digite seu CEP *"  value="{{$aluno->cep}}" name="cep" maxlength="8" minlength="8" required data-cep>
             <div class="valid-feedback">
               Ok!
             </div>
           </div>
           <div class="col-md-5 mb-4">
-            <input type="text" class="form-control" id="rua" placeholder="Rua *" name="rua" readonly >
+            <input type="text" class="form-control" id="rua" placeholder="Rua *" name="rua" value="{{$aluno->rua}}" readonly >
             <div class="valid-feedback">
               Ok!
             </div>
           </div>
           <div class="col-md-2 mb-4">
-            <input type="text" class="form-control" id="numero" placeholder="Nº *" name="numeroCasa" required>
+            <input type="text" class="form-control" id="numero" placeholder="Nº *" name="numeroCasa" value="{{$aluno->numeroCasa}}"required>
             <div class="valid-feedback">
               Ok!
             </div>
           </div>
           <div class="col-md-4 mb-4">
-            <input type="text" class="form-control" id="bairro" placeholder="Bairro *" name="bairro" readonly >
+            <input type="text" class="form-control" id="bairro" placeholder="Bairro *" name="bairro" value="{{$aluno->bairro}}" readonly >
             <div class="valid-feedback">
               Ok!
             </div>
           </div>
           <div class="col-md-4 mb-4">
-            <input type="text" class="form-control" id="cidade" placeholder="Cidade *" name="cidade" readonly >
+            <input type="text" class="form-control" id="cidade" placeholder="Cidade *" name="cidade" value="{{$aluno->cidade}}" readonly >
             <div class="valid-feedback">
               Ok!
             </div>
           </div>
           <div class="col-md-4 mb-4">
-            <input type="text" class="form-control" id="uf" name="uf" name="uf" placeholder="Estado *" readonly >
+            <input type="text" class="form-control" id="uf" name="uf" name="uf" placeholder="Estado *" value="{{$aluno->uf}}" readonly >
             <div class="valid-feedback">
               Ok!
             </div>
           </div>
           <div class="col-md-12 mb-4">
-            <input type="text" class="form-control" id="complemento" name="complemento" placeholder="Complemento" required>
+            <input type="text" class="form-control" id="complemento" name="complemento" placeholder="Complemento" value="{{$aluno->complemento}}" required>
             <div class="valid-feedback">
               Ok!
             </div>
           </div>
           <!--CONTATO-->
           <div class="col-md-4 mb-4">
-            <input type="text" class="form-control" id="telefone" name="telefone" placeholder="Telefone *" required>
+            <input type="text" class="form-control" id="telefone" name="telefone" placeholder="Telefone *" value="{{$aluno->telefone}}" required>
             <div class="valid-feedback">
               Ok!
             </div>
           </div>
           <div class="col-md-4 mb-4">
-            <input type="text" class="form-control" name="filial" id="unidade" placeholder="Unidade *" required>
+            <input type="text" class="form-control" name="filial" id="unidade" placeholder="Unidade *" value="{{$aluno->filial}}" required>
             <div class="valid-feedback">
               Ok!
             </div>
@@ -156,7 +150,7 @@
 
           <!--INFOS-->
           <div class="col-md-4 mb-4">
-            <input type="date" class="form-control" id="dataDeNascimento" name="dataNascimento" placeholder="Data de nascimento *" required>
+            <input type="date" class="form-control" id="dataDeNascimento" name="dataNascimento" value="{{$aluno->dataNascimento}}" placeholder="Data de nascimento *" required>
             <div class="valid-feedback">
               Ok!
             </div>
@@ -165,18 +159,18 @@
           <div class="col-md-4 mb-4">
             <select name="genero" class="form-select form-control">
               <option selected disabled value="">Sexo: *</option>
-              <option value="Maculino">Masculino</option>
-              <option value="Feminino">Feminino</option>
+              <option value="Masculino" {{$aluno->genero=="Masculino"?"selected='selected'":""}}>Masculino</option>
+              <option value="Feminino" {{$aluno->genero=="Feminino"?"selected='selected'":""}}>Feminino</option>
             </select>
           </div>
           <div class="col-md-4 mb-4">
-            <input type="number" class="form-control" id="peso" name="peso" placeholder="Peso *" required>
+            <input type="number" class="form-control" id="peso" name="peso" value="{{$aluno->peso}}" placeholder="Peso *" required>
             <div class="valid-feedback">
               Ok!
             </div>
           </div>
           <div class="col-md-4 mb-4">
-            <input type="number" class="form-control" id="altura" name="altura" placeholder="Altura *" required>
+            <input type="number" class="form-control" id="altura" name="altura" value="{{$aluno->altura}}" placeholder="Altura *" required>
             <div class="valid-feedback">
               Ok!
             </div>
@@ -188,72 +182,72 @@
           <div class="col-md-6 mb-4">
             <select name="frequencia" class="form-select form-control">
               <option selected disabled value="">Frequência *</option>
-              <option value="1">1</option>
-              <option value="2">2</option>
-              <option value="3">3</option>
-              <option value="4">4</option>
-              <option value="5">5</option>
-              <option value="6">6</option>
-              <option value="7">7</option>
+              <option value="1" {{$aluno->frequencia=="1"?"selected='selected'":""}}>1</option>
+              <option value="2" {{$aluno->frequencia=="2"?"selected='selected'":""}}>2</option>
+              <option value="3" {{$aluno->frequencia=="3"?"selected='selected'":""}}>3</option>
+              <option value="4" {{$aluno->frequencia=="4"?"selected='selected'":""}}>4</option>
+              <option value="5" {{$aluno->frequencia=="5"?"selected='selected'":""}}>5</option>
+              <option value="6" {{$aluno->frequencia=="6"?"selected='selected'":""}}>6</option>
+              <option value="7" {{$aluno->frequencia=="7"?"selected='selected'":""}}>7</option>
             </select>
           </div>
           <div class="col-md-6 mb-4">
             <select name="objetivo"  class="form-select form-control">
               <option selected disabled value="">Objetivo: *</option>
-              <option value="Emagrecimento">Emagrecimento</option>
-              <option value="Hipertrofia">Hipertrofia</option>
-              <option value="Resistência">Resistência</option>
+              <option value="Emagrecimento" {{$aluno->objetivo=="Emagrecimento"?"selected='selected'":""}}>Emagrecimento</option>
+              <option value="Hipertrofia" {{$aluno->objetivo=="Hipertrofia"?"selected='selected'":""}}>Hipertrofia</option>
+              <option value="Resistência" {{$aluno->objetivo=="Resistência"?"selected='selected'":""}}>Resistência</option>
             </select>
           </div>
 
           <div class="col-md-12 mb-4">
-            <input type="text" class="form-control" id="remedio" name="remedioControlado"  placeholder="Toma remédio controlado? Se sim, quais?" required>
+            <input type="text" class="form-control" id="remedio" name="remedioControlado"  value="{{$aluno->remedioControlado}}" placeholder="Toma remédio controlado? Se sim, quais?" required>
           </div>
 
           <div class="col-md-4 mb-4">
             <select name="bebidaAlcolica" class="form-select form-control">
               <option selected disabled value="">Consome bebida alcoolica*</option>
-              <option value="0">Não</option>
-              <option value="1">Sim</option>
+              <option value="0" {{$aluno->bebidaAlcolica=="0"?"selected='selected'":""}}>Não</option>
+              <option value="1" {{$aluno->bebidaAlcolica=="1"?"selected='selected'":""}}>Sim</option>
             </select>   
           </div>
           <div class="col-md-5 mb-4">
           <select name="taxasAltas" class="form-select form-control">
               <option selected disabled value="">Colesterol, triglicerídeo ou glicose alta?*</option>
-              <option value="0">Não</option>
-              <option value="1">Sim</option>
+              <option value="0" {{$aluno->bebidaAlcolica=="0"?"selected='selected'":""}}>Não</option>
+              <option value="1" {{$aluno->bebidaAlcolica=="1"?"selected='selected'":""}}>Sim</option>
             </select>           
           </div>
           <div class="col-md-3 mb-4">
             <select name="alteracaoCardiaca" class="form-select form-control">
               <option selected disabled value="">Alteração cardíaca?*</option>
-              <option value="nao">Não possui</option>
-              <option value="leve">Sim, leve</option>
-              <option value="grave">Sim, grave</option>
+              <option value="nao" {{$aluno->alteracaoCardiaca=="nao"?"selected='selected'":""}}>Não possui</option>
+              <option value="leve" {{$aluno->alteracaoCardiaca=="leve"?"selected='selected'":""}}>Sim, leve</option>
+              <option value="grave" {{$aluno->alteracaoCardiaca=="grave"?"selected='selected'":""}}>Sim, grave</option>
             </select>
           </div>
 
           <div class="col-md-4 mb-4">
             <select name="fumante" class="form-select form-control">
               <option selected disabled value="">É fumante?*</option>
-              <option value="0">Não </option>
-              <option value="1">Sim</option>   
+              <option value="0" {{$aluno->fumante=="0"?"selected='selected'":""}}>Não</option>
+              <option value="1" {{$aluno->fumante=="1"?"selected='selected'":""}}>Sim</option>
             </select>
           </div>
 
           <div class="col-md-4 mb-4">
             <select name="diabes" class="form-select form-control">
               <option selected disabled value="">Possui diabetes?*</option>
-              <option value="0">Não</option>
-              <option value="1">Sim</option>
+              <option value="0" {{$aluno->diabes=="0"?"selected='selected'":""}}>Não</option>
+              <option value="1" {{$aluno->diabes=="1"?"selected='selected'":""}}>Sim</option>
             </select>
           </div>
 
           <div class="col-md-4 mb-4">
             <select name="hipertenso" class="form-select form-control">
               <option selected disabled value="">É hipertenso?*</option>
-              <option value="0">Não</option>
-              <option value="1">Sim</option>
+              <<option value="0" {{$aluno->hipertenso=="0"?"selected='selected'":""}}>Não</option>
+              <option value="1" {{$aluno->hipertenso=="1"?"selected='selected'":""}}>Sim</option>
             </select>
           </div>
           <div class="col-md-12 mb-4">
@@ -293,7 +287,7 @@
           </div>
           <!--BOTÃO DE CADASTRAR-->
           <div class="col-md-12">
-            <button class="btn btn-primary">Cadastrar</button>
+            <button class="btn btn-primary">Atualizar</button>
           </div>
         </form>
       </div>

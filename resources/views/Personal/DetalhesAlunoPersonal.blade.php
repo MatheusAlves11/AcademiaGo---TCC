@@ -31,176 +31,199 @@
 
    <!--LINK-->
    <div class="collapse navbar-collapse" id="navbarNav">
-    <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-      <li class="nav-item">
-        <a class="nav-link active" href="ListagemAlunosPersonal.html">Alunos</a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" href="ListagemExerciciosPersonal.html">Exercício</a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" href="ListagemCardiosersonal.html">Cardio</a>
-      </li>
-    </ul>
+   <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+          <li class="nav-item">
+            <a class="nav-link active" href="/homePersonal">Alunos</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="/homePersonal-treino">Exercício</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="/homePersonal-cardio">Cardio</a>
+          </li>
+        </ul>
   </div>
 </nav>
 
    <!--FORMULARIO-->
-  <div class="container col-md-8 mb-4">
-    <div class="row justify-content-center m-4">
+   <div class="container col-md-8 mb-4" style="width: 90%;">
+      <div class="row justify-content-center m-4">
       <div class="col-md-10">
-        <h2 class="mb-4 texto"><b> Detalhes do Aluno</b></h2>
+      <h2 class="mb-4 texto"><b>Detalhes do Aluno</b></h2>
 
-        <!--BOTÕES-->
-        <div class="col-md-12 d-flex align-items-end flex-column bd-highlight"> <!--posição do botão no fim da tela-->
-          <div class="p-2 bd-highlight">
-            <a href="EditarAlunoPersonal.html"><button class="btn btn-primary mb-3" href="">Editar</button></a>
-            <a href=""><button class="btn btn-danger mb-3"><i class="bi bi-trash"></i></button></a>
-          </div>
- 
-          <!--INFORMAÇÕES DO FORMULARIO-->
-          <form class="row"> <!--DEIXA EM LINHA-->
-            <hr>
+<!--BOTÕES-->
+<div class="col-md-12 d-flex align-items-end flex-column bd-highlight"> <!--posição do botão no fim da tela-->
+  <div class="p-2 bd-highlight" style="display: flex;">
+  <a href="/editarAluno/{{$alunos->id}}" class="btn btn-primary" style="height: auto">Editar</a>    
+  <form action="/destruirAluno/{{$alunos->id}}" method="POST">
+      @csrf
+      @method('DELETE')
+     <button type="submit" class="btn btn-danger delete-btn"><i class="bi bi-trash"></i></button>
+  </form>
+</div>
 
-            <!--IMAGEM DO ALUNO-->
-            <div class="d-flex justify-content-center mb-4">
-              <button type="file" class="fotoPerfil">
-                <img src="../public/img/user.png" alt="" style="height: 5.5rem; width:5.5rem;">
-            </button>
-            </div>
-            <hr>
-            <h5 class="g-4 mb-4 texto">Nome:</h5>
+  <!--INFORMAÇÕES DO FORMULARIO-->
+  <form class="row"> <!--DEIXA EM LINHA-->
+    <hr>
 
-            <!--NOME-->
-            <div class="col-md-8">
-              <p>Data de nascimento: </p>
-            </div>
-            <div class="col-md-4">
-              <p>Altura: </p>
-            </div>
-            <div class="col-md-8">
-              <p>Sexo:</p>
-            </div>
-            <div class="col-md-4">
-              <p>Peso: </p>
-            </div>
-            <div class="col-md-8">
-              <p>Endereço: </p>
-            </div>
-            <div class="col-md-4">
-              <p>Número: </p>
-            </div>
-            <div class="col-md-4">
-              <p>Cidade: </p>
-            </div>
-            <div class="col-md-4">
-              <p>Bairro: </p>
-            </div>
-            <div class="col-md-4">
-              <p>Complemento: </p>
-            </div>
-            <div class="col-md-8">
-              <p>Email: </p>
-            </div>
-            <div class="col-md-4">
-              <p>Telefone: </p>
-            </div>
-            <div class="col-md-8">
-              <p>IMC: </p>
-            </div>
-
-            <hr>
-            <h5 class="g-4 mb-5 texto">Informações adicionais:</h5>
-
-            <div class="col-md-8">
-              <p>Frequência semanal: </p>
-            </div>
-            <div class="col-md-4">
-              <p>Objetivo: </p>
-            </div>
-            <div class="col-md-8">
-              <p>Colesterol, triglicerídeo ou glicose alta: </p>
-            </div>
-            <div class="col-md-4">
-              <p>Alteração Cardíaca: </p>
-            </div>
-            <div class="col-md-4">
-              <p>Fumante: </p>
-            </div>
-            <div class="col-md-4">
-              <p>Diabestes: </p>
-            </div>
-            <div class="col-md-4">
-              <p>Hipertensão: </p>
-            </div>
-            <div class="col-md-12">
-              <p>Lesão: </p>
-            </div>
-            <div class="col-md-8">
-              <p>Medicamento controlado: </p>
-            </div>
-            <div class="col-md-4">
-              <p>Bebida alcoolica: </p>
-            </div>
-            <!-- 
-                  <hr>
-                  <h5 class="g-4 mb-5 texto">Medidas corporais:</h5>
-
-                  <div class="col-md-4">
-                    <p>Tórax: </p>
-                  </div>
-                  <div class="col-md-4">
-                    <p>Abdomen: </p>
-                  </div>
-                   <div class="col-md-4">
-                    <p>Cintura: </p>
-                  </div>
-                  <div class="col-md-4">
-                    <p>Coxa D.: </p>
-                  </div>
-                  <div class="col-md-4">
-                    <p>Coxa E.: </p>
-                  </div>
-                  <div class="col-md-4">
-                    <p>Quadril: </p>
-                  </div>
-                  <div class="col-md-4">
-                    <p>Escapular: </p>
-                  </div>
-                  <div class="col-md-4">
-                    <p>Braço D.: </p>
-                  </div>
-                  <div class="col-md-4">
-                    <p>Braço E.: </p>
-                  </div>
-                  <div class="col-md-8">
-                    <p>Antebraço D.: </p>
-                  </div>
-                  <div class="col-md-4">
-                    <p>Antebraço E.: </p>
-                  </div>
-                  <div class="col-md-8">
-                    <p>Panturrilha D.: </p>
-                  </div>
-                  <div class="col-md-4">
-                    <p>Panturrilha E.: </p>
-                  </div>
- -->
-              <!--INFORMAÇÇOES DO TREINO-->
-            <hr>
-            <h5 class="g-4 mb-5 texto">Resumo:</h5>
-            <div class="col-md-7">
-              <progress value="25" max="100">25%</progress>
-              <h5>Meta: 100%</h5>
-            </div>
-            <div class="col-md-5">
-              <p>Total de treinos: </p>
-              <p>Total de conclusão: </p>
-            </div>
-          </form>
-        </div>
-      </div>
+     <!--IMAGEM DO ALUNO-->
+    <div class="d-flex justify-content-center mb-4">
+    @if(!empty($entidade->foto))
+                <div type="file" class="fotoPerfil" style="padding:0px!important">
+                    <img src="/img/{{$entidade->foto}}" alt="" style="height: 12rem;width: 12rem;border-radius: inherit;">
+                </div>
+                @else
+                <button type="file" class="fotoPerfil">
+                    <img src="../public/img/user.png" alt="" style="height: 6.5rem; width:6.5rem;">
+                </button>
+                @endif
     </div>
+    <hr>
+    <h5 class="g-4 mb-5 texto">{{$entidade->name}}</h5>
+
+    <div class="col-md-8">
+    <p><b>Data de nascimento:</b> {{date('d/m/Y', strtotime($alunos->dataNascimento))}}</p>
+    </div>
+    <div class="col-md-4">
+      <p><b>Altura:</b> {{$alunos->altura}}</p>
+    </div>
+    <div class="col-md-8">
+      <p><b>Sexo:</b> {{$alunos->genero}}</p>
+    </div>
+    <div class="col-md-4">
+      <p><b>Peso:</b> {{$alunos->peso}}</p>
+    </div>
+    <div class="col-md-8">
+      <p><b>Endereço:</b> {{$alunos->rua}}</p>
+    </div>
+    <div class="col-md-4">
+      <p><b>Número:</b> {{$alunos->numeroCasa}}</p>
+    </div>
+    <div class="col-md-4">
+      <p><b>Cidade:</b> {{$alunos->cidade}}</p>
+    </div>
+    <div class="col-md-4">
+      <p><b>Bairro:</b> {{$alunos->bairro}}</p>
+    </div>
+    <div class="col-md-4">
+      <p><b>Complemento:</b> {{$alunos->complemento}}</p>
+    </div>
+    <div class="col-md-8">
+      <p><b>Email:</b> {{$entidade->email}}</p>
+    </div>
+    <div class="col-md-4">
+      <p><b>Telefone:</b> {{$alunos->telefone}}</p>
+    </div>
+    <div class="col-md-8">
+      <p><b>IMC:</b> {{$alunos->imc}}</p>
+    </div>
+    <div class="col-md-4">
+      <p><b>Unidade:</b> {{$alunos->filial}}</p>
+    </div>
+    <!-- <div class="col-md-4">
+            <p>% Gordura: </p>
+          </div> -->
+
+    <hr>
+    <h5 class="g-4 mb-5 texto">Informações adicionais:</h5>
+
+    <div class="col-md-8">
+      <p><b>Frequência semanal:</b> {{$alunos->frequencia}}</p>
+    </div>
+    <div class="col-md-4">
+      <p><b>Objetivo:</b>{{$alunos->objetivo}} </p>
+    </div>
+    <div class="col-md-8">
+      <p><b>Colesterol, triglicerídeo ou glicose alta:</b>
+      @if ($alunos->altasTaxas==0)
+          <p>Não possui taxas altas</p>
+        @else
+          <p>Possui</p>
+        @endif</p>
+    </div>
+    <div class="col-md-4">
+      <p><b>Alteração Cardíaca:</b>  
+        @if ($alunos->alteracaoCardiaca=='nao')
+          <p>Não possui alteração Cardiaca</p>
+        @elseif($alunos->alteracaoCardiaca=='leve')
+          <p>Possui leve alteração</p>
+        @elseif($alunos->alteracaoCardiaca=='grave')
+          <p>Possui grave alteração</p>
+        @endif</p>
+    </div>
+    <div class="col-md-4">
+      <p><b>Fumante:</b> 
+        @if ($alunos->fumante=='0')
+          <p>Não fumante</p>
+        @else
+          <p>fumante</p>
+        @endif</p>
+    </div>
+    <div class="col-md-4">
+      <p><b>Diabestes:</b>       
+        @if ($alunos->diabes=='0')
+          <p>Não diabetico</p>
+        @else
+          <p>diabetico</p>
+        @endif</p>
+    </div>
+    <div class="col-md-4">
+      <p><b>Hipertensão:</b>  
+        @if ($alunos->hipertensao==0)
+          <p>Não possuei hipertensão</p>
+        @else
+          <p>Possui hipertensão</p>
+        @endif</p>
+    </div>
+    <!--  <div class="col-md-12">
+            <p>Cirurgia: </p>
+          </div> -->
+    <div class="col-md-8">
+      <p><b>Medicamento controlado: </b>  
+      @if (empty($alunos->remedioControlado))</p>
+        <p>Não toma medicamento controlado</p>
+        @else
+        <p>{{$alunos->remedioControlado}}</p>
+      @endif
+    </div>
+    <div class="col-md-4">
+      <p><b>Bebida alcoolica: </b> 
+      @if ($alunos->bebibaAlcolica=='0')
+          <p>Não bebe</p>
+        @else
+          <p>bebe</p>
+        @endif</p>
+    </div>
+    <div class="col-md-8">
+      <p><b>Lesão:</b> </p>
+      @foreach ($alunos->lesao as $lesao)
+         <li>{{$lesao}}</li>
+      @endforeach
+    </div>
+     <div class="col-md-4">
+      <p><b>Problema pulmonar:</b> 
+        @if ($alunos->fumante=='0')
+          <p>Não possui</p>
+        @else
+          <p>fumante</p>
+        @endif</p>
+    </div>
+    <!--INFORMAÇÇOES DO TREINO-->
+    <hr>
+    <h5 class="g-4 mb-5 texto">Resumo:</h5>
+    <div class="col-md-7">
+      <progress value="25" max="100">25%</progress>
+      <h5>Meta: {{$alunos->metaTreino}}</h5>
+    </div>
+    <div class="col-md-5">
+      <p>Total de treinos: </p>
+      <p>Total de conclusão: </p>
+    </div>
+
+  </form>
+</div>
+</div>
+</div>
 
     <script src="../public/js/jquery.js"></script>
     <script>window.jQuery || document.write('<script src="../../assets/js/vendor/jquery.min.js"><\/script>')</script>

@@ -65,44 +65,45 @@
           {{ session('danger') }}
         </div>
       @endif
-        <h2 class="mb-4 texto"><b> Cadastro do Exercício</b></h2>
+        <h2 class="mb-4 texto"><b> Atualizar do Exercício</b></h2>
 
-        <form class="row needs-validation" novalidate method="POST" action="{{route('personal.forms.exercicio')}}">
+        <form class="row needs-validation" novalidate method="POST" action="/Forms-atualizar-exercicio/{{$exercicio->id}}">
              @csrf
           <hr>
 
           <div class="col-md-4 mb-4">
-            <input type="name" class="form-control" id="name" name="exercicio" placeholder="Nome*">
+            <input type="name" class="form-control" id="name" value="{{$exercicio->exercicio}}" name="exercicio" placeholder="Nome*">
           </div>
 
           <div class="col-md-4 mb-4">
             <select name="musculo" class="form-select form-control">
               <option selected disabled value="">Musculo*</option>
-              <option value="Peito">Peito</option>
-              <option value="Costas">Costas</option>
-              <option value="Bíceps">Bíceps</option>
-              <option value="Tríceps">Tríceps</option>
-              <option value="Ombro">Ombro</option>
-              <option value="Panturrilha">Panturrilha</option>
-              <option value="Coxa">Coxa</option>
-              <option value="Abdomen">Abdomen</option>
-              <option value="Trapézio">Trapézio</option>
+              <option value="Peito" {{$exercicio->musculo=="Peito"?"selected='selected'":""}}>Peito</option>
+              <option value="Costas" {{$exercicio->musculo=="Costas"?"selected='selected'":""}}>Costas</option>
+              <option value="Bíceps" {{$exercicio->musculo=="Bíceps"?"selected='selected'":""}}>Bíceps</option>
+              <option value="Tríceps" {{$exercicio->musculo=="Tríceps"?"selected='selected'":""}}>Tríceps</option>
+              <option value="Ombro" {{$exercicio->musculo=="Ombro"?"selected='selected'":""}}>Ombro</option>
+              <option value="Perna" {{$exercicio->musculo=="Perna"?"selected='selected'":""}}>Perna</option>
+              <option value="Abdomen" {{$exercicio->musculo=="Abdomen"?"selected='selected'":""}}>Abdomen</option>
+              <option value="Trapézio" {{$exercicio->musculo=="Trapézio"?"selected='selected'":""}}>Trapézio</option>
             </select>
           </div>
+
           <div class="col-md-4 mb-4">
             <select name="intensidade" class="form-select form-control">
               <option selected disabled value="">Intensidade*</option>
-              <option value="Leve">Leve</option>
-              <option value="Moderada">Moderada</option>
-              <option value="Alta">Alta</option>
-            </select>          
+              <option value="Leve" {{$exercicio->intensidade=="Leve"?"selected='selected'":""}}>Leve</option>
+              <option value="Moderada" {{$exercicio->intensidade=="Moderada"?"selected='selected'":""}}>Moderada</option>
+              <option value="Alta" {{$exercicio->intensidade=="Alta"?"selected='selected'":""}}>Alta</option>
+            </select>         
+          </div>
           </div>
           <div class="col-md-4 mb-4">
-            <input type="number" class="form-control" id="number" name="meta" min="0" placeholder="Meta de cal">
+            <input type="number" class="form-control" id="number" min="0" name="meta" value="{{$exercicio->meta}}" placeholder="Meta de cal">
           </div>
           <!--BOTÃO DE CADASTRAR-->
           <div class="col-md-12">
-             <button class="btn btn-primary">Cadastrar</button>
+             <button class="btn btn-primary">Atualizar</button>
           </div>
         </form>
       </div>

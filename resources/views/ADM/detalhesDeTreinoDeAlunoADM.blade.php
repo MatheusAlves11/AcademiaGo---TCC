@@ -22,13 +22,13 @@
 
 <body>
     <nav class="navbar navbar-expand-lg bg-light">
-        <div class="container-fluid">
-        
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
-                data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
-                aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
+    <div class="container-fluid">
+
+<button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+        data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
+        aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul class="navbar-nav">
                     <li class="nav-item">
@@ -42,24 +42,28 @@
         </nav>
 
     <div class="container bg-light " style="text-align: center;">
+    @if (session('msg'))
+            <p class="alert alert-success">{{session('msg')}}</p>
+        @endif
         <div class="row ">
-
-            <div class="col-sm-2">
-                <h4>
-                    Olá, ADM
-                </h4>
+            <div class="col-sm-2" style="display: flex;flex-direction: column;justify-content: space-around;">
+                <h4 id="saudacao"></h4>
                 <div>
-                    <button type="file" class="fotoPerfil">
-                        <img src="../public/img/user.png" alt="" style="height: 3.5rem; width:3.5rem;">
-                    </button>
+                @if(!empty($usuario->foto))
+                        <div type="file" class="fotoPerfil" style="padding:0px!important">
+                            <img src="img/{{$usuario->foto}}" alt="" style="height: 6rem;width: 6rem;border-radius: inherit;">
+                        </div>
+                        @else
+                        <div type="file" class="fotoPerfil" style="background: rgb(219, 221, 223);">
+                            <img src="../public/img/user.png" alt="" style="height: 3.5rem; width:3.5rem;">
+                        </div>
+                        @endif
                 </div>
-                <div class="row align-items-end">
-                    <p> <b>NomeADM</b></p>
-                    <p class="mb-4">
-                        1234871
-                    </p>
-                </div>
-                <button class="btn btn-danger">Sair</button>
+                <p><b>{{$usuario->name}}</b></p>
+                <p class="mb-4">
+                ID: {{$usuario->id}}
+                </p>
+                <a class="btn btn-danger" href="/logout">Sair</a>
                 <p>Garanhuns - PE</p>
             </div>
 

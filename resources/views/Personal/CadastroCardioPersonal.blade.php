@@ -30,53 +30,68 @@
 
    <!--LINK-->
    <div class="collapse navbar-collapse" id="navbarNav">
-    <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-      <li class="nav-item">
-        <a class="nav-link" href="ListagemAlunosPersonal.html">Alunos</a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" href="ListagemExerciciosPersonal.html">Exercício</a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link active" href="ListagemCardiosersonal.html">Cardio</a>
-      </li>
-    </ul>
+   <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+          <li class="nav-item">
+            <a class="nav-link " href="/homePersonal">Alunos</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="/homePersonal-treino">Exercício</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link active" href="/homePersonal-cardio">Cardio</a>
+          </li>
+        </ul>
   </div>
 </nav>
 
   <!--FORMULARIO-->
-  <div class="container col-md-8 mb-4">
+  <div class="container col-md-8 mb-4" style="width: 90%;">
     <div class="row justify-content-center m-4">
       <div class="col-md-10">
-
+      @if ($errors->any())
+          <div>
+            <div class="alert alert-danger">
+              <ul>
+              @foreach ($errors->all() as $error)
+                  <li>{{ $error }}</li>
+                  @break;
+              @endforeach
+            </ul>
+          </div>
+        </div>
+      @endif
+      @if (session('danger'))
+        <div class="alert alert-danger">
+          {{ session('danger') }}
+        </div>
+      @endif 
         <h2 class="mb-4 texto"><b> Cadastro do Cardio</b></h2>
 
-        <form class="row">
+        <form class="row needs-validation" novalidate method="POST" action="{{route('personal.forms.cardio')}}">
+             @csrf
           <hr>
-
           <div class="col-md-4 mb-4">
-            <input type="name" class="form-control" id="name" placeholder="Nome">
+            <input type="name" class="form-control" id="name" name="exercicio" placeholder="Nome *">
           </div>
-
           <div class="col-md-4 mb-4">
-            <input type="number" class="form-control" id="number" placeholder="Tempo">
+            <select name="intensidade" class="form-select form-control">
+              <option selected disabled value="">Intensidade*</option>
+              <option value="Leve">Leve</option>
+              <option value="Moderada">Moderada</option>
+              <option value="Alta">Alta</option>
+            </select>          
           </div>
-
           <div class="col-md-4 mb-4">
-            <input type="number" class="form-control" id="number" placeholder="Meta de Cal">
+            <input type="number" class="form-control" id="number" name="meta" min="0" placeholder="Meta de Cal *">
           </div>
+             <!--BOTÃO DE CADASTRAR-->
+             <div class="col-md-12">
+                <button class="btn btn-primary">Cadastrar</button>
+             </div>
         </form>
-
-        <!--BOTÃO DE CADASTRAR-->
-        <div class="col-md-12">
-          <a href="seusAlunos.html">
-            <button class="btn btn-primary">Cadastrar</button>
-          </a>
-        </div>
       </div>
     </div>
   </div>
-
   <script src="../public/js/jquery.js"></script>
   <script>window.jQuery || document.write('<script src="../../assets/js/vendor/jquery.min.js"><\/script>')</script>
   <script src="../public/js/script.js"></script>

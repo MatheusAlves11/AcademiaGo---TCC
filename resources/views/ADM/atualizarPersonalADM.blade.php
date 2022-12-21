@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt-br">
 
 <head>
     <meta charset="UTF-8">
@@ -42,7 +42,9 @@
     </nav>
 
     <!--FORMULÁRIO-->
-    <div class="container bg-light " style="width: 90%;text-align: center;">
+    <div class="container col-md-8 mb-4" style="width: 90%;">
+    <div class="row justify-content-center m-4">
+      <div class="col-md-10">
     <div >
         @if ($errors->any())
           <div>
@@ -69,7 +71,7 @@
             <div class=" col-md-12">
                 <hr>
                 <div class="input-group mb-3">
-                    <input type="file" class="form-control" id="inputGroupFile02" alt="{{$entidade->foto}}">
+                    <input type="file" class="form-control" id="inputGroupFile02" name="foto" alt="{{$entidade->foto}}">
                     <label class="input-group-text" for="inputGroupFile02">Upload</label>
                 </div>
                 <hr>
@@ -92,7 +94,7 @@
                     <input type="name" class="form-control" id="nome" name="name" placeholder="Nome *" value="{{$entidade->name}}" required>
                 </div>
                 <div class="mb-3">
-                    <input type="number" class="form-control" id="cref" name="cref" placeholder="CREF *" value="{{$personal->cref}}" required>
+                    <input type="number" min="1" class="form-control" id="cref" name="cref" placeholder="CREF *" value="{{$personal->cref}}" required>
                 </div>
                 <div class="mb-3">
                     <input type="tel" class="form-control" id="telefone" name="telefone" placeholder="Telefone *" value="{{$personal->telefone}}" required>
@@ -102,6 +104,8 @@
             <!--BOTÃO-->
             <button class="btn btn-primary" type="submit">Atualizar</button>
         </form>
+    </div>
+    </div>
     </div>
     </div>
 

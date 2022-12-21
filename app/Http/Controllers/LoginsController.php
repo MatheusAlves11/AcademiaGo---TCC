@@ -11,6 +11,7 @@ class LoginsController extends Controller
     //Login
         public function login(Request $request)
         {
+            //dd(Hash::make('.'));
             return view('Login.login');
         }
         public function loginForms(Request $request)

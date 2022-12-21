@@ -7,10 +7,10 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
    <!--CSS BOOTSTRAP-->
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css" rel="stylesheet"
-    integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x" crossorigin="anonymous">
-     <!--CSS-->
-     <link rel="stylesheet" href="../public/css/css.css">
+   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css" rel="stylesheet"
+   integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x" crossorigin="anonymous">
+    <!--CSS-->
+    <link rel="stylesheet" href="../public/css/css.css">
   <script src="jsv/scripts.js" defer></script>
   <!--defer faz com que o js seja executado dps q o html for executado-->
 
@@ -35,10 +35,10 @@
             <a class="nav-link " href="/homePersonal">Alunos</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link active" href="/homePersonal-treino">Exercício</a>
+            <a class="nav-link" href="/homePersonal-treino">Exercício</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="/homePersonal-cardio">Cardio</a>
+            <a class="nav-link active" href="/homePersonal-cardio">Cardio</a>
           </li>
         </ul>
   </div>
@@ -64,46 +64,31 @@
         <div class="alert alert-danger">
           {{ session('danger') }}
         </div>
-      @endif
-        <h2 class="mb-4 texto"><b> Cadastro do Exercício</b></h2>
+      @endif 
+        <h2 class="mb-4 texto"><b> Atualizar do Cardio</b></h2>
 
-        <form class="row needs-validation" novalidate method="POST" action="{{route('personal.forms.exercicio')}}">
+        <form class="row needs-validation" novalidate method="POST" action="/Forms-atualizar-cardio/{{$cardio->id}}">
              @csrf
           <hr>
-
           <div class="col-md-4 mb-4">
-            <input type="name" class="form-control" id="name" name="exercicio" placeholder="Nome*">
-          </div>
-
-          <div class="col-md-4 mb-4">
-            <select name="musculo" class="form-select form-control">
-              <option selected disabled value="">Musculo*</option>
-              <option value="Peito">Peito</option>
-              <option value="Costas">Costas</option>
-              <option value="Bíceps">Bíceps</option>
-              <option value="Tríceps">Tríceps</option>
-              <option value="Ombro">Ombro</option>
-              <option value="Panturrilha">Panturrilha</option>
-              <option value="Coxa">Coxa</option>
-              <option value="Abdomen">Abdomen</option>
-              <option value="Trapézio">Trapézio</option>
-            </select>
+            <input type="name" class="form-control" id="name" name="exercicio" value="{{$cardio->exercicio}}" placeholder="Nome *">
           </div>
           <div class="col-md-4 mb-4">
             <select name="intensidade" class="form-select form-control">
               <option selected disabled value="">Intensidade*</option>
-              <option value="Leve">Leve</option>
-              <option value="Moderada">Moderada</option>
-              <option value="Alta">Alta</option>
-            </select>          
+              <option value="Leve" {{$cardio->intensidade=="Leve"?"selected='selected'":""}}>Leve</option>
+              <option value="Moderada" {$cardio->intensidade=="Moderada"?"selected='selected'":""}}>Moderada</option>
+              <option value="Alta" {$cardio->intensidade=="Alta"?"selected='selected'":""}}>Alta</option>
+            </select>         
           </div>
+
           <div class="col-md-4 mb-4">
-            <input type="number" class="form-control" id="number" name="meta" min="0" placeholder="Meta de cal">
+            <input type="number" class="form-control" id="number" name="meta" value="{{$cardio->meta}}" min="0" placeholder="Meta de Cal *">
           </div>
-          <!--BOTÃO DE CADASTRAR-->
-          <div class="col-md-12">
-             <button class="btn btn-primary">Cadastrar</button>
-          </div>
+             <!--BOTÃO DE CADASTRAR-->
+             <div class="col-md-12">
+                <button class="btn btn-primary">Atualizar</button>
+             </div>
         </form>
       </div>
     </div>

@@ -36,13 +36,13 @@
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul class="navbar-nav">
                     <li class="nav-item">
-                        <a class="nav-link" href="home.html">Início</a>
+                        <a class="nav-link" href="/homeAluno">Início</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="seusTreinos.html">Treinos</a>
+                        <a class="nav-link" href="/treinos">Treinos</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link active" href="historico.html">Histórico</a>
+                        <a class="nav-link active" href="/historico">Histórico</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link " href="https://wa.me/+55087988572731" target="_blank">Entrar em contato</a>
@@ -51,36 +51,38 @@
             </div>
         </div>
     </nav>
+  
+    <div class="container bg-light " style="width: 90%;text-align: center;">
+         <!-- <div class="row "> -->
 
-    <div class="container bg-light " style="text-align: center;">
-        <!-- Perfil lateral -->
+        @if (session('msg'))
+        <p class="alert alert-success">{{session('msg')}}</p>
+        @endif
         <div class="row ">
-
-            <div class="col-sm-2">
-                <h4>
-                    Olá, NomeAluno
-                </h4>
-                <!-- FOTO DE PERFIL QUE REDIRECIONA PARA PERFIL-->
-                <button type="file" class="fotoPerfil">
-                    <img src="../public/img/user.png" alt="" class="fotoUsuario" style="height: 3.5rem; width:3.5rem;">
-                </button>
-                <p><b>NomeALUNO</b></p>
-                <p>
-                    1631
-                </p>
-                <p>
-                    Centro
-                </p>
-                <p>
-                    Matheus Ruiz Alves
-                </p>
-                <div>
+        <div class="col-sm-2" style="display: flex;flex-direction: column;justify-content: space-around;">
+         <h4 id="saudacao"></h4>
+        <div>
+                    @if(!empty($usuario->foto))
+                        <a  href="/detalhes" type="file" class="fotoPerfil" style="padding:0px!important">
+                            <img src="img/{{$usuario->foto}}" alt="" style="height: 6rem;width: 6rem;border-radius: inherit;">
+                        </a>
+                        @else
+                        <a href="/detalhes"  type="file" class="fotoPerfil">
+                            <img src="../public/img/user.png" alt="" style="height: 3.5rem; width:3.5rem;">
+                        </a>
+                        @endif
+                </div>
+                <p><b>{{$usuario->name}}</b></p>
+                <p class="mb-4">ID: {{$aluno->id}}</p>
+                <p>{{$aluno->filial}}</p>
+                <div> <!-- precisa desssa div envolapando o input se não ele perde responsividade-->
                     <progress value="25" max="100">25%</progress>
                     Meta: 100%
                 </div>
-                <button class="btn btn-danger">Sair</button>
+                <a class="btn btn-danger" href="/logout">Sair</a>
                 <p>Garanhuns - PE</p>
-            </div>
+        </div>
+
             <!-- Conteúdo principal -->
             <div class="col-sm-10">
                 <h2 class="texto mb-4">
@@ -88,7 +90,7 @@
                 </h2>
                 <div class="d-flex justify-content-center">
                     <select class="form-select filtrarMes" name="" id="">
-                        <option selected>Mês</option>
+                        <option selected disabled>Mês</option>
                         <option value="janeiro">Janeiro</option>
                         <option value="fevereirio">Fevereirio</option>
                         <option value="marco">Março</option>
@@ -172,10 +174,10 @@
             </div>
         </div>
     </div>
-
     <script src="../public/js/jquery.js"></script>
     <script>window.jQuery || document.write('<script src="../../assets/js/vendor/jquery.min.js"><\/script>')</script>
     <script src="../public/js/script.js"></script>
+    <script src="../public/js/saudacao.js"></script>
 </body>
 
 </html>

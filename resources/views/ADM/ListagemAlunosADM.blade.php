@@ -24,11 +24,12 @@
     <nav class="navbar navbar-expand-lg bg-light">
         <div class="container-fluid">
 
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
                 data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
                 aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
+
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul class="navbar-nav">
                     <li class="nav-item">
@@ -49,13 +50,15 @@
             <div class="col-sm-2" style="display: flex;flex-direction: column;justify-content: space-around;">
                 <h4 id="saudacao"></h4>
                 <div>
-                    <button type="file" class="fotoPerfil">
-                    @if(!empty($usuario->foto))
-                            <img src="../public/img/{{$usuario->foto}}" alt="" style="height: 3.5rem; width:3.5rem;">
+                @if(!empty($usuario->foto))
+                        <div type="file" class="fotoPerfil" style="padding:0px!important">
+                            <img src="img/{{$usuario->foto}}" alt="" style="height: 6rem;width: 6rem;border-radius: inherit;">
+                        </div>
                         @else
+                        <div type="file" class="fotoPerfil" style="background: rgb(219, 221, 223);">
                             <img src="../public/img/user.png" alt="" style="height: 3.5rem; width:3.5rem;">
+                        </div>
                         @endif
-                    </button>
                 </div>
                 <p><b>{{$usuario->name}}</b></p>
                 <p class="mb-4">
@@ -66,118 +69,41 @@
             </div>
             <div class="col-sm-10">
                 <h2 class="mb-4 texto"><b>Alunos Cadastrados</b></h2>
-                <input class="input form-control me-2" placeholder="Procure Aluno" />
+                <form class="forms-pesquisa" action="/homeAdm-aluno" method="get">
+                    <input type="text" name="search" class="input form-control me-2" placeholder="Procure aluno" id="search">
+                </form>
                 <div class="table-responsive rolagem">
+             @if (empty($aluno) && $busca)
+                 <p><a href="/homeAdm-aluno">Aluno não encontrado</a></p>
+             @else
                     <table class="table">
                         <thead>
                             <tr>
-                                <th>
-                                    Nome
-                                </th>
-                                <th>
-                                    Unidade
-                                </th>
-                                <th>
-                                    Informações
-                                </th>
-
+                                <th>Nome</th>
+                                <th>Unidade</th>
+                                <th>Objetivo</th>
+                                <th>Informações</th>
                             </tr>
                         </thead>
                         <tbody>
+                        @foreach ($aluno as $alunos)
                             <tr>
-                                <td>
-                                    Paulo Muzy
-                                </td>
-                                <td>
-                                    Centro
-                                </td>
-
-                                <td>
-                                    <button class="btn btn-primary">Perfil</button>
-                                    <button class="btn btn-primary">Treinos</button>
-                                </td>
+                            @foreach ($entidade as $entidades)
+                                 @if($alunos->id_usuario==$entidades->id)
+                                     <td>{{$entidades->name}}</td>
+                                     <td>{{$alunos->filial}}</td>
+                                     <td>{{$alunos->objetivo}}</td>
+                                     <td>
+                                         <a class="btn btn-primary" href="/detalhesAluno/{{$alunos->id}}">Perfil</a>
+                                         <a class="btn btn-primary" href="/treinosadmAluno/{{$alunos->id}}">Treinos</a>
+                                    </td>
+                            @endif
+                            @endforeach
                             </tr>
-                            <tr>
-                                <td>
-                                    Cariani
-                                </td>
-                                <td>
-                                    Cohab 2
-                                </td>
-
-                                <td>
-                                    <button class="btn btn-primary">Perfil</button>
-                                    <button class="btn btn-primary">Treinos</button>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>
-                                    Arnold alves
-                                </td>
-                                <td>
-                                    Heliópolis
-                                </td>
-
-
-                                <td>
-                                    <button class="btn btn-primary">Perfil</button>
-                                    <button class="btn btn-primary">Treinos</button>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>
-                                    Cariani
-                                </td>
-                                <td>
-                                    Cohab 2
-                                </td>
-
-                                <td>
-                                    <button class="btn btn-primary">Perfil</button>
-                                    <button class="btn btn-primary">Treinos</button>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>
-                                    Cariani
-                                </td>
-                                <td>
-                                    Cohab 2
-                                </td>
-
-                                <td>
-                                    <button class="btn btn-primary">Perfil</button>
-                                    <button class="btn btn-primary">Treinos</button>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>
-                                    Cariani
-                                </td>
-                                <td>
-                                    Cohab 2
-                                </td>
-
-                                <td>
-                                    <button class="btn btn-primary">Perfil</button>
-                                    <button class="btn btn-primary">Treinos</button>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>
-                                    Cariani
-                                </td>
-                                <td>
-                                    Cohab 2
-                                </td>
-
-                                <td>
-                                    <button class="btn btn-primary">Perfil</button>
-                                    <button class="btn btn-primary">Treinos</button>
-                                </td>
-                            </tr>
+                        @endforeach
                         </tbody>
                     </table>
+                    @endif
                 </div>
                 <div class="col-md-12">
                     <a class="btn btn-primary" href="/cadastroAluno">Cadastrar</a>

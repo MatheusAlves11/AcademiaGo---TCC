@@ -8,7 +8,7 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
 
-class alunos extends Authenticatable
+class Exercicio extends Authenticatable
 {
     use HasApiTokens, HasFactory, Notifiable;
 
@@ -18,35 +18,21 @@ class alunos extends Authenticatable
      * @var array<int, string>
      */
     protected $fillable = [
-        'filial',
-        'cep',
-        'rua',
-        'numeroCasa',
-        'bairro rro',
-        'cidade',
-        'uf', 
-        'complemento',
-        'telefone efone',
-        'genero',
-        'peso',
-        'altura',
-        'frequencia',
-        'objetivo',
-        'fumante',
-        'bebidaAlcolica',
-        'hipertenso',
-        'alteracaoCardiaca',
-        'diabes',
-        'id_usuario',
+        'exercicio',
+        'musculo',
+        'serie',
+        'repeticoes',
+        'descanso',
+        'tipoTempoDuracao',
+        'meta',
     ];
-    protected $dataNascimento=['date'];
+
     /**
      * The attributes that should be hidden for serialization.
      *
      * @var array<int, string>
      */
     protected $hidden = [
-        'telefone',
     ];
 
     /**
@@ -55,7 +41,5 @@ class alunos extends Authenticatable
      * @var array<string, string>
      */
     protected $casts = [
-        'lesao'=>'array',
-
     ];
 }

@@ -6,203 +6,231 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css" rel="stylesheet"
-    integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x" crossorigin="anonymous">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x" crossorigin="anonymous">
+
   <link rel="stylesheet" href="../public/css/css.css">
+
+  <!--ICONs-->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.9.1/font/bootstrap-icons.css">
+
 
   <title>Academias Go</title>
 </head>
 
 <body>
 
-
   <!--NAVBAR-->
   <nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <div class="container-fluid">
+      <!--SÓ APARECE NO CELULAR-->
 
-    <!--SÓ APARECE NO CELULAR-->
-    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
-      aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-      <span class="navbar-toggler-icon"></span>
-    </button>
+      <!--SÓ APARECE NO CELULAR-->
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
 
-    <!--LINKS-->
-    <div class="collapse navbar-collapse" id="navbarNav">
-      <ul class="navbar-nav">
-        <li class="nav-item active">
-          <a class="nav-link active" href="home.html">Início</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="seusTreinos.html">Treinos</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="historico.html">Histórico</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link " href="https://wa.me/+55087988572731" target="_blank">Entrar em contato</a>
-        </li>
-      </ul>
+      <!--LINKS-->
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav">
+          <li class="nav-item">
+            <a class="nav-link active" href="/homeAluno">Início</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="/treinos">Treinos</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="/historico">Histórico</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link " href="https://wa.me/+55087988572731" target="_blank">Entrar em contato</a>
+          </li>
+        </ul>
+      
+    </div>
     </div>
   </nav>
 
-  <!-- FORMULARIO-->
-  <div class="container col-md-8 mb-4 container">
+  <!--FORMULARIO-->
+  <div class="container bg-light " style="width: 90%;">
     <div class="row justify-content-center m-4">
       <div class="col-md-10">
-        <h2 class="mb-4 texto"><b>Seus Detalhes</b></h2>
+        <h2 class="mb-4 texto"><b>Seus detalhes</b></h2>
 
-        <!--botão de editar-->
-        <div class="col-md-12 d-flex align-items-end flex-column bd-highlight"> <!--COLOCA O BOTÃO PRA DIREITA-->
-          <div class="p-2 bd-highlight">
-            <button class="btn btn-primary mb-3">Editar</button>
+        <!--BOTÕES-->
+        <div class="col-md-12 d-flex align-items-end flex-column bd-highlight">
+          <!--posição do botão no fim da tela-->
+          <div class="p-2 bd-highlight" style="display: flex;">
+            <a href="/editar" class="btn btn-primary" style="height: auto">Editar</a>
           </div>
 
-
-          <form class="row"> <!--DEIXA EM LINHA O FORMULARIO-->
+          <!--INFORMAÇÕES DO FORMULARIO-->
+          <form class="row">
+            <!--DEIXA EM LINHA-->
             <hr>
 
             <!--IMAGEM DO ALUNO-->
             <div class="d-flex justify-content-center mb-4">
-              <button type="file" class="fotoPerfil">
-                <img src="../public/img/user.png" alt="" style="height: 5.5rem; width:5.5rem;">
-              </button>
+              @if(!empty($entidade->foto))
+              <div type="file" class="fotoPerfil" style="padding:0px!important">
+                <img src="../img/{{$entidade->foto}}" alt="" style="height: 12rem;width: 12rem;border-radius: inherit;">
+              </div>
+              @else
+              <div type="file" class="fotoPerfil" style="background: rgb(219, 221, 223);">
+                <img src="../public/img/user.png" alt="" style="height: 6.5rem; width:6.5rem;">
+              </div>
+              @endif
             </div>
             <hr>
+            <h5 class="g-4 mb-5 texto">{{$entidade->name}}</h5>
 
-            <!--INFORMAÇÕES DO FORMULARIO-->
-            <h5 class="col-md-12 g-5 mb-3 texto">Nome</h5>
             <div class="col-md-8">
-              <p>Data de nascimento: </p>
+            <p><b>Data de nascimento:</b> {{date('d/m/Y', strtotime($alunos->dataNascimento))}}</p>
             </div>
             <div class="col-md-4">
-              <p>Altura: </p>
+              <p><b>Altura:</b> {{$alunos->altura}}</p>
             </div>
             <div class="col-md-8">
-              <p>Sexo:</p>
+              <p><b>Sexo:</b> {{$alunos->genero}}</p>
             </div>
             <div class="col-md-4">
-              <p>Peso: </p>
+              <p><b>Peso:</b> {{$alunos->peso}}</p>
             </div>
             <div class="col-md-8">
-              <p>Endereço: </p>
+              <p><b>Endereço:</b> {{$alunos->rua}}</p>
             </div>
             <div class="col-md-4">
-              <p>Número: </p>
+              <p><b>Número:</b> {{$alunos->numeroCasa}}</p>
             </div>
             <div class="col-md-4">
-              <p>Cidade: </p>
+              <p><b>Cidade:</b> {{$alunos->cidade}}</p>
             </div>
             <div class="col-md-4">
-              <p>Bairro: </p>
+              <p><b>Bairro:</b> {{$alunos->bairro}}</p>
             </div>
             <div class="col-md-4">
-              <p>Complemento: </p>
+              <p><b>Complemento:</b> {{$alunos->complemento}}</p>
             </div>
             <div class="col-md-8">
-              <p>Email: </p>
+              <p><b>Email:</b> {{$entidade->email}}</p>
             </div>
             <div class="col-md-4">
-              <p>Telefone: </p>
+              <p><b>Telefone:</b> {{$alunos->telefone}}</p>
             </div>
             <div class="col-md-8">
-              <p>IMC: </p>
+              <p><b>IMC:</b> {{$alunos->imc}}</p>
             </div>
+            <div class="col-md-4">
+              <p><b>Unidade:</b> {{$alunos->filial}}</p>
+            </div>
+            <!-- <div class="col-md-4">
+                    <p>% Gordura: </p>
+                  </div> -->
 
             <hr>
             <h5 class="g-4 mb-5 texto">Informações adicionais:</h5>
 
             <div class="col-md-8">
-              <p>Frequência semanal: </p>
+              <p><b>Frequência semanal:</b> {{$alunos->frequencia}}</p>
             </div>
             <div class="col-md-4">
-              <p>Objetivo: </p>
+              <p><b>Objetivo:</b>{{$alunos->objetivo}} </p>
             </div>
             <div class="col-md-8">
-              <p>Colesterol, triglicerídeo ou glicose alta: </p>
+              <p><b>Colesterol, triglicerídeo ou glicose alta:</b>
+                @if ($alunos->altasTaxas==0)
+              <p>Não possui taxas altas</p>
+              @else
+              <p>Possui</p>
+              @endif</p>
             </div>
             <div class="col-md-4">
-              <p>Alteração Cardíaca: </p>
+              <p><b>Alteração Cardíaca:</b>
+                @if ($alunos->alteracaoCardiaca=='nao')
+              <p>Não possui alteração Cardiaca</p>
+              @elseif($alunos->alteracaoCardiaca=='leve')
+              <p>Possui leve alteração</p>
+              @elseif($alunos->alteracaoCardiaca=='grave')
+              <p>Possui grave alteração</p>
+              @endif</p>
             </div>
             <div class="col-md-4">
-              <p>Fumante: </p>
+              <p><b>Fumante:</b>
+                @if ($alunos->fumante=='0')
+              <p>Não fumante</p>
+              @else
+              <p>fumante</p>
+              @endif</p>
             </div>
             <div class="col-md-4">
-              <p>Diabestes: </p>
+              <p><b>Diabestes:</b>
+                @if ($alunos->diabes=='0')
+              <p>Não diabetico</p>
+              @else
+              <p>diabetico</p>
+              @endif</p>
             </div>
             <div class="col-md-4">
-              <p>Hipertensão: </p>
+              <p><b>Hipertensão:</b>
+                @if ($alunos->hipertensao==0)
+              <p>Não possuei hipertensão</p>
+              @else
+              <p>Possui hipertensão</p>
+              @endif</p>
             </div>
-            <div class="col-md-12">
-              <p>Lesão: </p>
+            <!--  <div class="col-md-12">
+                    <p>Cirurgia: </p>
+                  </div> -->
+            <div class="col-md-8">
+              <p><b>Medicamento controlado: </b>
+                @if (empty($alunos->remedioControlado))</p>
+              <p>Não toma medicamento controlado</p>
+              @else
+              <p>{{$alunos->remedioControlado}}</p>
+              @endif
+            </div>
+            <div class="col-md-4">
+              <p><b>Bebida alcoolica: </b>
+                @if ($alunos->bebibaAlcolica=='0')
+              <p>Não bebe</p>
+              @else
+              <p>bebe</p>
+              @endif</p>
             </div>
             <div class="col-md-8">
-              <p>Medicamento controlado: </p>
+              <p><b>Lesão:</b> </p>
+              @foreach ($alunos->lesao as $lesao)
+              <li>{{$lesao}}</li>
+              @endforeach
             </div>
             <div class="col-md-4">
-              <p>Bebida alcoolica: </p>
+              <p><b>Problema pulmonar:</b>
+                @if ($alunos->fumante=='0')
+              <p>Não possui</p>
+              @else
+              <p>fumante</p>
+              @endif</p>
             </div>
-            <!-- 
-                  <hr>
-                  <h5 class="g-4 mb-5 texto">Medidas corporais:</h5>
-
-                  <div class="col-md-4">
-                    <p>Tórax: </p>
-                  </div>
-                  <div class="col-md-4">
-                    <p>Abdomen: </p>
-                  </div>
-                   <div class="col-md-4">
-                    <p>Cintura: </p>
-                  </div>
-                  <div class="col-md-4">
-                    <p>Coxa D.: </p>
-                  </div>
-                  <div class="col-md-4">
-                    <p>Coxa E.: </p>
-                  </div>
-                  <div class="col-md-4">
-                    <p>Quadril: </p>
-                  </div>
-                  <div class="col-md-4">
-                    <p>Escapular: </p>
-                  </div>
-                  <div class="col-md-4">
-                    <p>Braço D.: </p>
-                  </div>
-                  <div class="col-md-4">
-                    <p>Braço E.: </p>
-                  </div>
-                  <div class="col-md-8">
-                    <p>Antebraço D.: </p>
-                  </div>
-                  <div class="col-md-4">
-                    <p>Antebraço E.: </p>
-                  </div>
-                  <div class="col-md-8">
-                    <p>Panturrilha D.: </p>
-                  </div>
-                  <div class="col-md-4">
-                    <p>Panturrilha E.: </p>
-                  </div>
--->
-
             <!--INFORMAÇÇOES DO TREINO-->
             <hr>
             <h5 class="g-4 mb-5 texto">Resumo:</h5>
             <div class="col-md-7">
               <progress value="25" max="100">25%</progress>
-              <h5>Meta: 100%</h5>
+              <h5>Meta: {{$alunos->metaTreino}}</h5>
             </div>
             <div class="col-md-5">
               <p>Total de treinos: </p>
               <p>Total de conclusão: </p>
             </div>
+
           </form>
         </div>
       </div>
     </div>
 
     <script src="../public/js/jquery.js"></script>
-    <script>window.jQuery || document.write('<script src="../../assets/js/vendor/jquery.min.js"><\/script>')</script>
+    <script>
+      window.jQuery || document.write('<script src="../../assets/js/vendor/jquery.min.js"><\/script>')
+    </script>
     <script src="../public/js/script.js"></script>
 
 </body>
