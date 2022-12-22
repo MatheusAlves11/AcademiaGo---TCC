@@ -64,6 +64,7 @@
           <h2 class="mb-4 texto"><b> Atualizar Aluno</b></h2>
           <form class="row needs-validation" novalidate method="POST" action="/Forms-atualizaradm-aluno/{{$aluno->id}}" enctype="multipart/form-data">
           @csrf
+          @method('PUT')
           <hr>
           <div class="input-group mb-3">
             <input type="file" class="form-control" name="foto" id="inputGroupFile02" alt="{{$entidade->foto}}">

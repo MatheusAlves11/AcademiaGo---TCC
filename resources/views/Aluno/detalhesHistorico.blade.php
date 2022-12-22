@@ -71,10 +71,7 @@
                 <p>
                     Matheus Ruiz Alves
                 </p>
-                <div>
-                    <progress value="25" max="100">25%</progress>
-                    Meta: 100%
-                </div>
+
                 <button class="btn btn-danger">Sair</button>
                 <p>Garanhuns - PE</p>
             </div>

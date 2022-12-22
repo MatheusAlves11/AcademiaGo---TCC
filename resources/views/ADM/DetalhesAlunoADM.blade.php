@@ -213,8 +213,8 @@
               <h5>Meta: {{$alunos->metaTreino}}</h5>
             </div>
             <div class="col-md-5">
-              <p>Total de treinos: </p>
-              <p>Total de conclusão: </p>
+            <p>Total de treinos: {{$quantTreino}}</p>
+              <p>Total de conclusão: {{$quantTreino}}</p>
             </div>
 
           </form>

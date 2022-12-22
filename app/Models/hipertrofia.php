@@ -12,29 +12,17 @@ class hipertrofia extends Authenticatable
 {
     use HasApiTokens, HasFactory, Notifiable;
 
-    /**
-     * The attributes that are mass assignable.
-     *
-     * @var array<int, string>
-     */
+    
     protected $fillable = [
         'id_aluno',
     ];
-    /**
-     * The attributes that should be hidden for serialization.
-     *
-     * @var array<int, string>
-     */
-    protected $hidden = [
-    ];
-
-    /**
-     * The attributes that should be cast.
-     *
-     * @var array<string, string>
-     */
+    
     protected $casts = [
         'exercicio'=>'array',
         'cardio'=>'array',
     ];
+    public function historicoTreinoHipertrofia(){
+        return $this->belongsTo('App\Models\alunos');
+        //belonsTO = Pertecem a alguém; logo um usuario só vai poder pertencer a um aluno
+    }
 }

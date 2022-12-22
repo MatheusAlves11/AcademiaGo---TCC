@@ -35,11 +35,11 @@ class AlunosController extends Controller
             $cardios=Cardio::all();
             if($aluno->objetivo=='Hipertrofia'){
                 //Hipertrofia |Exercicios 8 | Cardios 1
-                $hipertrofia=hipertrofia::where('id_aluno',$aluno->id)->where('nome','A')->get();
+                $hipertrofia=hipertrofia::where('id_aluno',$aluno->id)->where('nome',$aluno->treinoVez)->get();
                 if(count($hipertrofia)>0){
                     for ($i=0; $i<count($hipertrofia);$i++){
                         $exercicio=$hipertrofia;
-                        $cardio=hipertrofia::where('id_aluno',$aluno->id)->where('nome','A')->get('cardio');
+                        $cardio=hipertrofia::where('id_aluno',$aluno->id)->where('nome',$aluno->treinoVez)->get('cardio');
                     }
                 }else{
                     $exercicio=null;
@@ -47,21 +47,21 @@ class AlunosController extends Controller
                 }
                 }elseif($aluno->objetivo=='Resistência'){
                 //Resistência |Exercicios 6 | Cardios 2
-                $registencia=registencia::where('id_aluno',$aluno->id)->where('nome','A')->get();
+                $registencia=registencia::where('id_aluno',$aluno->id)->where('nome',$aluno->treinoVez)->get();
                 if(count($registencia)>0){
                     for ($i=0; $i<count($registencia);$i++){
                         $exercicio=$registencia;
-                        $cardio=registencia::where('id_aluno',$aluno->id)->where('nome','A')->get('cardio');
+                        $cardio=registencia::where('id_aluno',$aluno->id)->where('nome',$aluno->treinoVez)->get('cardio');
                     }
                 }else{
                     $exercicio=null;
                     $cardio=null;
                 }
                 }elseif($aluno->objetivo=='Emagrecimento'){
-                $emagrecer=emagrecer::where('id_aluno',$aluno->id)->where('nome','A')->get();
+                $emagrecer=emagrecer::where('id_aluno',$aluno->id)->where('nome',$aluno->treinoVez)->get();
                 if(count($emagrecer)>0){
                     $exercicio=$emagrecer;
-                    $cardio=emagrecer::where('id_aluno',$aluno->id)->where('nome','A')->get('cardio');
+                    $cardio=emagrecer::where('id_aluno',$aluno->id)->where('nome',$aluno->treinoVez)->get('cardio');
                 }
                 }else{
                     $exercicio=null;
@@ -131,13 +131,37 @@ class AlunosController extends Controller
         {
             $entidade=auth()->user();
             $aluno=alunos::where('id_usuario',$entidade->id)->first();
-            return view('Aluno.historico',['usuario'=>$entidade,'aluno'=>$aluno]);
+            if($aluno->objetivo=="Resistência"){
+                $historicoTreino=$aluno->registencia;
+            }elseif($aluno->objetivo=="Hipertrofia"){
+                $historicoTreino=$aluno->hipertrofia;
+            }else{
+                $historicoTreino=$aluno->emagrecer;
+            }
+            $busca=request('search'); 
+            if($busca){
+                foreach($historicoTreino as $historico){
+                   if($historico->created_at->format('m')==$busca){
+                        $historicoTreino->where('created_at',$busca);
+                    }else{
+                        $historicoTreino=null;
+                    } 
+                }
+            }
+            return view('Aluno.historico',['usuario'=>$entidade,'aluno'=>$aluno,'historicoTreino'=>$historicoTreino]);
         }
         public function indexAluno_detalhes()
         {
             $entidade=auth()->user();
             $aluno=alunos::where('id_usuario',$entidade->id)->first();
-            return view('Aluno.DetalhesAluno',['alunos'=>$aluno,'entidade'=>$entidade]);
+            if($aluno->objetivo=="Resistência"){
+                $historicoTreino=$aluno->registencia->count();
+            }elseif($aluno->objetivo=="Hipertrofia"){
+                $historicoTreino=$aluno->hipertrofia->count();
+            }else{
+                $historicoTreino=$aluno->emagrecer->count();
+            }
+            return view('Aluno.DetalhesAluno',['alunos'=>$aluno,'entidade'=>$entidade,'quantTreino'=>$historicoTreino]);
         }
     //index
     //Editar
@@ -231,4 +255,26 @@ class AlunosController extends Controller
             return redirect('homeAluno')->with('msg','Atualizado com sucesso!');
         }
     //Editar
+    //Concluir treino
+        public function concluirTreino($id){
+            $entidade=auth()->user();
+            $aluno=alunos::where('id_usuario',$entidade->id)->first();
+             if($aluno->objetivo=="Resistência"){
+                $aluno->registencia()->attach($id);
+            }elseif($aluno->objetivo=="Hipertrofia"){
+                $aluno->hipertrofia()->attach($id);
+            }else{
+                $aluno->emagrecer()->attach($id);
+            }
+            if($aluno->treinoVez=="C"){
+                $aluno->treinoVez="A";
+            }elseif($aluno->treinoVez=="A"){
+                $aluno->treinoVez="B";
+            }else{
+                $aluno->treinoVez="C";
+            }
+            $aluno->save();
+            return redirect()->back();
+        }  
+    //Concluir treino
 }

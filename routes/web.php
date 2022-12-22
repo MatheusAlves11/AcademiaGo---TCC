@@ -36,6 +36,7 @@ use App\Http\Controllers\AlunosController;
         Route::get('/homeAdm', [AdmsController::class, 'index'])->middleware('auth');
         Route::get('/homeAdm-aluno', [AdmsController::class, 'indexAluno'])->middleware('auth');
         Route::get('//treinosadmAluno/{id}', [AdmsController::class, 'treinosAluno'])->middleware('auth');
+        Route::get('/detalhesDeTreinoDeAlunoADM/{id}', [AdmsController::class, 'detalhesDeTreinoDeAluno'])->middleware('auth');
         Route::get('/detalhesAluno/{id}', [AdmsController::class, 'indexAluno_detalhes'])->middleware('auth');
     //Cadastro
         Route::get('/cadastroAluno', [AdmsController::class, 'cadastroAluno'])->middleware('auth');
@@ -44,9 +45,9 @@ use App\Http\Controllers\AlunosController;
         Route::post('/Forms-cadastro-personal', [AdmsController::class, 'cadastroFormsPersonal'])->middleware('auth')->name('adm.formsPersonal');
     //Editar
          Route::get('/editaradmAluno/{id}', [AdmsController::class, 'atualizarAluno'])->middleware('auth');
-         Route::post('/Forms-atualizaradm-aluno/{id}', [AdmsController::class, 'atualizarFormsAluno'])->middleware('auth');
+         Route::put('/Forms-atualizaradm-aluno/{id}', [AdmsController::class, 'atualizarFormsAluno'])->middleware('auth');
          Route::get('/editarPersonal/{id}', [AdmsController::class, 'atualizarPersonal'])->middleware('auth');
-         Route::post('/Forms-atualizar-personal/{id}', [AdmsController::class, 'atualizarFormsPersonal'])->middleware('auth');
+         Route::put('/Forms-atualizar-personal/{id}', [AdmsController::class, 'atualizarFormsPersonal'])->middleware('auth');
     //Deletar
         Route::delete('/destruirPersonal/{id}', [AdmsController::class, 'destruirPersonal'])->middleware('auth');
         Route::delete('/destruiradmAluno/{id}', [AdmsController::class, 'destruirAluno'])->middleware('auth');
@@ -69,14 +70,15 @@ use App\Http\Controllers\AlunosController;
         Route::post('/Forms-cadastro-exercicio', [PersonalsController::class, 'cadastroFormsExercicio'])->middleware('auth')->name('personal.forms.exercicio');
     //Editar
          Route::get('/editarCardio/{id}', [PersonalsController::class, 'atualizarCardio'])->middleware('auth');
-         Route::post('/Forms-atualizar-cardio/{id}', [PersonalsController::class, 'atualizarFormsCardio'])->middleware('auth')->name('personal.Updata.formsCardio');
+         Route::put('/Forms-atualizar-cardio/{id}', [PersonalsController::class, 'atualizarFormsCardio'])->middleware('auth')->name('personal.Updata.formsCardio');
          Route::get('/editarExercicio/{id}', [PersonalsController::class, 'atualizarExercicio'])->middleware('auth');
-         Route::post('/Forms-atualizar-exercicio/{id}', [PersonalsController::class, 'atualizarFormsExercicio'])->middleware('auth')->name('personal.Updata.formsExercicio');
+         Route::put('/Forms-atualizar-exercicio/{id}', [PersonalsController::class, 'atualizarFormsExercicio'])->middleware('auth')->name('personal.Updata.formsExercicio');
          Route::get('/editarAluno/{id}', [PersonalsController::class, 'atualizarAluno'])->middleware('auth');
-         Route::post('/Forms-atualizar-aluno/{id}', [PersonalsController::class, 'atualizarFormsAluno'])->middleware('auth');
+         Route::put('/Forms-atualizar-aluno/{id}', [PersonalsController::class, 'atualizarFormsAluno'])->middleware('auth');
     //Deletar
         Route::delete('/destruirCardio/{id}', [PersonalsController::class, 'destruirCardio'])->middleware('auth');
         Route::delete('/destruirExercicio/{id}', [PersonalsController::class, 'destruirExercicio'])->middleware('auth');
+        Route::delete('/destruirTreino/{id}', [PersonalsController::class, 'destruirTreino'])->middleware('auth');
     //Recomendar Treino
         Route::get('/criarTreino/{id}', [PersonalsController::class, 'recomendaTreino'])->middleware('auth');
 //Fim Personal
@@ -90,5 +92,7 @@ use App\Http\Controllers\AlunosController;
         Route::get('/detalhes', [AlunosController::class, 'indexAluno_detalhes'])->middleware('auth');
     //Editar
         Route::get('/editar', [AlunosController::class, 'editar'])->middleware('auth');
-        Route::post('/Forms-atualizar', [AlunosController::class, 'atualizarForms'])->middleware('auth');
+        Route::put('/Forms-atualizar', [AlunosController::class, 'atualizarForms'])->middleware('auth');
+    //Historico
+        Route::post('/concluirTreino/{id}',[AlunosController::class, 'concluirTreino'])->middleware('auth');
 //Fim Aluno

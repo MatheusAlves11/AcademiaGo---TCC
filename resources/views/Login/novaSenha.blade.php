@@ -34,7 +34,8 @@
       @endif 
         <h1 class="mb-5 m-auto">Nova Senha</h1>
         <form class="col-md-8 m-auto" action="{{route('recSenhaEntidade')}}" method="POST">
-            @csrf    
+            @csrf   
+            @method('PUT') 
             <input type="hidden" name="entidade" value="{{$entidade->id}}">
             <div class="mb-3">
                 <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Nova Senha:">

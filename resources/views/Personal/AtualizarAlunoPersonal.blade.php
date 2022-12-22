@@ -66,6 +66,7 @@
           <h2 class="mb-4 texto"><b> Atualizar Aluno</b></h2>
           <form class="row needs-validation" novalidate method="POST" action="/Forms-atualizar-aluno/{{$aluno->id}}" enctype="multipart/form-data">
           @csrf
+          @method('PUT')
           <hr>
           <div class="input-group mb-3">
             <input type="file" class="form-control" name="foto" id="inputGroupFile02" alt="{{$entidade->foto}}">
@@ -181,7 +182,7 @@
           <h5 class="g-4 mb-4" id="texto">Informações adicionais:</h5>
           <div class="col-md-6 mb-4">
             <select name="frequencia" class="form-select form-control">
-              <option selected disabled value="">Frequência *</option>
+              <option selected disabled value="">Frequência</option>
               <option value="1" {{$aluno->frequencia=="1"?"selected='selected'":""}}>1</option>
               <option value="2" {{$aluno->frequencia=="2"?"selected='selected'":""}}>2</option>
               <option value="3" {{$aluno->frequencia=="3"?"selected='selected'":""}}>3</option>
@@ -206,21 +207,21 @@
 
           <div class="col-md-4 mb-4">
             <select name="bebidaAlcolica" class="form-select form-control">
-              <option selected disabled value="">Consome bebida alcoolica*</option>
+              <option selected disabled value="">Consome bebida alcoolica</option>
               <option value="0" {{$aluno->bebidaAlcolica=="0"?"selected='selected'":""}}>Não</option>
               <option value="1" {{$aluno->bebidaAlcolica=="1"?"selected='selected'":""}}>Sim</option>
             </select>   
           </div>
           <div class="col-md-5 mb-4">
           <select name="taxasAltas" class="form-select form-control">
-              <option selected disabled value="">Colesterol, triglicerídeo ou glicose alta?*</option>
+              <option selected disabled value="">Colesterol, triglicerídeo ou glicose alta?</option>
               <option value="0" {{$aluno->bebidaAlcolica=="0"?"selected='selected'":""}}>Não</option>
               <option value="1" {{$aluno->bebidaAlcolica=="1"?"selected='selected'":""}}>Sim</option>
             </select>           
           </div>
           <div class="col-md-3 mb-4">
             <select name="alteracaoCardiaca" class="form-select form-control">
-              <option selected disabled value="">Alteração cardíaca?*</option>
+              <option selected disabled value="">Alteração cardíaca?</option>
               <option value="nao" {{$aluno->alteracaoCardiaca=="nao"?"selected='selected'":""}}>Não possui</option>
               <option value="leve" {{$aluno->alteracaoCardiaca=="leve"?"selected='selected'":""}}>Sim, leve</option>
               <option value="grave" {{$aluno->alteracaoCardiaca=="grave"?"selected='selected'":""}}>Sim, grave</option>
@@ -229,7 +230,7 @@
 
           <div class="col-md-4 mb-4">
             <select name="fumante" class="form-select form-control">
-              <option selected disabled value="">É fumante?*</option>
+              <option selected disabled value="">É fumante?</option>
               <option value="0" {{$aluno->fumante=="0"?"selected='selected'":""}}>Não</option>
               <option value="1" {{$aluno->fumante=="1"?"selected='selected'":""}}>Sim</option>
             </select>
@@ -237,7 +238,7 @@
 
           <div class="col-md-4 mb-4">
             <select name="diabes" class="form-select form-control">
-              <option selected disabled value="">Possui diabetes?*</option>
+              <option selected disabled value="">Possui diabetes?</option>
               <option value="0" {{$aluno->diabes=="0"?"selected='selected'":""}}>Não</option>
               <option value="1" {{$aluno->diabes=="1"?"selected='selected'":""}}>Sim</option>
             </select>
@@ -245,7 +246,7 @@
 
           <div class="col-md-4 mb-4">
             <select name="hipertenso" class="form-select form-control">
-              <option selected disabled value="">É hipertenso?*</option>
+              <option selected disabled value="">É hipertenso?</option>
               <<option value="0" {{$aluno->hipertenso=="0"?"selected='selected'":""}}>Não</option>
               <option value="1" {{$aluno->hipertenso=="1"?"selected='selected'":""}}>Sim</option>
             </select>
@@ -254,34 +255,34 @@
               <b><p>Possui Lesão?*</p></b>
               <div style="display: flex;justify-content: space-evenly;align-items: center;flex-wrap: wrap;">
               <div class="from-grup">
-                <input type="checkbox" name="lesao[]" value="Não Possui" onclick="marcaDesmarca(this)">Não Possui
+                <input type="checkbox" name="lesao[]" value="Não Possui">Não Possui
               </div>
               <div class="from-grup">
-                <input type="checkbox" name="lesao[]" value="Ombro" onclick="marcaDesmarca(this)">Ombro
+                <input type="checkbox" name="lesao[]" value="Ombro" >Ombro
               </div>
               <div class="from-grup">
-                <input type="checkbox" name="lesao[]" value="Trapézio" onclick="marcaDesmarca(this)">Trapézio
+                <input type="checkbox" name="lesao[]" value="Trapézio" >Trapézio
               </div>
               <div class="from-grup">
-                <input type="checkbox" name="lesao[]" value="Peito" onclick="marcaDesmarca(this)">Peito
+                <input type="checkbox" name="lesao[]" value="Peito" >Peito
               </div>
               <div class="from-grup">
-                <input type="checkbox" name="lesao[]" value="Bíceps" onclick="marcaDesmarca(this)">Bíceps
+                <input type="checkbox" name="lesao[]" value="Bíceps" >Bíceps
               </div>
               <div class="from-grup">
-                <input type="checkbox" name="lesao[]" value="Tríceps" onclick="marcaDesmarca(this)">Tríceps
+                <input type="checkbox" name="lesao[]" value="Tríceps" >Tríceps
               </div>
               <div class="from-grup">
-                <input type="checkbox" name="lesao[]" value="Coxa" onclick="marcaDesmarca(this)">Coxa
+                <input type="checkbox" name="lesao[]" value="Coxa" >Coxa
               </div>
               <div class="from-grup">
-                <input type="checkbox" name="lesao[]" value="Panturrilha" onclick="marcaDesmarca(this)">Panturrilha
+                <input type="checkbox" name="lesao[]" value="Panturrilha" >Panturrilha
               </div>
               <div class="from-grup">
-                <input type="checkbox" name="lesao[]" value="Costas" onclick="marcaDesmarca(this)">Costas
+                <input type="checkbox" name="lesao[]" value="Costas" >Costas
               </div>
               <div class="from-grup">
-                <input type="checkbox" name="lesao[]" value="Abdomen" onclick="marcaDesmarca(this)">Abdomen
+                <input type="checkbox" name="lesao[]" value="Abdomen">Abdomen
               </div>
           </div>
           </div>

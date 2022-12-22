@@ -187,7 +187,7 @@
           <h5 class="g-4 mb-4" id="texto">Informações adicionais:</h5>
           <div class="col-md-6 mb-4">
             <select name="frequencia" class="form-select form-control">
-              <option selected disabled value="">Frequência *</option>
+              <option selected disabled value="">Frequência</option>
               <option value="1">1</option>
               <option value="2">2</option>
               <option value="3">3</option>
@@ -212,14 +212,14 @@
 
           <div class="col-md-4 mb-4">
             <select name="bebidaAlcolica" class="form-select form-control">
-              <option selected disabled value="">Consome bebida alcoolica*</option>
+              <option selected disabled value="">Consome bebida alcoolica</option>
               <option value="0">Não</option>
               <option value="1">Sim</option>
             </select>   
           </div>
           <div class="col-md-5 mb-4">
           <select name="taxasAltas" class="form-select form-control">
-              <option selected disabled value="">Colesterol, triglicerídeo ou glicose alta?*</option>
+              <option selected disabled value="">Colesterol, triglicerídeo ou glicose alta?</option>
               <option value="0">Não</option>
               <option value="1">Sim</option>
             </select>           
@@ -235,7 +235,7 @@
 
           <div class="col-md-4 mb-4">
             <select name="fumante" class="form-select form-control">
-              <option selected disabled value="">É fumante?*</option>
+              <option selected disabled value="">É fumante?</option>
               <option value="0">Não </option>
               <option value="1">Sim</option>   
             </select>
@@ -243,7 +243,7 @@
 
           <div class="col-md-4 mb-4">
             <select name="diabes" class="form-select form-control">
-              <option selected disabled value="">Possui diabetes?*</option>
+              <option selected disabled value="">Possui diabetes?</option>
               <option value="0">Não</option>
               <option value="1">Sim</option>
             </select>
@@ -251,7 +251,7 @@
 
           <div class="col-md-4 mb-4">
             <select name="hipertenso" class="form-select form-control">
-              <option selected disabled value="">É hipertenso?*</option>
+              <option selected disabled value="">É hipertenso?</option>
               <option value="0">Não</option>
               <option value="1">Sim</option>
             </select>

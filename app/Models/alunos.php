@@ -10,15 +10,12 @@ use Laravel\Sanctum\HasApiTokens;
 
 class alunos extends Authenticatable
 {
-    use HasApiTokens, HasFactory, Notifiable;
-
-    /**
-     * The attributes that are mass assignable.
-     *
-     * @var array<int, string>
-     */
+    use HasFactory;
+    protected $casts = ['lesao'=>'array',];
     protected $fillable = [
+        'lesao',
         'filial',
+        'treinoVez',
         'cep',
         'rua',
         'numeroCasa',
@@ -38,24 +35,25 @@ class alunos extends Authenticatable
         'alteracaoCardiaca',
         'diabes',
         'id_usuario',
+        'imc',
+        'intensidade',
+        'metaTreino',
     ];
     protected $dataNascimento=['date'];
-    /**
-     * The attributes that should be hidden for serialization.
-     *
-     * @var array<int, string>
-     */
+    protected $guarded=[];
     protected $hidden = [
         'telefone',
     ];
-
-    /**
-     * The attributes that should be cast.
-     *
-     * @var array<string, string>
-     */
-    protected $casts = [
-        'lesao'=>'array',
-
-    ];
+    public function emagrecer(){
+        return $this->belongsToMany('App\Models\emagrecer');
+        //belonsTO = Pertecem a alguém; logo um usuario só vai poder pertencer a um aluno
+    }
+    public function hipertrofia(){
+        return $this->belongsToMany('App\Models\hipertrofia');
+        //belonsTO = Pertecem a alguém; logo um usuario só vai poder pertencer a um aluno
+    }
+    public function registencia(){
+        return $this->belongsToMany('App\Models\registencia');
+        //belonsTO = Pertecem a alguém; logo um usuario só vai poder pertencer a um aluno
+    }
 }

@@ -69,6 +69,7 @@
 
         <form class="row needs-validation" novalidate method="POST" action="/Forms-atualizar-exercicio/{{$exercicio->id}}">
              @csrf
+             @method('PUT')
           <hr>
 
           <div class="col-md-4 mb-4">

@@ -8,6 +8,11 @@ use Illuminate\Support\Facades\Auth;
 use App\Models\User;
 use App\Models\personals;
 use App\Models\alunos;
+use App\Models\Cardio;
+use App\Models\Exercicio;
+use App\Models\hipertrofia;
+use App\Models\registencia;
+use App\Models\emagrecer;
 
 class AdmsController extends Controller
 {
@@ -69,7 +74,14 @@ class AdmsController extends Controller
             $adm=auth()->user();
             $aluno=alunos::findOrFail($id);
             $entidade=user::findOrFail($aluno->id_usuario);
-            return view('ADM.DetalhesAlunoADM',['usuario'=>$adm,'alunos'=>$aluno,'entidade'=>$entidade]);
+            if($aluno->objetivo=="Resistência"){
+                $historicoTreino=$aluno->registencia->count();
+            }elseif($aluno->objetivo=="Hipertrofia"){
+                $historicoTreino=$aluno->hipertrofia->count();
+            }else{
+                $historicoTreino=$aluno->emagrecer->count();
+            }
+            return view('ADM.DetalhesAlunoADM',['quantTreino'=>$historicoTreino,'usuario'=>$adm,'alunos'=>$aluno,'entidade'=>$entidade]);
         }
         public function treinosAluno($id)
         {
@@ -77,7 +89,61 @@ class AdmsController extends Controller
             $personal=personals::where('id_usuario',$adm->id)->first();
             $aluno=alunos::findOrFail($id);
             $alunoEntidade=User::findOrFail($aluno->id_usuario);
-            return view('ADM.TreinosDeAlunoADM',['usuario'=>$adm,'personal'=>$personal,'entidade'=>$alunoEntidade,'aluno'=>$aluno]);
+            if($aluno->objetivo=="Resistência"){
+                $treinoAlnuno=registencia::where('id_aluno',$aluno->id)->get();
+            }elseif($aluno->objetivo=="Emagrecimento"){
+                $treinoAlnuno=emagrecer::where('id_aluno',$aluno->id)->get();
+            }else{
+                $treinoAlnuno=hipertrofia::where('id_aluno',$aluno->id)->get();
+            }
+            return view('ADM.TreinosDeAlunoADM',['usuario'=>$adm,'personal'=>$personal,'treino'=>$treinoAlnuno,'entidade'=>$alunoEntidade,'aluno'=>$aluno]);
+        }
+        public function detalhesDeTreinoDeAluno($id)
+        {
+            $adm=auth()->user();
+            $exercicios=Exercicio::all();
+            $cardios=Cardio::all();
+            $personal=personals::where('id_usuario',$adm->id)->first();
+            $aluno=alunos::findOrFail($id);
+            $alunoEntidade=User::findOrFail($aluno->id_usuario);
+            if($aluno->objetivo=='Hipertrofia'){
+                //Hipertrofia |Exercicios 8 | Cardios 1
+                $hipertrofia=hipertrofia::where('id_aluno',$aluno->id)->where('id',$_GET['treino'])->get();
+                if(count($hipertrofia)>0){
+                    for ($i=0; $i<count($hipertrofia);$i++){
+                        $exercicio=$hipertrofia;
+                        $cardio=hipertrofia::where('id_aluno',$aluno->id)->where('id',$_GET['treino'])->get('cardio');
+                    }
+                }else{
+                    $exercicio=null;
+                    $cardio=null;
+                }
+             }elseif($aluno->objetivo=='Resistência'){
+                //Resistência |Exercicios 6 | Cardios 2
+                $registencia=registencia::where('id_aluno',$aluno->id)->where('id',$_GET['treino'])->get();
+                if(count($registencia)>0){
+                    for ($i=0; $i<count($registencia);$i++){
+                        $exercicio=$registencia;
+                        $cardio=registencia::where('id_aluno',$aluno->id)->where('id',$_GET['treino'])->get('cardio');
+                    }
+            }else{
+                    $exercicio=null;
+                    $cardio=null;
+                }
+             }elseif($aluno->objetivo=='Emagrecimento'){
+                $emagrecer=emagrecer::where('id_aluno',$aluno->id)->where('id',$_GET['treino'])->get();
+                if(count($emagrecer)>0){
+                    $exercicio=$emagrecer;
+                    $cardio=emagrecer::where('id_aluno',$aluno->id)->where('id',$_GET['treino'])->get('cardio');
+            }else{
+                $exercicio=null;
+                $cardio=null;
+            }
+            }else{
+                    $exercicio=null;
+                    $cardio=null;
+            }
+            return view('ADM.detalhesDeTreinoDeAlunoADM',['cardios'=>$cardios,'exercicios'=>$exercicios,'treino'=>$exercicio,'cardio'=>$cardio,'usuario'=>$adm,'personal'=>$personal,'entidade'=>$alunoEntidade,'aluno'=>$aluno,]);
         }
     //Cadastro
         public function cadastroPersonal()
@@ -158,14 +224,8 @@ class AdmsController extends Controller
                 'genero'=>'required',
                 'peso'=>'required',
                 'altura'=>'required',
-                'frequencia'=>'required',
                 'objetivo'=>'required',
                 'alteracaoCardiaca'=>'required',
-                'diabes'=>'required',
-                'hipertenso'=>'required',
-                'fumante'=>'required',
-                'taxasAltas'=>'required',
-                'bebidaAlcolica'=>'required',
                 'lesao'=>'required',
                 ],[
                 'filial.required'=>'Os campos marcados com * são obrigatorios',
@@ -182,16 +242,12 @@ class AdmsController extends Controller
                 'genero.required'=>'Os campos marcados com * são obrigatorios',
                 'peso.required'=>'Os campos marcados com * são obrigatorios',
                 'altura.required'=>'Os campos marcados com * são obrigatorios',
-                'frequencia.required'=>'Os campos marcados com * são obrigatorios',
                 'objetivo.required'=>'Os campos marcados com * são obrigatorios',
                 'alteracaoCardiaca.required'=>'Os campos marcados com * são obrigatorios',
-                'fumante.required'=>'Os campos marcados com * são obrigatorios',
-                'diabes.required'=>'Os campos marcados com * são obrigatorios',
-                'hipertenso.required'=>'Os campos marcados com * são obrigatorios',
                 'lesao.required'=>'Os campos marcados com * são obrigatorios',
-                'taxasAltas.required'=>'Os campos marcados com * são obrigatorios',
-                'bebidaAlcolica.required'=>'Os campos marcados com * são obrigatorios',
-            ]);
+                
+                //'required' => 'A :attribute é um campo obrigartorio!',
+             ]);
             $novoUsuario->name = $request->name;
             if(!empty(user::where('email',$request->email)->first())){
                 return redirect()->back()->with('danger','E-mail já cadastrado!');
@@ -254,12 +310,12 @@ class AdmsController extends Controller
             $novoAluno->diabes = $request->diabes;
             $novoAluno->id_usuario=$novoUsuario->id;
             $novoAluno->imc=($request->peso/($request->altura*$request->altura));
-            if($novoAluno->imc<20  or $novoAluno->imc>=31){
-                $novoAluno->intensidade = 'leve';
-            }elseif($novoAluno->imc>=20  or $novoAluno->imc<=25){
-                $novoAluno->intensidade = 'moderada';
+            if($novoAluno->imc<20  || $novoAluno->imc>=31){
+                $novoAluno->intensidade = "leve";
+            }elseif($novoAluno->imc>=20 || $novoAluno->imc<=25){
+                $novoAluno->intensidade = "alta";
             }else{
-                $novoAluno->intensidade = 'alta';
+                $novoAluno->intensidade = "moderada";
             }
             $novoAluno->diabes = $request->diabes;
             $novoAluno->save();
@@ -326,16 +382,11 @@ class AdmsController extends Controller
                 'cidade'=>'required',
                 'uf'=>'required',
                 'telefone'=>'required',
-                'dataNascimento'=>'required',
                 'genero'=>'required',
                 'peso'=>'required',
                 'altura'=>'required',
-                'frequencia'=>'required',
                 'objetivo'=>'required',
                 'alteracaoCardiaca'=>'required',
-                'diabes'=>'required',
-                'hipertenso'=>'required',
-                'fumante'=>'required',
                 'lesao'=>'required',
                 ],[
                 'filial.required'=>'Os campos marcados com * são obrigatorios',
@@ -347,16 +398,11 @@ class AdmsController extends Controller
                 'cidade.required'=>'Os campos marcados com * são obrigatorios',
                 'uf.required'=>'Os campos marcados com * são obrigatorios',
                 'telefone.required'=>'Os campos marcados com * são obrigatorios',
-                'dataNascimento.required'=>'Os campos marcados com * são obrigatorios',
                 'genero.required'=>'Os campos marcados com * são obrigatorios',
                 'peso.required'=>'Os campos marcados com * são obrigatorios',
                 'altura.required'=>'Os campos marcados com * são obrigatorios',
                 'frequencia.required'=>'Os campos marcados com * são obrigatorios',
                 'objetivo.required'=>'Os campos marcados com * são obrigatorios',
-                'alteracaoCardiaca.required'=>'Os campos marcados com * são obrigatorios',
-                'fumante.required'=>'Os campos marcados com * são obrigatorios',
-                'diabes.required'=>'Os campos marcados com * são obrigatorios',
-                'hipertenso.required'=>'Os campos marcados com * são obrigatorios',
                 'lesao.required'=>'Os campos marcados com * são obrigatorios',
             ]);
             $aluno=alunos::findOrFail($request->id);
@@ -378,7 +424,23 @@ class AdmsController extends Controller
                 'name' => $request->name,
                 'foto'=>$atualizadoUsuario,
             ]);
+             $imc=($request->peso/($request->altura*$request->altura));
+                if($request->alteracaoCardiaca=="nao"){
+                    $metaTreino=500;
+                }elseif($request->alteracaoCardiaca=="leve"){
+                    $metaTreino=350;
+                }else{
+                    $metaTreino=200;
+                }
+                if($imc<20  || $imc>=31){
+                    $intensidade = "leve";
+                }elseif($imc>=20 || $imc<=25){
+                    $intensidade ="alta";
+                }else{
+                    $intensidade = "moderada";
+                }
             alunos::findOrFail($request->id)->update([
+                'lesao' => $request->lesao,
                 'filial' => $request->filial,
                 'cep' => $request->cep,
                 'rua' => $request->rua,
@@ -396,9 +458,11 @@ class AdmsController extends Controller
                 'objetivo' => $request->objetivo,
                 'fumante' => $request->fumante,
                 'hipertenso' => $request->hipertenso,
-                'lesao' => $request->lesao,
                 'alteracaoCardiaca' => $request->alteracaoCardiaca,
                 'diabes' => $request->diabes,
+                'imc' =>$imc,
+                'intensidade' =>$intensidade,
+                'metaTreino' =>$metaTreino,
             ]);
             return redirect('homeAdm-aluno')->with('msg','Aluno atualizado com sucesso!');
         }

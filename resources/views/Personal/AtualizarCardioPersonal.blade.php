@@ -69,6 +69,7 @@
 
         <form class="row needs-validation" novalidate method="POST" action="/Forms-atualizar-cardio/{{$cardio->id}}">
              @csrf
+             @method('PUT')
           <hr>
           <div class="col-md-4 mb-4">
             <input type="name" class="form-control" id="name" name="exercicio" value="{{$cardio->exercicio}}" placeholder="Nome *">

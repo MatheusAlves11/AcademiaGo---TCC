@@ -213,13 +213,13 @@
             <!--INFORMAÇÇOES DO TREINO-->
             <hr>
             <h5 class="g-4 mb-5 texto">Resumo:</h5>
-            <div class="col-md-7">
-              <progress value="25" max="100">25%</progress>
+            <!--div class="col-md-7">
               <h5>Meta: {{$alunos->metaTreino}}</h5>
-            </div>
-            <div class="col-md-5">
-              <p>Total de treinos: </p>
-              <p>Total de conclusão: </p>
+            </div-->
+            <div class="col-md-5 m-auto" >
+              <b>
+                <p style="font-size: larger; text-align:center;" >Total de treinos concluídos: {{$quantTreino}}</p>
+              </b>
             </div>
 
           </form>

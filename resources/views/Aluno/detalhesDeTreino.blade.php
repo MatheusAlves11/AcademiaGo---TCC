@@ -65,11 +65,7 @@
                 <p><b>{{$usuario->name}}</b></p>
                 <p class="mb-4">ID: {{$aluno->id}}</p>
                 <p>{{$aluno->filial}}</p>
-                <div>
-                    <!-- precisa desssa div envolapando o input se não ele perde responsividade-->
-                    <progress value="25" max="100">25%</progress>
-                    Meta: 100%
-                </div>
+                
                 <a class="btn btn-danger" href="/logout">Sair</a>
                 <p>Garanhuns - PE</p>
             </div>

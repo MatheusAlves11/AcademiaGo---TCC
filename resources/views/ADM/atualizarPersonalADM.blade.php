@@ -65,6 +65,7 @@
         @endif 
         <form class="row needs-validation" novalidate method="POST" action="/Forms-atualizar-personal/{{$entidade->id}}" enctype="multipart/form-data">
              @csrf
+             @method('PUT')
             <h2 class="mb-4 texto"><b> Atualizar Personal</b></h2>
 
             <!--PARTE DE ENVIAR IMAGEM-->

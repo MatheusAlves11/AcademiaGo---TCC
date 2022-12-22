@@ -19,6 +19,7 @@ class CreateAlunosTable extends Migration
             $table->increments('id');
             $table->unsignedBigInteger('cep');
             $table->string('rua');
+            $table->string('treinoVez')->nullable();
             $table->unsignedBigInteger('numeroCasa');
             $table->string('bairro');
             $table->string('cidade');
@@ -30,14 +31,14 @@ class CreateAlunosTable extends Migration
             $table->string('filial');
             $table->float('peso');
             $table->float('altura');
-            $table->unsignedBigInteger('frequencia');
+            $table->unsignedBigInteger('frequencia')->nullable();
             $table->string('remdioControlado')->nullable();
-            $table->boolean('bebidaAlcolica');
-            $table->boolean('taxasAltas');
-            $table->boolean('fumante');
-            $table->boolean('hipertenso');
-            $table->boolean('diabes');
+            $table->boolean('bebidaAlcolica')->nullable();
+            $table->boolean('fumante')->nullable();
+            $table->boolean('diabes')->nullable();
             $table->unsignedBigInteger('id_usuario');
+            $table->boolean('hipertenso')->nullable();
+            $table->boolean('taxasAltas')->nullable();
             //Dados pra recomendação de treino
             $table->json('lesao'); //Serve pra inviabilizar musculo
             $table->string('alteracaoCardiaca'); //Serve pra escolher a meta de treino 

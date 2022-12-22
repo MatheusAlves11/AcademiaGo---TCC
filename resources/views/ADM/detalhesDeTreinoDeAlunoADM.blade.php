@@ -51,7 +51,7 @@
                 <div>
                 @if(!empty($usuario->foto))
                         <div type="file" class="fotoPerfil" style="padding:0px!important">
-                            <img src="img/{{$usuario->foto}}" alt="" style="height: 6rem;width: 6rem;border-radius: inherit;">
+                            <img src="../img/{{$usuario->foto}}" alt="" style="height: 6rem;width: 6rem;border-radius: inherit;">
                         </div>
                         @else
                         <div type="file" class="fotoPerfil" style="background: rgb(219, 221, 223);">
@@ -66,55 +66,77 @@
                 <a class="btn btn-danger" href="/logout">Sair</a>
                 <p>Garanhuns - PE</p>
             </div>
-
             <div class="col-sm-10">
-                <h2 class="mb-4 texto"><b> Treino X de NomeAluno</b></h2>
+                <h2 class="texto mb-4"> 
+                     @if(!empty($treino))
+                         <b>Treino  @foreach ($treino as $treinos) @if($treinos->id==$_GET['treino']) {{$treinos->nome}} @break; @endif @endforeach de {{$entidade->name}} </b>
+                    @else
+                        <b>Esse treino não existe</b>
+                    @endif
+                </h2>
                 <div class="table-responsive">
+                    @if(!empty($treino))
                     <table class="table">
                         <thead>
                             <tr>
-                                <th>
-                                    Exercício
-                                </th>
-                                <th>
-                                    Série
-                                </th>
-                                <th>
-                                    Repetição
-                                </th>
-                                <th>
-                                    Descanso
-                                </th>
-                                <th>
-                                    Meta(cal)
-                                </th>
+                                <th>Exercício</th>
+                                <th>Série</th>
+                                <th>Repetição</th>
+                                <th>Descanso</th>
+                                <th>Meta(cal)</th>
+                                <th>Musculo</th>
                             </tr>
                         </thead>
                         <tbody>
+                        @foreach ($treino as $treinos)
+                            @foreach ($exercicios as $exercicio)
+                            @foreach($treinos->exercicio as $exerciciosExpecificos)
+                            @if($exerciciosExpecificos==$exercicio->id)
                             <tr>
-                                <td>
-                                    exercicio
-                                </td>
-                                <td>
-                                    3
-                                </td>
-                                <td>
-                                    12
-                                </td>
-                                <td>
-                                    90''
-                                </td>
-                                <td>
-                                    45
-                                </td>
-                            </tr>
+                                    <td>{{$exercicio->exercicio}}</td>
+                                    <td>{{$exercicio->serie}}</td>
+                                    <td>{{$exercicio->repeticoes}}</td>
+                                    <td>{{$exercicio->descanso}} {{$exercicio->tipoTempoDuracao}}</td>
+                                    <td>{{$exercicio->meta}}</td>
+                                    <td>{{$exercicio->musculo}}</td>
+                                </tr>
+                                @endif
+                                @endforeach
+                        @endforeach
+                        @endforeach
                         </tbody>
                     </table>
+                    @endif
+                    @if(!empty($treino))
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th>Exercício</th>
+                                <th>Duração</th>
+                                <th>Meta(cal)</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                        @foreach ($cardio as $cardioGeral)
+                        @foreach ($cardios as $cardioss)
+                        @foreach ($cardioGeral->cardio as $cardioExpecifico)
+                        @if($cardioExpecifico==$cardioss->id)   
+                            <tr>
+                              <td>{{$cardioss->exercicio}}</td>
+                              <td>{{$cardioss->duracao}} {{$cardioss->tipoTempoDuracao}}</td>
+                              <td>{{$cardioss->meta}}</td>
+                            </tr>
+                        @endif
+                        @endforeach
+                        @endforeach
+                        @endforeach
+                        </tbody>
+                    </table>
+                    @endif
                 </div>
             </div>
         </div>
     </div>
-
     <script src="../public/js/jquery.js"></script>
     <script>window.jQuery || document.write('<script src="../../assets/js/vendor/jquery.min.js"><\/script>')</script>
     <script src="../public/js/script.js"></script>

@@ -68,64 +68,38 @@
             </div>
 
             <div class="col-sm-10">
-                <h2 class="texto mb-4"> 
-                    <b>Treino de {{$entidade->name}} </b>
-               </h2>
-                <div class="table-responsive">
-                    <table class="table">
-                        <thead>
-                            <tr>
-                                <th>
-                                    Treino
-                                </th>
-                                <th>
-                                    Área
-                                </th>
-                                <th>
-                                    Meta
-                                </th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr>
-                                <td>
-                                    <a href="detalhesDeTreinoDeAluno.html">Treino A</a>
-                                </td>
-                                <td>
-                                    Peito e trícpes
-                                </td>
-                                <td>
-                                    150
-                                </td>
-                            </tr>
-                            <tr class="destacar">
-                                <td>
-                                    <a href="detalhesDeTreinoDeAluno.html">Treino B</a>
-                                </td>
-                                <td>
-                                    Costas e Bícpes
-                                </td>
-                                <td>
-                                    180
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>
-                                    <a href="detalhesDeTreinoDeAluno.html">Treino C</a>
-                                </td>
-                                <td>
-                                    Perna e Ombro
-                                </td>
-                                <td>
-                                    200
-                                </td>
-                            </tr>
-                        </tbody>
-                    </table>
-                </div>
+                @if(count($treino)>0)
+                    <h2 class="texto mb-4">
+                        <b>Treino de {{$entidade->name}} </b>
+                    </h2>
+                    <div class="table-responsive">
+                        <table class="table">
+                            <thead>
+                                <tr>
+                                    <th>Treino</th>
+                                    <th>Área</th>
+                                    <th>Meta</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach($treino as $treinoExpecifico)
+                                <tr>
+                                    <td><a href="/detalhesDeTreinoDeAlunoADM/{{$aluno->id}}?treino={{$treinoExpecifico->id}}">Treino {{$treinoExpecifico->nome}}</a></td>
+                                    <td>{{$treinoExpecifico->area}}</td>
+                                    <td title="*estimativa">{{$aluno->metaTreino}}</td>
+                                </tr>
+                                @endforeach
+                                
+                            </tbody>
+                        </table>
+                    </div>
+                @else
+                <b>Treino não existe</b>
+                @endif
             </div>
         </div>
     </div>
+
 
     <script src="../public/js/jquery.js"></script>
     <script>window.jQuery || document.write('<script src="../../assets/js/vendor/jquery.min.js"><\/script>')</script>

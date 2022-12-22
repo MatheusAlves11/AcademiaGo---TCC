@@ -70,11 +70,7 @@
                 <p><b>{{$usuario->name}}</b></p>
                 <p class="mb-4">ID: {{$aluno->id}}</p>
                 <p>{{$aluno->filial}}</p>
-                <div>
-                    <!-- precisa desssa div envolapando o input se não ele perde responsividade-->
-                    <progress value="25" max="100">25%</progress>
-                    Meta: 100%
-                </div>
+
                 <a class="btn btn-danger" href="/logout">Sair</a>
                 <p>Garanhuns - PE</p>
             </div>
@@ -82,7 +78,7 @@
             <div class="col-sm-10">
                 <h2 class="texto mb-4"> 
                      @if(!empty($treino))
-                         <b>Treino  @foreach ($treino as $treinos) {{$treinos->nome}} @break;@endforeach de {{$usuario->name}} </b>
+                         <b>Treino  @foreach ($treino as $treinos) @if($treinos->nome==$aluno->treinoVez){{$treinos->nome}} @break @endif @endforeach de {{$usuario->name}} </b>
                     @else
                         <b>Treino não existe</b>
                     @endif
@@ -96,7 +92,6 @@
                                 <th>Série</th>
                                 <th>Repetição</th>
                                 <th>Descanso</th>
-                                <th>Carga</th>
                                 <th>Meta(cal)</th>
                                 <th>Musculo</th>
                             </tr>
@@ -111,7 +106,6 @@
                                     <td>{{$exercicio->serie}}</td>
                                     <td>{{$exercicio->repeticoes}}</td>
                                     <td>{{$exercicio->descanso}} {{$exercicio->tipoTempoDuracao}}</td>
-                                    <td><input type="number" min="0" placeholder="Peso em kg"></td>
                                     <td>{{$exercicio->meta}}</td>
                                     <td>{{$exercicio->musculo}}</td>
                                 </tr>
@@ -148,7 +142,15 @@
                         </tbody>
                     </table>
                     <div class="col-md-12">
-                        <button class="btn btn-primary" id="finalizarTreino" type="submit">Concluir treino</button>
+                    @foreach ($treino as $treinos) 
+                            @if($treinos->nome==$aluno->treinoVez)
+                            <form action="/concluirTreino/{{$treinos->id}}" method="POST">
+                                     @csrf 
+                                    <button href="/concluirTreino/{{$treinos->id}}" class="btn btn-primary" onclick="event.preventDefault(); this.closest('form').submit();">Concluir treino</button>
+                                 </form>
+                                 @break
+                            @endif
+                        @endforeach
                     </div>
                     @endif
             </div>
@@ -159,13 +161,6 @@
         window.jQuery || document.write('<script src="../../assets/js/vendor/jquery.min.js"><\/script>')
     </script>
     <script src="../public/js/script.js"></script>
-    <script type="text/javascript">
-        $(function() {
-            $("#finalizarTreino").click(function() {
-                window.location.href = 'Front-main\Aluno\seusTreinos.html';
-            });
-        })
-    </script>
     <script src="../public/js/saudacao.js"></script>
 </body>
 

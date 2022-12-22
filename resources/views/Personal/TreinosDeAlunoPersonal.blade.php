@@ -75,6 +75,11 @@
                     <h2 class="texto mb-4">
                         <b>Treino de {{$entidade->name}} </b>
                     </h2>
+                    <form action="/destruirTreino/{{$aluno->id}}" method="POST">
+                        @csrf
+                        @method('DELETE')
+                        <button type="submit" class="btn btn-primary mb-4">Atualizar sugestão de treino</button>
+                    </form>
                     <div class="table-responsive">
                         <table class="table">
                             <thead>

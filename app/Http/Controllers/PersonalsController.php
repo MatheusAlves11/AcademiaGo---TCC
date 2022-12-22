@@ -58,7 +58,14 @@ class PersonalsController extends Controller
             $personal=auth()->user();
             $aluno=alunos::findOrFail($id);
             $entidade=user::findOrFail($aluno->id_usuario);
-            return view('Personal.DetalhesAlunoPersonal',['usuario'=>$personal,'alunos'=>$aluno,'entidade'=>$entidade]);
+            if($aluno->objetivo=="Resistência"){
+                $historicoTreino=$aluno->registencia->count();
+            }elseif($aluno->objetivo=="Hipertrofia"){
+                $historicoTreino=$aluno->hipertrofia->count();
+            }else{
+                $historicoTreino=$aluno->emagrecer->count();
+            }
+            return view('Personal.DetalhesAlunoPersonal',['quantTreino'=>$historicoTreino,'usuario'=>$personal,'alunos'=>$aluno,'entidade'=>$entidade]);
         }
         public function indexTreino()
         {
@@ -272,17 +279,11 @@ class PersonalsController extends Controller
                 'genero'=>'required',
                 'peso'=>'required',
                 'altura'=>'required',
-                'frequencia'=>'required',
                 'objetivo'=>'required',
                 'alteracaoCardiaca'=>'required',
-                'diabes'=>'required',
-                'hipertenso'=>'required',
-                'fumante'=>'required',
-                'taxasAltas'=>'required',
-                'bebidaAlcolica'=>'required',
                 'lesao'=>'required',
                 ],[
-                /*'filial.required'=>'Os campos marcados com * são obrigatorios',
+                'filial.required'=>'Os campos marcados com * são obrigatorios',
                 'name.required'=>'Os campos marcados com * são obrigatorios',
                 'email.required'=>'Os campos marcados com * são obrigatorios',
                 'password.required'=>'Os campos marcados com * são obrigatorios',
@@ -296,17 +297,11 @@ class PersonalsController extends Controller
                 'genero.required'=>'Os campos marcados com * são obrigatorios',
                 'peso.required'=>'Os campos marcados com * são obrigatorios',
                 'altura.required'=>'Os campos marcados com * são obrigatorios',
-                'frequencia.required'=>'Os campos marcados com * são obrigatorios',
                 'objetivo.required'=>'Os campos marcados com * são obrigatorios',
                 'alteracaoCardiaca.required'=>'Os campos marcados com * são obrigatorios',
-                'fumante.required'=>'Os campos marcados com * são obrigatorios',
-                'diabes.required'=>'Os campos marcados com * são obrigatorios',
-                'hipertenso.required'=>'Os campos marcados com * são obrigatorios',
                 'lesao.required'=>'Os campos marcados com * são obrigatorios',
-                'taxasAltas.required'=>'Os campos marcados com * são obrigatorios',
-                'bebidaAlcolica.required'=>'Os campos marcados com * são obrigatorios',
-                */
-                'required' => 'A :attribute é um campo obrigartorio!',
+                
+                //'required' => 'A :attribute é um campo obrigartorio!',
              ]);
             $novoUsuario->name = $request->name;
             if(!empty(user::where('email',$request->email)->first())){
@@ -373,9 +368,9 @@ class PersonalsController extends Controller
             if($novoAluno->imc<20  || $novoAluno->imc>=31){
                 $novoAluno->intensidade = "leve";
             }elseif($novoAluno->imc>=20 || $novoAluno->imc<=25){
-                $novoAluno->intensidade = "moderada";
-            }else{
                 $novoAluno->intensidade = "alta";
+            }else{
+                $novoAluno->intensidade = "moderada";
             }
             $novoAluno->diabes = $request->diabes;
             $novoAluno->save();
@@ -452,7 +447,7 @@ class PersonalsController extends Controller
             return view('Personal.AtualizarAlunoPersonal',['aluno'=>$aluno,'entidade'=>$entidade]);
         }
         public function atualizarFormsAluno(Request $request)
-        {          
+        {                  
             $this->validate($request,[
                 'filial'=>'required',
                 'name'=>'required',
@@ -463,16 +458,11 @@ class PersonalsController extends Controller
                 'cidade'=>'required',
                 'uf'=>'required',
                 'telefone'=>'required',
-                'dataNascimento'=>'required',
                 'genero'=>'required',
                 'peso'=>'required',
                 'altura'=>'required',
-                'frequencia'=>'required',
                 'objetivo'=>'required',
                 'alteracaoCardiaca'=>'required',
-                'diabes'=>'required',
-                'hipertenso'=>'required',
-                'fumante'=>'required',
                 'lesao'=>'required',
                 ],[
                 'filial.required'=>'Os campos marcados com * são obrigatorios',
@@ -484,16 +474,11 @@ class PersonalsController extends Controller
                 'cidade.required'=>'Os campos marcados com * são obrigatorios',
                 'uf.required'=>'Os campos marcados com * são obrigatorios',
                 'telefone.required'=>'Os campos marcados com * são obrigatorios',
-                'dataNascimento.required'=>'Os campos marcados com * são obrigatorios',
                 'genero.required'=>'Os campos marcados com * são obrigatorios',
                 'peso.required'=>'Os campos marcados com * são obrigatorios',
                 'altura.required'=>'Os campos marcados com * são obrigatorios',
                 'frequencia.required'=>'Os campos marcados com * são obrigatorios',
                 'objetivo.required'=>'Os campos marcados com * são obrigatorios',
-                'alteracaoCardiaca.required'=>'Os campos marcados com * são obrigatorios',
-                'fumante.required'=>'Os campos marcados com * são obrigatorios',
-                'diabes.required'=>'Os campos marcados com * são obrigatorios',
-                'hipertenso.required'=>'Os campos marcados com * são obrigatorios',
                 'lesao.required'=>'Os campos marcados com * são obrigatorios',
             ]);
             $aluno=alunos::findOrFail($request->id);
@@ -515,7 +500,23 @@ class PersonalsController extends Controller
                 'name' => $request->name,
                 'foto'=>$atualizadoUsuario,
             ]);
+             $imc=($request->peso/($request->altura*$request->altura));
+                if($request->alteracaoCardiaca=="nao"){
+                    $metaTreino=500;
+                }elseif($request->alteracaoCardiaca=="leve"){
+                    $metaTreino=350;
+                }else{
+                    $metaTreino=200;
+                }
+                if($imc<20  || $imc>=31){
+                    $intensidade = "leve";
+                }elseif($imc>=20 || $imc<=25){
+                    $intensidade ="alta";
+                }else{
+                    $intensidade = "moderada";
+                }
             alunos::findOrFail($request->id)->update([
+                'lesao' => $request->lesao,
                 'filial' => $request->filial,
                 'cep' => $request->cep,
                 'rua' => $request->rua,
@@ -533,9 +534,11 @@ class PersonalsController extends Controller
                 'objetivo' => $request->objetivo,
                 'fumante' => $request->fumante,
                 'hipertenso' => $request->hipertenso,
-                'lesao' => $request->lesao,
                 'alteracaoCardiaca' => $request->alteracaoCardiaca,
                 'diabes' => $request->diabes,
+                'imc' =>$imc,
+                'intensidade' =>$intensidade,
+                'metaTreino' =>$metaTreino,
             ]);
             return redirect('homePersonal')->with('msg','Aluno atualizado com sucesso!');
         }
@@ -551,6 +554,22 @@ class PersonalsController extends Controller
             $exercicio=Exercicio::findOrFail($id);
             $exercicio->delete();
             return redirect('/homePersonal-treino')->with('msg','excluido com sucesso!');
+        }
+        public function destruirTreino($id)
+        {
+            $aluno=alunos::findOrFail($id);
+            $alunoEntidade=User::findOrFail($aluno->id_usuario);
+            if($aluno->objetivo=="Resistência"){
+                $treinoAlnuno=registencia::where('id_aluno',$aluno->id)->get();
+            }elseif($aluno->objetivo=="Emagrecimento"){
+                $treinoAlnuno=emagrecer::where('id_aluno',$aluno->id)->get();
+            }else{
+                $treinoAlnuno=hipertrofia::where('id_aluno',$aluno->id)->get();
+            }
+            foreach($treinoAlnuno as $treino){
+                $treino->delete();
+            }
+            return redirect('/criarTreino/'.$alunoEntidade->id);
         }
    
    
@@ -582,7 +601,13 @@ class PersonalsController extends Controller
                             $posicaoCinco=rand(0,(count($exercicioA)-1));
                             $posicaoSeis=rand(0,(count($exercicioA)-1));
                             $posicaoSete=rand(0,(count($exercicioA)-1));
-                            while($posicaoSete==$posicaoSeis or $posicaoSete==$posicaoCinco or $posicaoSete==$posicaoQuatro or $posicaoSete==$posicaoTres or $posicaoSete==$posicaoDois or $posicaoSete==$posicao or $posicaoSeis==$posicaoCinco or $posicaoSeis==$posicaoQuatro or $posicaoSeis==$posicaoTres or $posicaoSeis==$posicaoDois or $posicaoSeis==$posicao or $posicaoCinco==$posicaoQuatro or $posicaoCinco==$posicaoTres or $posicaoCinco==$posicaoDois or $posicaoCinco==$posicaoUm or $posicaoCinco==$posicao or $posicaoQuatro==$posicaoTres or $posicaoQuatro==$posicaoDois or $posicaoQuatro==$posicaoUm or $posicaoQuatro==$posicao or $posicaoTres==$posicaoDois or $posicaoTres==$posicaoUm or $posicaoTres==$posicao or $posicaoUm==$posicao){
+                            while($posicaoSete==$posicaoSeis or $posicaoSete==$posicaoCinco or $posicaoSete==$posicaoQuatro or $posicaoSete==$posicaoTres or $posicaoSete==$posicaoDois or $posicaoSete==$posicao 
+                            or $posicaoSeis==$posicaoCinco or $posicaoSeis==$posicaoQuatro or $posicaoSeis==$posicaoTres or $posicaoSeis==$posicaoDois or $posicaoSeis==$posicao 
+                            or $posicaoCinco==$posicaoQuatro or $posicaoCinco==$posicaoTres or $posicaoCinco==$posicaoDois or $posicaoCinco==$posicaoUm or $posicaoCinco==$posicao 
+                            or $posicaoQuatro==$posicaoTres or $posicaoQuatro==$posicaoDois or $posicaoQuatro==$posicaoUm or $posicaoQuatro==$posicao 
+                            or $posicaoTres==$posicaoDois or $posicaoTres==$posicaoUm or $posicaoTres==$posicao 
+                            or $posicaoDois==$posicaoUm or $posicaoDois==$posicao
+                            or $posicaoUm==$posicao){
                                 $posicao=rand(0,(count($exercicioA)-1));
                                 $posicaoUm=rand(0,(count($exercicioA)-1));
                                 $posicaoDois=rand(0,(count($exercicioA)-1));
@@ -614,7 +639,13 @@ class PersonalsController extends Controller
                         $posicaoCinco=rand(0,(count($exercicioB)-1));
                         $posicaoSeis=rand(0,(count($exercicioB)-1));
                         $posicaoSete=rand(0,(count($exercicioB)-1));
-                        while($posicaoSete==$posicaoSeis or $posicaoSete==$posicaoCinco or $posicaoSete==$posicaoQuatro or $posicaoSete==$posicaoTres or $posicaoSete==$posicaoDois or $posicaoSete==$posicao or $posicaoSeis==$posicaoCinco or $posicaoSeis==$posicaoQuatro or $posicaoSeis==$posicaoTres or $posicaoSeis==$posicaoDois or $posicaoSeis==$posicao or $posicaoCinco==$posicaoQuatro or $posicaoCinco==$posicaoTres or $posicaoCinco==$posicaoDois or $posicaoCinco==$posicaoUm or $posicaoCinco==$posicao or $posicaoQuatro==$posicaoTres or $posicaoQuatro==$posicaoDois or $posicaoQuatro==$posicaoUm or $posicaoQuatro==$posicao or $posicaoTres==$posicaoDois or $posicaoTres==$posicaoUm or $posicaoTres==$posicao or $posicaoUm==$posicao){
+                        while($posicaoSete==$posicaoSeis or $posicaoSete==$posicaoCinco or $posicaoSete==$posicaoQuatro or $posicaoSete==$posicaoTres or $posicaoSete==$posicaoDois or $posicaoSete==$posicao 
+                            or $posicaoSeis==$posicaoCinco or $posicaoSeis==$posicaoQuatro or $posicaoSeis==$posicaoTres or $posicaoSeis==$posicaoDois or $posicaoSeis==$posicao 
+                            or $posicaoCinco==$posicaoQuatro or $posicaoCinco==$posicaoTres or $posicaoCinco==$posicaoDois or $posicaoCinco==$posicaoUm or $posicaoCinco==$posicao 
+                            or $posicaoQuatro==$posicaoTres or $posicaoQuatro==$posicaoDois or $posicaoQuatro==$posicaoUm or $posicaoQuatro==$posicao 
+                            or $posicaoTres==$posicaoDois or $posicaoTres==$posicaoUm or $posicaoTres==$posicao 
+                            or $posicaoDois==$posicaoUm or $posicaoDois==$posicao
+                            or $posicaoUm==$posicao){
                             $posicao=rand(0,(count($exercicioB)-1));
                             $posicaoUm=rand(0,(count($exercicioB)-1));
                             $posicaoDois=rand(0,(count($exercicioB)-1));
@@ -646,7 +677,13 @@ class PersonalsController extends Controller
                         $posicaoCinco=rand(0,(count($exercicioC)-1));
                         $posicaoSeis=rand(0,(count($exercicioC)-1));
                         $posicaoSete=rand(0,(count($exercicioC)-1));
-                        while($posicaoSete==$posicaoSeis or $posicaoSete==$posicaoCinco or $posicaoSete==$posicaoQuatro or $posicaoSete==$posicaoTres or $posicaoSete==$posicaoDois or $posicaoSete==$posicao or $posicaoSeis==$posicaoCinco or $posicaoSeis==$posicaoQuatro or $posicaoSeis==$posicaoTres or $posicaoSeis==$posicaoDois or $posicaoSeis==$posicao or $posicaoCinco==$posicaoQuatro or $posicaoCinco==$posicaoTres or $posicaoCinco==$posicaoDois or $posicaoCinco==$posicaoUm or $posicaoCinco==$posicao or $posicaoQuatro==$posicaoTres or $posicaoQuatro==$posicaoDois or $posicaoQuatro==$posicaoUm or $posicaoQuatro==$posicao or $posicaoTres==$posicaoDois or $posicaoTres==$posicaoUm or $posicaoTres==$posicao or $posicaoUm==$posicao){
+                        while($posicaoSete==$posicaoSeis or $posicaoSete==$posicaoCinco or $posicaoSete==$posicaoQuatro or $posicaoSete==$posicaoTres or $posicaoSete==$posicaoDois or $posicaoSete==$posicao 
+                        or $posicaoSeis==$posicaoCinco or $posicaoSeis==$posicaoQuatro or $posicaoSeis==$posicaoTres or $posicaoSeis==$posicaoDois or $posicaoSeis==$posicao 
+                        or $posicaoCinco==$posicaoQuatro or $posicaoCinco==$posicaoTres or $posicaoCinco==$posicaoDois or $posicaoCinco==$posicaoUm or $posicaoCinco==$posicao 
+                        or $posicaoQuatro==$posicaoTres or $posicaoQuatro==$posicaoDois or $posicaoQuatro==$posicaoUm or $posicaoQuatro==$posicao 
+                        or $posicaoTres==$posicaoDois or $posicaoTres==$posicaoUm or $posicaoTres==$posicao 
+                        or $posicaoDois==$posicaoUm or $posicaoDois==$posicao
+                        or $posicaoUm==$posicao){          
                             $posicao=rand(0,(count($exercicioC)-1));
                             $posicaoUm=rand(0,(count($exercicioC)-1));
                             $posicaoDois=rand(0,(count($exercicioC)-1));
@@ -678,7 +715,11 @@ class PersonalsController extends Controller
                             $posicaoTres=rand(0,(count($exercicioA)-1));
                             $posicaoQuatro=rand(0,(count($exercicioA)-1));
                             $posicaoCinco=rand(0,(count($exercicioA)-1));
-                            while($posicaoCinco==$posicaoQuatro or $posicaoCinco==$posicaoTres or $posicaoCinco==$posicaoDois or $posicaoCinco==$posicaoUm or $posicaoCinco==$posicao or $posicaoQuatro==$posicaoTres or $posicaoQuatro==$posicaoDois or $posicaoQuatro==$posicaoUm or $posicaoQuatro==$posicao or $posicaoTres==$posicaoDois or $posicaoTres==$posicaoUm or $posicaoTres==$posicao or $posicaoUm==$posicao){
+                            while($posicaoCinco==$posicaoQuatro or $posicaoCinco==$posicaoTres or $posicaoCinco==$posicaoDois or $posicaoCinco==$posicaoUm or $posicaoCinco==$posicao 
+                            or $posicaoQuatro==$posicaoTres or $posicaoQuatro==$posicaoDois or $posicaoQuatro==$posicaoUm or $posicaoQuatro==$posicao 
+                            or $posicaoTres==$posicaoDois or $posicaoTres==$posicaoUm or $posicaoTres==$posicao 
+                            or $posicaoDois==$posicaoUm or $posicaoDois==$posicao
+                            or $posicaoUm==$posicao){ 
                                 $posicao=rand(0,(count($exercicioA)-1));
                                 $posicaoUm=rand(0,(count($exercicioA)-1));
                                 $posicaoDois=rand(0,(count($exercicioA)-1));
@@ -713,7 +754,11 @@ class PersonalsController extends Controller
                             $posicaoTres=rand(0,(count($exercicioB)-1));
                             $posicaoQuatro=rand(0,(count($exercicioB)-1));
                             $posicaoCinco=rand(0,(count($exercicioB)-1));
-                            while($posicaoCinco==$posicaoQuatro or $posicaoCinco==$posicaoTres or $posicaoCinco==$posicaoDois or $posicaoCinco==$posicaoUm or $posicaoCinco==$posicao or $posicaoQuatro==$posicaoTres or $posicaoQuatro==$posicaoDois or $posicaoQuatro==$posicaoUm or $posicaoQuatro==$posicao or $posicaoTres==$posicaoDois or $posicaoTres==$posicaoUm or $posicaoTres==$posicao or $posicaoUm==$posicao){
+                            while($posicaoCinco==$posicaoQuatro or $posicaoCinco==$posicaoTres or $posicaoCinco==$posicaoDois or $posicaoCinco==$posicaoUm or $posicaoCinco==$posicao 
+                            or $posicaoQuatro==$posicaoTres or $posicaoQuatro==$posicaoDois or $posicaoQuatro==$posicaoUm or $posicaoQuatro==$posicao 
+                            or $posicaoTres==$posicaoDois or $posicaoTres==$posicaoUm or $posicaoTres==$posicao 
+                            or $posicaoDois==$posicaoUm or $posicaoDois==$posicao
+                            or $posicaoUm==$posicao){ 
                                 $posicao=rand(0,(count($exercicioB)-1));
                                 $posicaoUm=rand(0,(count($exercicioB)-1));
                                 $posicaoDois=rand(0,(count($exercicioB)-1));
@@ -748,7 +793,11 @@ class PersonalsController extends Controller
                             $posicaoTres=rand(0,(count($exercicioC)-1));
                             $posicaoQuatro=rand(0,(count($exercicioC)-1));
                             $posicaoCinco=rand(0,(count($exercicioC)-1));
-                            while($posicaoCinco==$posicaoQuatro or $posicaoCinco==$posicaoTres or $posicaoCinco==$posicaoDois or $posicaoCinco==$posicaoUm or $posicaoCinco==$posicao or $posicaoQuatro==$posicaoTres or $posicaoQuatro==$posicaoDois or $posicaoQuatro==$posicaoUm or $posicaoQuatro==$posicao or $posicaoTres==$posicaoDois or $posicaoTres==$posicaoUm or $posicaoTres==$posicao or $posicaoUm==$posicao){
+                            while($posicaoCinco==$posicaoQuatro or $posicaoCinco==$posicaoTres or $posicaoCinco==$posicaoDois or $posicaoCinco==$posicaoUm or $posicaoCinco==$posicao 
+                            or $posicaoQuatro==$posicaoTres or $posicaoQuatro==$posicaoDois or $posicaoQuatro==$posicaoUm or $posicaoQuatro==$posicao 
+                            or $posicaoTres==$posicaoDois or $posicaoTres==$posicaoUm or $posicaoTres==$posicao 
+                            or $posicaoDois==$posicaoUm or $posicaoDois==$posicao
+                            or $posicaoUm==$posicao){ 
                                 $posicao=rand(0,(count($exercicioC)-1));
                                 $posicaoUm=rand(0,(count($exercicioC)-1));
                                 $posicaoDois=rand(0,(count($exercicioC)-1));
@@ -783,7 +832,9 @@ class PersonalsController extends Controller
                             $posicaoUm=rand(0,(count($exercicioA)-1));
                             $posicaoDois=rand(0,(count($exercicioA)-1));
                             $posicaoTres=rand(0,(count($exercicioA)-1));
-                            while($posicaoTres==$posicaoDois or $posicaoTres==$posicaoUm or $posicaoTres==$posicao or $posicaoDois==$posicaoUm or $posicaoDois==$posicao or $posicaoUm==$posicao){
+                            while($posicaoTres==$posicaoDois or $posicaoTres==$posicaoUm or $posicaoTres==$posicao 
+                            or $posicaoDois==$posicaoUm or $posicaoDois==$posicao
+                            or $posicaoUm==$posicao){ 
                                 $posicao=rand(0,(count($exercicioA)-1));
                                 $posicaoUm=rand(0,(count($exercicioA)-1));
                                 $posicaoDois=rand(0,(count($exercicioA)-1));
@@ -816,7 +867,9 @@ class PersonalsController extends Controller
                             $posicaoUm=rand(0,(count($exercicioB)-1));
                             $posicaoDois=rand(0,(count($exercicioB)-1));
                             $posicaoTres=rand(0,(count($exercicioB)-1));
-                            while($posicaoTres==$posicaoDois or $posicaoTres==$posicaoUm or $posicaoTres==$posicao or $posicaoDois==$posicaoUm or $posicaoDois==$posicao or $posicaoUm==$posicao){
+                            while($posicaoTres==$posicaoDois or $posicaoTres==$posicaoUm or $posicaoTres==$posicao 
+                            or $posicaoDois==$posicaoUm or $posicaoDois==$posicao
+                            or $posicaoUm==$posicao){
                                 $posicao=rand(0,(count($exercicioB)-1));
                                 $posicaoUm=rand(0,(count($exercicioB)-1));
                                 $posicaoDois=rand(0,(count($exercicioB)-1));
@@ -849,7 +902,9 @@ class PersonalsController extends Controller
                             $posicaoUm=rand(0,(count($exercicioC)-1));
                             $posicaoDois=rand(0,(count($exercicioC)-1));
                             $posicaoTres=rand(0,(count($exercicioC)-1));
-                            while($posicaoTres==$posicaoDois or $posicaoTres==$posicaoUm or $posicaoTres==$posicao or $posicaoDois==$posicaoUm or $posicaoDois==$posicao or $posicaoUm==$posicao){
+                            while($posicaoTres==$posicaoDois or $posicaoTres==$posicaoUm or $posicaoTres==$posicao 
+                            or $posicaoDois==$posicaoUm or $posicaoDois==$posicao
+                            or $posicaoUm==$posicao){
                                 $posicao=rand(0,(count($exercicioC)-1));
                                 $posicaoUm=rand(0,(count($exercicioC)-1));
                                 $posicaoDois=rand(0,(count($exercicioC)-1));
@@ -871,7 +926,15 @@ class PersonalsController extends Controller
                         $treinoC->save();  
                     }
                 //Treino C     
-            }   
+            }
+            if(!empty($treinoA)){
+                $aluno->treinoVez='A';
+            }elseif(!empty($treinoB)){
+                $aluno->treinoVez='B';
+            }else{
+                $aluno->treinoVez='C';
+            }
+            $aluno->save();
             return redirect('treinosAluno/'.$aluno->id.'')->with('msg','Treino gerado com sucesso!');
         }
    //Fim Treino

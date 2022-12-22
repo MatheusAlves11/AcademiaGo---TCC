@@ -1014,7 +1014,7 @@ class Controller extends BaseController
         //Exercicio 34
         $novoExercicio35 = new Exercicio;
         $novoExercicio35->exercicio = 'Crucifixo inverso';
-        $novoExercicio35->musculo = 'Ombro';
+        $novoExercicio35->musculo = 'Trapézio';
         $novoExercicio35->serie = 4;
         $novoExercicio35->repeticoes = 12;
         $novoExercicio35->descanso = 2;
@@ -1038,7 +1038,7 @@ class Controller extends BaseController
         //Exercicio 35
         //Exercicio 36
         $novoExercicio37 = new Exercicio;
-        $novoExercicio37->exercicio = 'Tríceps testa';
+        $novoExercicio37->exercicio = 'Tríceps testa na polia';
         $novoExercicio37->musculo = 'Tríceps';
         $novoExercicio37->serie = 4;
         $novoExercicio37->repeticoes = 15;
@@ -1050,7 +1050,7 @@ class Controller extends BaseController
         //Exercicio 36
         //Exercicio 37
         $novoExercicio38 = new Exercicio;
-        $novoExercicio38->exercicio = 'Tríceps francês';
+        $novoExercicio38->exercicio = 'Tríceps francês na polia';
         $novoExercicio38->musculo = 'Tríceps';
         $novoExercicio38->serie = 4;
         $novoExercicio38->repeticoes = 12;
@@ -1797,8 +1797,8 @@ class Controller extends BaseController
         //Exercicio 99
         //Exercicio 100
         $novoExercicio100 = new Exercicio;
-        $novoExercicio100->exercicio = 'Crucifixo inve1rso';
-        $novoExercicio100->musculo = 'Ombro';
+        $novoExercicio100->exercicio = 'Crucifixo inverso';
+        $novoExercicio100->musculo = 'Trapézio';
         $novoExercicio100->serie = 3;
         $novoExercicio100->repeticoes = 12;
         $novoExercicio100->descanso = 1;
@@ -2579,8 +2579,8 @@ class Controller extends BaseController
         //Exercicio 164
         //Exercicio 165
         $novoExercicio165 = new Exercicio;
-        $novoExercicio165->exercicio = 'Crucifixo inve1rso';
-        $novoExercicio165->musculo = 'Ombro';
+        $novoExercicio165->exercicio = 'Crucifixo inverso';
+        $novoExercicio165->musculo = 'Trapézio';
         $novoExercicio165->serie = 2;
         $novoExercicio165->repeticoes = 8;
         $novoExercicio165->descanso = 1;
@@ -2951,7 +2951,924 @@ class Controller extends BaseController
         //Exercicio
 //Fim criar Exercicio Leve  
 
+//EXTRA PEITO 2
+        //Alta 1
+        $novoExercicio196 = new Exercicio;
+        $novoExercicio196->exercicio = 'Crossover na polia alta';
+        $novoExercicio196->musculo = 'Peito';
+        $novoExercicio196->serie = 4;
+        $novoExercicio196->repeticoes = 12;
+        $novoExercicio196->descanso = 2;
+        $novoExercicio196->tipoTempoDuracao = 'Min';
+        $novoExercicio196->meta = 90;
+        $novoExercicio196->intensidade = 'Alta';
+        $novoExercicio196->save();
 
+        //Moderada 1
+        $novoExercicio197 = new Exercicio;
+        $novoExercicio197->exercicio = 'Crossover na polia alta';
+        $novoExercicio197->musculo = 'Peito';
+        $novoExercicio197->serie = 3;
+        $novoExercicio197->repeticoes = 12;
+        $novoExercicio197->descanso = 1;
+        $novoExercicio197->tipoTempoDuracao = 'Min';
+        $novoExercicio197->meta = 60;
+        $novoExercicio197->intensidade = 'Moderada';
+        $novoExercicio197->save();
+
+        //Leve 1
+        $novoExercicio198 = new Exercicio;
+        $novoExercicio198->exercicio = 'Crossover na polia alta';
+        $novoExercicio198->musculo = 'Peito';
+        $novoExercicio198->serie = 2;
+        $novoExercicio198->repeticoes = 8;
+        $novoExercicio198->descanso = 1;
+        $novoExercicio198->tipoTempoDuracao = 'Min';
+        $novoExercicio198->meta = 40;
+        $novoExercicio198->intensidade = 'Leve';
+        $novoExercicio198->save();
+
+        //Alta 2
+        $novoExercicio199 = new Exercicio;
+        $novoExercicio199->exercicio = 'Crossover na polia baixa';
+        $novoExercicio199->musculo = 'Peito';
+        $novoExercicio199->serie = 4;
+        $novoExercicio199->repeticoes = 12;
+        $novoExercicio199->descanso = 2;
+        $novoExercicio199->tipoTempoDuracao = 'Min';
+        $novoExercicio199->meta = 90;
+        $novoExercicio199->intensidade = 'Alta';
+        $novoExercicio199->save();
+
+        //Moderada 2
+        $novoExercicio200 = new Exercicio;
+        $novoExercicio200->exercicio = 'Crossover na polia baixa';
+        $novoExercicio200->musculo = 'Peito';
+        $novoExercicio200->serie = 3;
+        $novoExercicio200->repeticoes = 12;
+        $novoExercicio200->descanso = 1;
+        $novoExercicio200->tipoTempoDuracao = 'Min';
+        $novoExercicio200->meta = 60;
+        $novoExercicio200->intensidade = 'Moderada';
+        $novoExercicio200->save();
+
+        //Leve 2
+        $novoExercicio201 = new Exercicio;
+        $novoExercicio201->exercicio = 'Crossover na polia baixa';
+        $novoExercicio201->musculo = 'Peito';
+        $novoExercicio201->serie = 2;
+        $novoExercicio201->repeticoes = 8;
+        $novoExercicio201->descanso = 1;
+        $novoExercicio201->tipoTempoDuracao = 'Min';
+        $novoExercicio201->meta = 40;
+        $novoExercicio201->intensidade = 'Leve';
+        $novoExercicio201->save();
+
+        
+//FIM EXTRA PEITO
+
+//EXTRA PANTURRILHA 6
+        //Alta 1
+        $novoExercicio202 = new Exercicio;
+        $novoExercicio202->exercicio = 'Panturrilha burrinho';
+        $novoExercicio202->musculo = 'Panturrilha';
+        $novoExercicio202->serie = 4;
+        $novoExercicio202->repeticoes = 12;
+        $novoExercicio202->descanso = 2;
+        $novoExercicio202->tipoTempoDuracao = 'Min';
+        $novoExercicio202->meta = 90;
+        $novoExercicio202->intensidade = 'Alta';
+        $novoExercicio202->save();
+
+        //Moderada 1
+        $novoExercicio203 = new Exercicio;
+        $novoExercicio203->exercicio = 'Panturrilha burrinho';
+        $novoExercicio203->musculo = 'Panturrilha';
+        $novoExercicio203->serie = 3;
+        $novoExercicio203->repeticoes = 12;
+        $novoExercicio203->descanso = 1;
+        $novoExercicio203->tipoTempoDuracao = 'Min';
+        $novoExercicio203->meta = 60;
+        $novoExercicio203->intensidade = 'Moderada';
+        $novoExercicio203->save();
+
+        //Leve 1
+        $novoExercicio204 = new Exercicio;
+        $novoExercicio204->exercicio = 'Panturrilha burrinho';
+        $novoExercicio204->musculo = 'Panturrilha';
+        $novoExercicio204->serie = 2;
+        $novoExercicio204->repeticoes = 8;
+        $novoExercicio204->descanso = 1;
+        $novoExercicio204->tipoTempoDuracao = 'Min';
+        $novoExercicio204->meta = 40;
+        $novoExercicio204->intensidade = 'Leve';
+        $novoExercicio204->save();
+
+        //Alta 2
+        $novoExercicio205 = new Exercicio;
+        $novoExercicio205->exercicio = 'Panturrilha em pé unilateral';
+        $novoExercicio205->musculo = 'Panturrilha';
+        $novoExercicio205->serie = 4;
+        $novoExercicio205->repeticoes = 12;
+        $novoExercicio205->descanso = 2;
+        $novoExercicio205->tipoTempoDuracao = 'Min';
+        $novoExercicio205->meta = 90;
+        $novoExercicio205->intensidade = 'Alta';
+        $novoExercicio205->save();
+
+        //Moderada 2
+        $novoExercicio206 = new Exercicio;
+        $novoExercicio206->exercicio = 'Panturrilha em pé unilateral';
+        $novoExercicio206->musculo = 'Panturrilha';
+        $novoExercicio206->serie = 3;
+        $novoExercicio206->repeticoes = 12;
+        $novoExercicio206->descanso = 1;
+        $novoExercicio206->tipoTempoDuracao = 'Min';
+        $novoExercicio206->meta = 60;
+        $novoExercicio206->intensidade = 'Moderada';
+        $novoExercicio206->save();
+
+        //Leve 2
+        $novoExercicio207 = new Exercicio;
+        $novoExercicio207->exercicio = 'Panturrilha em pé unilateral';
+        $novoExercicio207->musculo = 'Panturrilha';
+        $novoExercicio207->serie = 2;
+        $novoExercicio207->repeticoes = 8;
+        $novoExercicio207->descanso = 1;
+        $novoExercicio207->tipoTempoDuracao = 'Min';
+        $novoExercicio207->meta = 40;
+        $novoExercicio207->intensidade = 'Leve';
+        $novoExercicio207->save();
+
+        //Alta 3
+        $novoExercicio208 = new Exercicio;
+        $novoExercicio208->exercicio = 'Panturrilha em pé unilateral no smith';
+        $novoExercicio208->musculo = 'Panturrilha';
+        $novoExercicio208->serie = 4;
+        $novoExercicio208->repeticoes = 12;
+        $novoExercicio208->descanso = 2;
+        $novoExercicio208->tipoTempoDuracao = 'Min';
+        $novoExercicio208->meta = 90;
+        $novoExercicio208->intensidade = 'Alta';
+        $novoExercicio208->save();
+
+        //Moderada 3
+        $novoExercicio209 = new Exercicio;
+        $novoExercicio209->exercicio = 'Panturrilha em pé unilateral no smith';
+        $novoExercicio209->musculo = 'Panturrilha';
+        $novoExercicio209->serie = 3;
+        $novoExercicio209->repeticoes = 12;
+        $novoExercicio209->descanso = 1;
+        $novoExercicio209->tipoTempoDuracao = 'Min';
+        $novoExercicio209->meta = 60;
+        $novoExercicio209->intensidade = 'Moderada';
+        $novoExercicio209->save();
+
+        //Leve 3
+        $novoExercicio210 = new Exercicio;
+        $novoExercicio210->exercicio = 'Panturrilha em pé unilateral no smith';
+        $novoExercicio210->musculo = 'Panturrilha';
+        $novoExercicio210->serie = 2;
+        $novoExercicio210->repeticoes = 8;
+        $novoExercicio210->descanso = 1;
+        $novoExercicio210->tipoTempoDuracao = 'Min';
+        $novoExercicio210->meta = 40;
+        $novoExercicio210->intensidade = 'Leve';
+        $novoExercicio210->save();
+
+        //Alta 4
+        $novoExercicio211 = new Exercicio;
+        $novoExercicio211->exercicio = 'Panturrilha em pé com barra';
+        $novoExercicio211->musculo = 'Panturrilha';
+        $novoExercicio211->serie = 4;
+        $novoExercicio211->repeticoes = 12;
+        $novoExercicio211->descanso = 2;
+        $novoExercicio211->tipoTempoDuracao = 'Min';
+        $novoExercicio211->meta = 90;
+        $novoExercicio211->intensidade = 'Alta';
+        $novoExercicio211->save();
+
+        //Moderada 4
+        $novoExercicio212 = new Exercicio;
+        $novoExercicio212->exercicio = 'Panturrilha em pé com barra';
+        $novoExercicio212->musculo = 'Panturrilha';
+        $novoExercicio212->serie = 3;
+        $novoExercicio212->repeticoes = 12;
+        $novoExercicio212->descanso = 1;
+        $novoExercicio212->tipoTempoDuracao = 'Min';
+        $novoExercicio212->meta = 60;
+        $novoExercicio212->intensidade = 'Moderada';
+        $novoExercicio212->save();
+
+        //Leve 4
+        $novoExercicio213 = new Exercicio;
+        $novoExercicio213->exercicio = 'Panturrilha em pé com barra';
+        $novoExercicio213->musculo = 'Panturrilha';
+        $novoExercicio213->serie = 2;
+        $novoExercicio213->repeticoes = 8;
+        $novoExercicio213->descanso = 1;
+        $novoExercicio213->tipoTempoDuracao = 'Min';
+        $novoExercicio213->meta = 40;
+        $novoExercicio213->intensidade = 'Leve';
+        $novoExercicio213->save();
+
+        //Alta 5
+        $novoExercicio214 = new Exercicio;
+        $novoExercicio214->exercicio = 'Panturrilha em pé no smith';
+        $novoExercicio214->musculo = 'Panturrilha';
+        $novoExercicio214->serie = 4;
+        $novoExercicio214->repeticoes = 12;
+        $novoExercicio214->descanso = 2;
+        $novoExercicio214->tipoTempoDuracao = 'Min';
+        $novoExercicio214->meta = 90;
+        $novoExercicio214->intensidade = 'Alta';
+        $novoExercicio214->save();
+
+        //Moderada 5
+        $novoExercicio215 = new Exercicio;
+        $novoExercicio215->exercicio = 'Panturrilha em pé no smith';
+        $novoExercicio215->musculo = 'Panturrilha';
+        $novoExercicio215->serie = 3;
+        $novoExercicio215->repeticoes = 12;
+        $novoExercicio215->descanso = 1;
+        $novoExercicio215->tipoTempoDuracao = 'Min';
+        $novoExercicio215->meta = 60;
+        $novoExercicio215->intensidade = 'Moderada';
+        $novoExercicio215->save();
+
+        //Leve 5
+        $novoExercicio216 = new Exercicio;
+        $novoExercicio216->exercicio = 'Panturrilha em pé no smith';
+        $novoExercicio216->musculo = 'Panturrilha';
+        $novoExercicio216->serie = 2;
+        $novoExercicio216->repeticoes = 8;
+        $novoExercicio216->descanso = 1;
+        $novoExercicio216->tipoTempoDuracao = 'Min';
+        $novoExercicio216->meta = 40;
+        $novoExercicio216->intensidade = 'Leve';
+        $novoExercicio216->save();
+
+        //Alta 6
+        $novoExercicio217 = new Exercicio;
+        $novoExercicio217->exercicio = 'Panturrilha em pé unilateral com barra';
+        $novoExercicio217->musculo = 'Panturrilha';
+        $novoExercicio217->serie = 4;
+        $novoExercicio217->repeticoes = 12;
+        $novoExercicio217->descanso = 2;
+        $novoExercicio217->tipoTempoDuracao = 'Min';
+        $novoExercicio217->meta = 90;
+        $novoExercicio217->intensidade = 'Alta';
+        $novoExercicio217->save();
+
+        //Moderada 6
+        $novoExercicio218 = new Exercicio;
+        $novoExercicio218->exercicio = 'Panturrilha em pé unilateral com barra';
+        $novoExercicio218->musculo = 'Panturrilha';
+        $novoExercicio218->serie = 3;
+        $novoExercicio218->repeticoes = 12;
+        $novoExercicio218->descanso = 1;
+        $novoExercicio218->tipoTempoDuracao = 'Min';
+        $novoExercicio218->meta = 60;
+        $novoExercicio218->intensidade = 'Moderada';
+        $novoExercicio218->save();
+
+        //Leve 6
+        $novoExercicio219 = new Exercicio;
+        $novoExercicio219->exercicio = 'Panturrilha em pé unilateral com barra';
+        $novoExercicio219->musculo = 'Panturrilha';
+        $novoExercicio219->serie = 2;
+        $novoExercicio219->repeticoes = 8;
+        $novoExercicio219->descanso = 1;
+        $novoExercicio219->tipoTempoDuracao = 'Min';
+        $novoExercicio219->meta = 40;
+        $novoExercicio219->intensidade = 'Leve';
+        $novoExercicio219->save();
+
+//EXTRA ABDOMEN 1
+        //Alta 1
+        $novoExercicio220 = new Exercicio;
+        $novoExercicio220->exercicio = 'Abdominal remador';
+        $novoExercicio220->musculo = 'Abdomen';
+        $novoExercicio220->serie = 4;
+        $novoExercicio220->repeticoes = 12;
+        $novoExercicio220->descanso = 2;
+        $novoExercicio220->tipoTempoDuracao = 'Min';
+        $novoExercicio220->meta = 90;
+        $novoExercicio220->intensidade = 'Alta';
+        $novoExercicio220->save();
+
+        //Moderada 1
+        $novoExercicio221 = new Exercicio;
+        $novoExercicio221->exercicio = 'Abdominal remador';
+        $novoExercicio221->musculo = 'Abdomen';
+        $novoExercicio221->serie = 3;
+        $novoExercicio221->repeticoes = 12;
+        $novoExercicio221->descanso = 1;
+        $novoExercicio221->tipoTempoDuracao = 'Min';
+        $novoExercicio221->meta = 60;
+        $novoExercicio221->intensidade = 'Moderada';
+        $novoExercicio221->save();
+
+        //Leve 1
+        $novoExercicio222 = new Exercicio;
+        $novoExercicio222->exercicio = 'Abdominal remador';
+        $novoExercicio222->musculo = 'Abdomen';
+        $novoExercicio222->serie = 2;
+        $novoExercicio222->repeticoes = 8;
+        $novoExercicio222->descanso = 1;
+        $novoExercicio222->tipoTempoDuracao = 'Min';
+        $novoExercicio222->meta = 40;
+        $novoExercicio222->intensidade = 'Leve';
+        $novoExercicio222->save();
+
+        
+
+//EXTRA TRÍCEPS 3
+        //Alta 1
+        $novoExercicio223 = new Exercicio;
+        $novoExercicio223->exercicio = 'Tríceps fraces com halter';
+        $novoExercicio223->musculo = 'Tríceps';
+        $novoExercicio223->serie = 4;
+        $novoExercicio223->repeticoes = 12;
+        $novoExercicio223->descanso = 2;
+        $novoExercicio223->tipoTempoDuracao = 'Min';
+        $novoExercicio223->meta = 90;
+        $novoExercicio223->intensidade = 'Alta';
+        $novoExercicio223->save();
+
+        //Moderada 1
+        $novoExercicio224 = new Exercicio;
+        $novoExercicio224->exercicio = 'Tríceps fraces com halter';
+        $novoExercicio224->musculo = 'Tríceps';
+        $novoExercicio224->serie = 3;
+        $novoExercicio224->repeticoes = 12;
+        $novoExercicio224->descanso = 1;
+        $novoExercicio224->tipoTempoDuracao = 'Min';
+        $novoExercicio224->meta = 60;
+        $novoExercicio224->intensidade = 'Moderada';
+        $novoExercicio224->save();
+
+        //Leve 1
+        $novoExercicio225 = new Exercicio;
+        $novoExercicio225->exercicio = 'Tríceps fraces com halter';
+        $novoExercicio225->musculo = 'Tríceps';
+        $novoExercicio225->serie = 2;
+        $novoExercicio225->repeticoes = 8;
+        $novoExercicio225->descanso = 1;
+        $novoExercicio225->tipoTempoDuracao = 'Min';
+        $novoExercicio225->meta = 40;
+        $novoExercicio225->intensidade = 'Leve';
+        $novoExercicio225->save();
+
+         //Alta 2
+         $novoExercicio226 = new Exercicio;
+         $novoExercicio226->exercicio = 'Tríceps testa com barra';
+         $novoExercicio226->musculo = 'Tríceps';
+         $novoExercicio226->serie = 4;
+         $novoExercicio226->repeticoes = 12;
+         $novoExercicio226->descanso = 2;
+         $novoExercicio226->tipoTempoDuracao = 'Min';
+         $novoExercicio226->meta = 90;
+         $novoExercicio226->intensidade = 'Alta';
+         $novoExercicio226->save();
+ 
+         //Moderada 2
+         $novoExercicio227 = new Exercicio;
+         $novoExercicio227->exercicio = 'Tríceps testa com barra';
+         $novoExercicio227->musculo = 'Tríceps';
+         $novoExercicio227->serie = 3;
+         $novoExercicio227->repeticoes = 12;
+         $novoExercicio227->descanso = 1;
+         $novoExercicio227->tipoTempoDuracao = 'Min';
+         $novoExercicio227->meta = 60;
+         $novoExercicio227->intensidade = 'Moderada';
+         $novoExercicio227->save();
+ 
+         //Leve 2
+         $novoExercicio228 = new Exercicio;
+         $novoExercicio228->exercicio = 'Tríceps testa com barra';
+         $novoExercicio228->musculo = 'Tríceps';
+         $novoExercicio228->serie = 2;
+         $novoExercicio228->repeticoes = 8;
+         $novoExercicio228->descanso = 1;
+         $novoExercicio228->tipoTempoDuracao = 'Min';
+         $novoExercicio228->meta = 40;
+         $novoExercicio228->intensidade = 'Leve';
+         $novoExercicio228->save();
+
+          //Alta 3
+        $novoExercicio229 = new Exercicio;
+        $novoExercicio229->exercicio = 'Mergulho';
+        $novoExercicio229->musculo = 'Tríceps';
+        $novoExercicio229->serie = 4;
+        $novoExercicio229->repeticoes = 12;
+        $novoExercicio229->descanso = 2;
+        $novoExercicio229->tipoTempoDuracao = 'Min';
+        $novoExercicio229->meta = 90;
+        $novoExercicio229->intensidade = 'Alta';
+        $novoExercicio229->save();
+
+        //Moderada 3
+        $novoExercicio230 = new Exercicio;
+        $novoExercicio230->exercicio = 'Mergulho';
+        $novoExercicio230->musculo = 'Tríceps';
+        $novoExercicio230->serie = 3;
+        $novoExercicio230->repeticoes = 12;
+        $novoExercicio230->descanso = 1;
+        $novoExercicio230->tipoTempoDuracao = 'Min';
+        $novoExercicio230->meta = 60;
+        $novoExercicio230->intensidade = 'Moderada';
+        $novoExercicio230->save();
+
+        //Leve 3
+        $novoExercicio231 = new Exercicio;
+        $novoExercicio231->exercicio = 'Mergulho';
+        $novoExercicio231->musculo = 'Tríceps';
+        $novoExercicio231->serie = 2;
+        $novoExercicio231->repeticoes = 8;
+        $novoExercicio231->descanso = 1;
+        $novoExercicio231->tipoTempoDuracao = 'Min';
+        $novoExercicio231->meta = 40;
+        $novoExercicio231->intensidade = 'Leve';
+        $novoExercicio231->save();
+
+//EXTRA OMBRO 2
+        $novoExercicio232 = new Exercicio;
+        $novoExercicio232->exercicio = 'Desenvolvimento A. halter';
+        $novoExercicio232->musculo = 'Ombro';
+        $novoExercicio232->serie = 4;
+        $novoExercicio232->repeticoes = 12;
+        $novoExercicio232->descanso = 2;
+        $novoExercicio232->tipoTempoDuracao = 'Min';
+        $novoExercicio232->meta = 90;
+        $novoExercicio232->intensidade = 'Alta';
+        $novoExercicio232->save();
+
+        //Moderada 1
+        $novoExercicio233 = new Exercicio;
+        $novoExercicio233->exercicio = 'Desenvolvimento A. halter';
+        $novoExercicio233->musculo = 'Ombro';
+        $novoExercicio233->serie = 3;
+        $novoExercicio233->repeticoes = 12;
+        $novoExercicio233->descanso = 1;
+        $novoExercicio233->tipoTempoDuracao = 'Min';
+        $novoExercicio233->meta = 60;
+        $novoExercicio233->intensidade = 'Moderada';
+        $novoExercicio233->save();
+
+        //Leve 1
+        $novoExercicio234 = new Exercicio;
+        $novoExercicio234->exercicio = 'Desenvolvimento A. halter';
+        $novoExercicio234->musculo = 'Ombro';
+        $novoExercicio234->serie = 2;
+        $novoExercicio234->repeticoes = 8;
+        $novoExercicio234->descanso = 1;
+        $novoExercicio234->tipoTempoDuracao = 'Min';
+        $novoExercicio234->meta = 40;
+        $novoExercicio234->intensidade = 'Leve';
+        $novoExercicio234->save();
+        
+        //Alta 2
+        $novoExercicio235 = new Exercicio;
+        $novoExercicio235->exercicio = 'Desenvolvimento A. unilateral com halter';
+        $novoExercicio235->musculo = 'Ombro';
+        $novoExercicio235->serie = 4;
+        $novoExercicio235->repeticoes = 12;
+        $novoExercicio235->descanso = 2;
+        $novoExercicio235->tipoTempoDuracao = 'Min';
+        $novoExercicio235->meta = 90;
+        $novoExercicio235->intensidade = 'Alta';
+        $novoExercicio235->save();
+
+        //Moderada 2
+        $novoExercicio236 = new Exercicio;
+        $novoExercicio236->exercicio = 'Desenvolvimento A. unilateral com halter';
+        $novoExercicio236->musculo = 'Ombro';
+        $novoExercicio236->serie = 3;
+        $novoExercicio236->repeticoes = 12;
+        $novoExercicio236->descanso = 1;
+        $novoExercicio236->tipoTempoDuracao = 'Min';
+        $novoExercicio236->meta = 60;
+        $novoExercicio236->intensidade = 'Moderada';
+        $novoExercicio236->save();
+
+        //Leve 2
+        $novoExercicio237 = new Exercicio;
+        $novoExercicio237->exercicio = 'Desenvolvimento A. unilateral com halter';
+        $novoExercicio237->musculo = 'Ombro';
+        $novoExercicio237->serie = 2;
+        $novoExercicio237->repeticoes = 8;
+        $novoExercicio237->descanso = 1;
+        $novoExercicio237->tipoTempoDuracao = 'Min';
+        $novoExercicio237->meta = 40;
+        $novoExercicio237->intensidade = 'Leve';
+        $novoExercicio237->save();
+
+//EXTRA TRAPÉZIO 6
+        //Alta 1
+        $novoExercicio238 = new Exercicio;
+        $novoExercicio238->exercicio = 'Encolhimento com barra por trás';
+        $novoExercicio238->musculo = 'Trapézio';
+        $novoExercicio238->serie = 4;
+        $novoExercicio238->repeticoes = 12;
+        $novoExercicio238->descanso = 2;
+        $novoExercicio238->tipoTempoDuracao = 'Min';
+        $novoExercicio238->meta = 90;
+        $novoExercicio238->intensidade = 'Alta';
+        $novoExercicio238->save();
+
+        //Moderada 1
+        $novoExercicio239 = new Exercicio;
+        $novoExercicio239->exercicio = 'Encolhimento com barra por trás';
+        $novoExercicio239->musculo = 'Trapézio';
+        $novoExercicio239->serie = 3;
+        $novoExercicio239->repeticoes = 12;
+        $novoExercicio239->descanso = 1;
+        $novoExercicio239->tipoTempoDuracao = 'Min';
+        $novoExercicio239->meta = 60;
+        $novoExercicio239->intensidade = 'Moderada';
+        $novoExercicio239->save();
+
+        //Leve 1
+        $novoExercicio240 = new Exercicio;
+        $novoExercicio240->exercicio = 'Encolhimento com barra por trás';
+        $novoExercicio240->musculo = 'Trapézio';
+        $novoExercicio240->serie = 2;
+        $novoExercicio240->repeticoes = 8;
+        $novoExercicio240->descanso = 1;
+        $novoExercicio240->tipoTempoDuracao = 'Min';
+        $novoExercicio240->meta = 40;
+        $novoExercicio240->intensidade = 'Leve';
+        $novoExercicio240->save();
+
+        //Alta 2
+        $novoExercicio241 = new Exercicio;
+        $novoExercicio241->exercicio = 'Encolhimento com barra frontal';
+        $novoExercicio241->musculo = 'Trapézio';
+        $novoExercicio241->serie = 4;
+        $novoExercicio241->repeticoes = 12;
+        $novoExercicio241->descanso = 2;
+        $novoExercicio241->tipoTempoDuracao = 'Min';
+        $novoExercicio241->meta = 90;
+        $novoExercicio241->intensidade = 'Alta';
+        $novoExercicio241->save();
+
+        //Moderada 2
+        $novoExercicio242 = new Exercicio;
+        $novoExercicio242->exercicio = 'Encolhimento com halter';
+        $novoExercicio242->musculo = 'Trapézio';
+        $novoExercicio242->serie = 3;
+        $novoExercicio242->repeticoes = 12;
+        $novoExercicio242->descanso = 1;
+        $novoExercicio242->tipoTempoDuracao = 'Min';
+        $novoExercicio242->meta = 60;
+        $novoExercicio242->intensidade = 'Moderada';
+        $novoExercicio242->save();
+
+        //Leve 2
+        $novoExercicio243 = new Exercicio;
+        $novoExercicio243->exercicio = 'Encolhimento com halter';
+        $novoExercicio243->musculo = 'Trapézio';
+        $novoExercicio243->serie = 2;
+        $novoExercicio243->repeticoes = 8;
+        $novoExercicio243->descanso = 1;
+        $novoExercicio243->tipoTempoDuracao = 'Min';
+        $novoExercicio243->meta = 40;
+        $novoExercicio243->intensidade = 'Leve';
+        $novoExercicio243->save();
+        
+
+        //Alta 3
+        $novoExercicio244 = new Exercicio;
+        $novoExercicio244->exercicio = 'Encolhimento com halter por trás';
+        $novoExercicio244->musculo = 'Trapézio';
+        $novoExercicio244->serie = 4;
+        $novoExercicio244->repeticoes = 12;
+        $novoExercicio244->descanso = 2;
+        $novoExercicio244->tipoTempoDuracao = 'Min';
+        $novoExercicio244->meta = 90;
+        $novoExercicio244->intensidade = 'Alta';
+        $novoExercicio244->save();
+
+        //Moderada 3
+        $novoExercicio245 = new Exercicio;
+        $novoExercicio245->exercicio = 'Encolhimento com halter por trás';
+        $novoExercicio245->musculo = 'Trapézio';
+        $novoExercicio245->serie = 3;
+        $novoExercicio245->repeticoes = 12;
+        $novoExercicio245->descanso = 1;
+        $novoExercicio245->tipoTempoDuracao = 'Min';
+        $novoExercicio245->meta = 60;
+        $novoExercicio245->intensidade = 'Moderada';
+        $novoExercicio245->save();
+
+        //Leve 3
+        $novoExercicio246 = new Exercicio;
+        $novoExercicio246->exercicio = 'Encolhimento com halter por trás';
+        $novoExercicio246->musculo = 'Trapézio';
+        $novoExercicio246->serie = 2;
+        $novoExercicio246->repeticoes = 8;
+        $novoExercicio246->descanso = 1;
+        $novoExercicio246->tipoTempoDuracao = 'Min';
+        $novoExercicio246->meta = 40;
+        $novoExercicio246->intensidade = 'Leve';
+        $novoExercicio246->save();
+        
+        
+        //Alta 4
+        $novoExercicio247 = new Exercicio;
+        $novoExercicio247->exercicio = 'Crucifixo inverso com halter';
+        $novoExercicio247->musculo = 'Trapézio';
+        $novoExercicio247->serie = 4;
+        $novoExercicio247->repeticoes = 12;
+        $novoExercicio247->descanso = 2;
+        $novoExercicio247->tipoTempoDuracao = 'Min';
+        $novoExercicio247->meta = 90;
+        $novoExercicio247->intensidade = 'Alta';
+        $novoExercicio247->save();
+
+        //Moderada 4
+        $novoExercicio248 = new Exercicio;
+        $novoExercicio248->exercicio = 'Crucifixo inverso com halter';
+        $novoExercicio248->musculo = 'Trapézio';
+        $novoExercicio248->serie = 3;
+        $novoExercicio248->repeticoes = 12;
+        $novoExercicio248->descanso = 1;
+        $novoExercicio248->tipoTempoDuracao = 'Min';
+        $novoExercicio248->meta = 60;
+        $novoExercicio248->intensidade = 'Moderada';
+        $novoExercicio248->save();
+
+        //Leve 4
+        $novoExercicio249 = new Exercicio;
+        $novoExercicio249->exercicio = 'Crucifixo inverso com halter';
+        $novoExercicio249->musculo = 'Trapézio';
+        $novoExercicio249->serie = 2;
+        $novoExercicio249->repeticoes = 8;
+        $novoExercicio249->descanso = 1;
+        $novoExercicio249->tipoTempoDuracao = 'Min';
+        $novoExercicio249->meta = 40;
+        $novoExercicio249->intensidade = 'Leve';
+        $novoExercicio249->save();
+        
+
+        //Alta 5
+        $novoExercicio250 = new Exercicio;
+        $novoExercicio250->exercicio = 'Remada alta';
+        $novoExercicio250->musculo = 'Trapézio';
+        $novoExercicio250->serie = 4;
+        $novoExercicio250->repeticoes = 12;
+        $novoExercicio250->descanso = 2;
+        $novoExercicio250->tipoTempoDuracao = 'Min';
+        $novoExercicio250->meta = 90;
+        $novoExercicio250->intensidade = 'Alta';
+        $novoExercicio250->save();
+
+        //Moderada 5
+        $novoExercicio251 = new Exercicio;
+        $novoExercicio251->exercicio = 'Remada alta';
+        $novoExercicio251->musculo = 'Trapézio';
+        $novoExercicio251->serie = 3;
+        $novoExercicio251->repeticoes = 12;
+        $novoExercicio251->descanso = 1;
+        $novoExercicio251->tipoTempoDuracao = 'Min';
+        $novoExercicio251->meta = 60;
+        $novoExercicio251->intensidade = 'Moderada';
+        $novoExercicio251->save();
+
+        //Leve 5
+        $novoExercicio252 = new Exercicio;
+        $novoExercicio252->exercicio = 'Remada alta';
+        $novoExercicio252->musculo = 'Trapézio';
+        $novoExercicio252->serie = 2;
+        $novoExercicio252->repeticoes = 8;
+        $novoExercicio252->descanso = 1;
+        $novoExercicio252->tipoTempoDuracao = 'Min';
+        $novoExercicio252->meta = 40;
+        $novoExercicio252->intensidade = 'Leve';
+        $novoExercicio252->save();
+        
+        
+        //Alta 6
+        $novoExercicio253 = new Exercicio;
+        $novoExercicio253->exercicio = 'Crucifixo inverso na polia';
+        $novoExercicio253->musculo = 'Trapézio';
+        $novoExercicio253->serie = 4;
+        $novoExercicio253->repeticoes = 12;
+        $novoExercicio253->descanso = 2;
+        $novoExercicio253->tipoTempoDuracao = 'Min';
+        $novoExercicio253->meta = 90;
+        $novoExercicio253->intensidade = 'Alta';
+        $novoExercicio253->save();
+
+        //Moderada 6
+        $novoExercicio254 = new Exercicio;
+        $novoExercicio254->exercicio = 'Crucifixo inverso na polia';
+        $novoExercicio254->musculo = 'Trapézio';
+        $novoExercicio254->serie = 3;
+        $novoExercicio254->repeticoes = 12;
+        $novoExercicio254->descanso = 1;
+        $novoExercicio254->tipoTempoDuracao = 'Min';
+        $novoExercicio254->meta = 60;
+        $novoExercicio254->intensidade = 'Moderada';
+        $novoExercicio254->save();
+
+        //Leve 6
+        $novoExercicio255 = new Exercicio;
+        $novoExercicio255->exercicio = 'Crucifixo inverso na polia';
+        $novoExercicio255->musculo = 'Trapézio';
+        $novoExercicio255->serie = 2;
+        $novoExercicio255->repeticoes = 8;
+        $novoExercicio255->descanso = 1;
+        $novoExercicio255->tipoTempoDuracao = 'Min';
+        $novoExercicio255->meta = 40;
+        $novoExercicio255->intensidade = 'Leve';
+        $novoExercicio255->save();
+        
+
+//AJUSTANDO PROPORÇÃO
+    //PEITO 
+        //Alta 1
+        $novoExercicio256 = new Exercicio;
+        $novoExercicio256->exercicio = 'Supino reto articulado';
+        $novoExercicio256->musculo = 'Peito';
+        $novoExercicio256->serie = 4;
+        $novoExercicio256->repeticoes = 12;
+        $novoExercicio256->descanso = 2;
+        $novoExercicio256->tipoTempoDuracao = 'Min';
+        $novoExercicio256->meta = 90;
+        $novoExercicio256->intensidade = 'Alta';
+        $novoExercicio256->save();
+
+        //Moderada  1
+        $novoExercicio257 = new Exercicio;
+        $novoExercicio257->exercicio = 'Supino reto articulado';
+        $novoExercicio257->musculo = 'Peito';
+        $novoExercicio257->serie = 3;
+        $novoExercicio257->repeticoes = 12;
+        $novoExercicio257->descanso = 1;
+        $novoExercicio257->tipoTempoDuracao = 'Min';
+        $novoExercicio257->meta = 60;
+        $novoExercicio257->intensidade = 'Moderada';
+        $novoExercicio257->save();
+
+        //Leve  1
+        $novoExercicio258 = new Exercicio;
+        $novoExercicio258->exercicio = 'Supino reto articulado';
+        $novoExercicio258->musculo = 'Peito';
+        $novoExercicio258->serie = 2;
+        $novoExercicio258->repeticoes = 8;
+        $novoExercicio258->descanso = 1;
+        $novoExercicio258->tipoTempoDuracao = 'Min';
+        $novoExercicio258->meta = 40;
+        $novoExercicio258->intensidade = 'Leve';
+        $novoExercicio258->save();
+        
+        //Alta 2
+        $novoExercicio259 = new Exercicio;
+        $novoExercicio259->exercicio = 'Supino inclinado articulado';
+        $novoExercicio259->musculo = 'Peito';
+        $novoExercicio259->serie = 4;
+        $novoExercicio259->repeticoes = 12;
+        $novoExercicio259->descanso = 2;
+        $novoExercicio259->tipoTempoDuracao = 'Min';
+        $novoExercicio259->meta = 90;
+        $novoExercicio259->intensidade = 'Alta';
+        $novoExercicio259->save();
+
+        //Moderada 2
+        $novoExercicio260 = new Exercicio;
+        $novoExercicio260->exercicio = 'Supino inclinado articulado';
+        $novoExercicio260->musculo = 'Peito';
+        $novoExercicio260->serie = 3;
+        $novoExercicio260->repeticoes = 12;
+        $novoExercicio260->descanso = 1;
+        $novoExercicio260->tipoTempoDuracao = 'Min';
+        $novoExercicio260->meta = 60;
+        $novoExercicio260->intensidade = 'Moderada';
+        $novoExercicio260->save();
+
+        //Leve 2
+        $novoExercicio261 = new Exercicio;
+        $novoExercicio261->exercicio = 'Supino inclinado articulado';
+        $novoExercicio261->musculo = 'Peito';
+        $novoExercicio261->serie = 2;
+        $novoExercicio261->repeticoes = 8;
+        $novoExercicio261->descanso = 1;
+        $novoExercicio261->tipoTempoDuracao = 'Min';
+        $novoExercicio261->meta = 40;
+        $novoExercicio261->intensidade = 'Leve';
+        $novoExercicio261->save();
+        
+        //Alta 3
+        $novoExercicio262 = new Exercicio;
+        $novoExercicio262->exercicio = 'Flexão';
+        $novoExercicio262->musculo = 'Peito';
+        $novoExercicio262->serie = 4;
+        $novoExercicio262->repeticoes = 12;
+        $novoExercicio262->descanso = 2;
+        $novoExercicio262->tipoTempoDuracao = 'Min';
+        $novoExercicio262->meta = 90;
+        $novoExercicio262->intensidade = 'Alta';
+        $novoExercicio262->save();
+
+        //Moderada 3
+        $novoExercicio263 = new Exercicio;
+        $novoExercicio263->exercicio = 'Flexão';
+        $novoExercicio263->musculo = 'Peito';
+        $novoExercicio263->serie = 3;
+        $novoExercicio263->repeticoes = 12;
+        $novoExercicio263->descanso = 1;
+        $novoExercicio263->tipoTempoDuracao = 'Min';
+        $novoExercicio263->meta = 60;
+        $novoExercicio263->intensidade = 'Moderada';
+        $novoExercicio263->save();
+
+        //Leve 3
+        $novoExercicio264 = new Exercicio;
+        $novoExercicio264->exercicio = 'Flexão';
+        $novoExercicio264->musculo = 'Peito';
+        $novoExercicio264->serie = 2;
+        $novoExercicio264->repeticoes = 8;
+        $novoExercicio264->descanso = 1;
+        $novoExercicio264->tipoTempoDuracao = 'Min';
+        $novoExercicio264->meta = 40;
+        $novoExercicio264->intensidade = 'Leve';
+        $novoExercicio264->save();
+        
+        //Alta 4
+        $novoExercicio265 = new Exercicio;
+        $novoExercicio265->exercicio = 'Flexão Declinada';
+        $novoExercicio265->musculo = 'Peito';
+        $novoExercicio265->serie = 4;
+        $novoExercicio265->repeticoes = 12;
+        $novoExercicio265->descanso = 2;
+        $novoExercicio265->tipoTempoDuracao = 'Min';
+        $novoExercicio265->meta = 90;
+        $novoExercicio265->intensidade = 'Alta';
+        $novoExercicio265->save();
+
+        //Moderada 4
+        $novoExercicio266 = new Exercicio;
+        $novoExercicio266->exercicio = 'Flexão Declinada';
+        $novoExercicio266->musculo = 'Peito';
+        $novoExercicio266->serie = 3;
+        $novoExercicio266->repeticoes = 12;
+        $novoExercicio266->descanso = 1;
+        $novoExercicio266->tipoTempoDuracao = 'Min';
+        $novoExercicio266->meta = 60;
+        $novoExercicio266->intensidade = 'Moderada';
+        $novoExercicio266->save();
+
+        //Leve 4
+        $novoExercicio267 = new Exercicio;
+        $novoExercicio267->exercicio = 'Flexão Declinada';
+        $novoExercicio267->musculo = 'Peito';
+        $novoExercicio267->serie = 2;
+        $novoExercicio267->repeticoes = 8;
+        $novoExercicio267->descanso = 1;
+        $novoExercicio267->tipoTempoDuracao = 'Min';
+        $novoExercicio267->meta = 40;
+        $novoExercicio267->intensidade = 'Leve';
+        $novoExercicio267->save();
+        
+    //COSTAS
+        //Alta 1
+        $novoExercicio268 = new Exercicio;
+        $novoExercicio268->exercicio = 'Puxada romana';
+        $novoExercicio268->musculo = 'Costas';
+        $novoExercicio268->serie = 4;
+        $novoExercicio268->repeticoes = 12;
+        $novoExercicio268->descanso = 2;
+        $novoExercicio268->tipoTempoDuracao = 'Min';
+        $novoExercicio268->meta = 90;
+        $novoExercicio268->intensidade = 'Alta';
+        $novoExercicio268->save();
+
+        //Moderada  1
+        $novoExercicio269 = new Exercicio;
+        $novoExercicio269->exercicio = 'Puxada romana';
+        $novoExercicio269->musculo = 'Costas';
+        $novoExercicio269->serie = 3;
+        $novoExercicio269->repeticoes = 12;
+        $novoExercicio269->descanso = 1;
+        $novoExercicio269->tipoTempoDuracao = 'Min';
+        $novoExercicio269->meta = 60;
+        $novoExercicio269->intensidade = 'Moderada';
+        $novoExercicio269->save();
+
+        //Leve  1
+        $novoExercicio270 = new Exercicio;
+        $novoExercicio270->exercicio = 'Puxada romana';
+        $novoExercicio270->musculo = 'Costas';
+        $novoExercicio270->serie = 2;
+        $novoExercicio270->repeticoes = 8;
+        $novoExercicio270->descanso = 1;
+        $novoExercicio270->tipoTempoDuracao = 'Min';
+        $novoExercicio270->meta = 40;
+        $novoExercicio270->intensidade = 'Leve';
+        $novoExercicio270->save();
+        
         return redirect('/');
     }
 }
