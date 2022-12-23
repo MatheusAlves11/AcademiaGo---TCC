@@ -28,21 +28,21 @@
         </button>
 
         <!--LINK-->
-                    <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                <ul class="navbar-nav">
-                    <li class="nav-item">
-                        <a class="nav-link " href="/homeAdm">Personais</a>
-                    </li>
-                    <li class="nav-item ">
-                        <a class="nav-link active" href="/homeAdm-aluno">Alunos</a>
-                    </li>
-                </ul>
-            </div>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav">
+                <li class="nav-item">
+                    <a class="nav-link " href="/homeAdm">Personais</a>
+                </li>
+                <li class="nav-item ">
+                    <a class="nav-link active" href="/homeAdm-aluno">Alunos</a>
+                </li>
+            </ul>
+        </div>
     </nav>
 
 
     <div class="container bg-light " style="width: 90%;text-align: center;">
-        @if (session('msg'))
+        @if (session('msg')) 
         <p class="alert alert-success">{{session('msg')}}</p>
         @endif
         <div class="row ">
@@ -69,30 +69,31 @@
 
             <div class="col-sm-10">
                 @if(count($treino)>0)
-                    <h2 class="texto mb-4">
-                        <b>Treino de {{$entidade->name}} </b>
-                    </h2>
-                    <div class="table-responsive">
-                        <table class="table">
-                            <thead>
-                                <tr>
-                                    <th>Treino</th>
-                                    <th>Área</th>
-                                    <th>Meta</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                @foreach($treino as $treinoExpecifico)
-                                <tr>
-                                    <td><a href="/detalhesDeTreinoDeAlunoADM/{{$aluno->id}}?treino={{$treinoExpecifico->id}}">Treino {{$treinoExpecifico->nome}}</a></td>
-                                    <td>{{$treinoExpecifico->area}}</td>
-                                    <td title="*estimativa">{{$aluno->metaTreino}}</td>
-                                </tr>
-                                @endforeach
-                                
-                            </tbody>
-                        </table>
-                    </div>
+                <input type="hidden" value="{{$aluno->treinoVez}}" data-posicao>
+                <h2 class="texto mb-4">
+                    <b>Treino de {{$entidade->name}} </b>
+                </h2>
+                <div class="table-responsive">
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th>Treino</th>
+                                <th>Área</th>
+                                <th>Meta</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach($treino as $treinoExpecifico)
+                            <tr>
+                                <td><a href="/detalhesDeTreinoDeAlunoADM/{{$aluno->id}}?treino={{$treinoExpecifico->id}}">Treino {{$treinoExpecifico->nome}}</a></td>
+                                <td>{{$treinoExpecifico->area}}</td>
+                                <td title="*estimativa">{{$aluno->metaTreino}}</td>
+                            </tr>
+                            @endforeach
+
+                        </tbody>
+                    </table>
+                </div>
                 @else
                 <b>Treino não existe</b>
                 @endif
@@ -102,8 +103,11 @@
 
 
     <script src="../public/js/jquery.js"></script>
-    <script>window.jQuery || document.write('<script src="../../assets/js/vendor/jquery.min.js"><\/script>')</script>
+    <script>
+        window.jQuery || document.write('<script src="../../assets/js/vendor/jquery.min.js"><\/script>')
+    </script>
     <script src="../public/js/script.js"></script>
+    <script src="../public/js/alterarCorTabela.js"></script>
 </body>
 
 </html>

@@ -47,7 +47,7 @@
         </div>
     </nav>
 
-    <div class="container bg-light " style="width: 90%;text-align: center;">
+    <div class="container bg-light mb-3" style="width: 90%;text-align: center;">
         <!-- <div class="row "> -->
 
         @if (session('msg'))

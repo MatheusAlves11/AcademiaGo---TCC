@@ -78,6 +78,7 @@
 
         <div class="col-sm-10">
                 @if(count($treino)>0)
+                <input type="hidden" value="{{$aluno->treinoVez}}" data-posicao>
                     <div class="table-responsive">
                         <table class="table">
                             <thead>
@@ -109,6 +110,7 @@
     <script>window.jQuery || document.write('<script src="../../assets/js/vendor/jquery.min.js"><\/script>')</script>
     <script src="../public/js/script.js"></script>
     <script src="../public/js/saudacao.js"></script>
+    <script src="../public/js/alterarCorTabela.js"></script>
 
 </body>
 

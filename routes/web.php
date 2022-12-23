@@ -28,7 +28,7 @@ use App\Http\Controllers\AlunosController;
     //Esqueceu senha
         Route::get('/esqueceuSenha', [LoginsController::class, 'indexSenha']);
         Route::post('/esqueceuSenha-Forms-email', [LoginsController::class, 'esqueceuSenhaFormsEmail'])->name('recSenhaToEmail');
-        Route::post('/esqueceuSenha-Forms', [LoginsController::class, 'esqueceuSenhaForms'])->name('recSenhaEntidade');
+        Route::put('/esqueceuSenha-Forms', [LoginsController::class, 'esqueceuSenhaForms'])->name('recSenhaEntidade');
 //Fim do geral
 
 //ADM

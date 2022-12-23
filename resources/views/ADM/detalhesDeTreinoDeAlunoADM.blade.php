@@ -83,7 +83,6 @@
                                 <th>Série</th>
                                 <th>Repetição</th>
                                 <th>Descanso</th>
-                                <th>Meta(cal)</th>
                                 <th>Musculo</th>
                             </tr>
                         </thead>
@@ -97,7 +96,6 @@
                                     <td>{{$exercicio->serie}}</td>
                                     <td>{{$exercicio->repeticoes}}</td>
                                     <td>{{$exercicio->descanso}} {{$exercicio->tipoTempoDuracao}}</td>
-                                    <td>{{$exercicio->meta}}</td>
                                     <td>{{$exercicio->musculo}}</td>
                                 </tr>
                                 @endif

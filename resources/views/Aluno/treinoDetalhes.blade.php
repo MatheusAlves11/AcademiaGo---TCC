@@ -90,9 +90,6 @@
                                     Descanso
                                 </th>
                                 <th>
-                                    Meta(cal)
-                                </th>
-                                <th>
                                     Carga
                                 </th>
                             </tr>
@@ -108,9 +105,7 @@
                                 <td>
                                     12
                                 </td>
-                                <td title="*estimativa">
-                                    90''
-                                </td>
+    
                                 <td>
                                     45
                                 </td>

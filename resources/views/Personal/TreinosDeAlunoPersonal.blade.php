@@ -72,6 +72,7 @@
 
             <div class="col-sm-10">
                 @if(count($treino)>0)
+                <input type="hidden" value="{{$aluno->treinoVez}}" data-posicao>
                     <h2 class="texto mb-4">
                         <b>Treino de {{$entidade->name}} </b>
                     </h2>
@@ -114,6 +115,7 @@
     </script>
     <script src="../public/js/script.js"></script>
     <script src="../public/js/saudacao.js"></script>
+    <script src="../public/js/alterarCorTabela.js"></script>
 </body>
 
 </html>

@@ -47,7 +47,7 @@
         </div>
     </nav>
 
-    <div class="container bg-light " style="width: 90%;text-align: center;">
+    <div class="container bg-light mb-3" style="width: 90%;text-align: center;">
         <!-- <div class="row "> -->
 
         @if (session('msg'))
@@ -92,7 +92,6 @@
                                 <th>Série</th>
                                 <th>Repetição</th>
                                 <th>Descanso</th>
-                                <th>Meta(cal)</th>
                                 <th>Musculo</th>
                             </tr>
                         </thead>
@@ -106,7 +105,6 @@
                                     <td>{{$exercicio->serie}}</td>
                                     <td>{{$exercicio->repeticoes}}</td>
                                     <td>{{$exercicio->descanso}} {{$exercicio->tipoTempoDuracao}}</td>
-                                    <td>{{$exercicio->meta}}</td>
                                     <td>{{$exercicio->musculo}}</td>
                                 </tr>
                                 @endif

@@ -312,7 +312,7 @@ class AdmsController extends Controller
             $novoAluno->imc=($request->peso/($request->altura*$request->altura));
             if($novoAluno->imc<20  || $novoAluno->imc>=31){
                 $novoAluno->intensidade = "leve";
-            }elseif($novoAluno->imc>=20 || $novoAluno->imc<=25){
+            }elseif($novoAluno->imc>=20 && $novoAluno->imc<=25){
                 $novoAluno->intensidade = "alta";
             }else{
                 $novoAluno->intensidade = "moderada";
@@ -434,7 +434,7 @@ class AdmsController extends Controller
                 }
                 if($imc<20  || $imc>=31){
                     $intensidade = "leve";
-                }elseif($imc>=20 || $imc<=25){
+                }elseif($imc>=20 && $imc<=25){
                     $intensidade ="alta";
                 }else{
                     $intensidade = "moderada";

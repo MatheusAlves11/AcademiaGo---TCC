@@ -32,14 +32,14 @@ class Controller extends BaseController
         //Inicio criar PERSONAL
            //Personal Um
                 $novaEntidade = new User;
-                $novaEntidade->name = 'Rafael Mesquita';
-                $novaEntidade->email = 'd@d.com';
+                $novaEntidade->name = 'Lucas Sampaio';
+                $novaEntidade->email = 'ls@gmail.com';
                 $novaEntidade->password = Hash::make('.');
                 $novaEntidade->nivelAcesso = 2;
                 $novaEntidade->foto = 'instrutor1.png';
                 $novaEntidade->save();
                 $novoPersonal = new personals;
-                $novoPersonal->cref = '112233';
+                $novoPersonal->cref = '11223';
                 $novoPersonal->filial = 'Bairro Norte';
                 $novoPersonal->telefone = '82981101112';
                 $novoPersonal->id_usuario = $novaEntidade->id;
@@ -54,7 +54,7 @@ class Controller extends BaseController
                 $novaEntidade2->foto = 'instrutor1.png';
                 $novaEntidade2->save();
                 $novoPersonal2 = new personals;
-                $novoPersonal2->cref = '90';
+                $novoPersonal2->cref = '12345';
                 $novoPersonal2->filial = 'Centro';
                 $novoPersonal2->telefone = '87999990000';
                 $novoPersonal2->id_usuario = $novaEntidade2->id;
@@ -84,7 +84,7 @@ class Controller extends BaseController
                 $novaEntidade->foto = 'instrutora.png';
                 $novaEntidade4->save();
                 $novoPersonal4 = new personals;
-                $novoPersonal4->cref = '30';
+                $novoPersonal4->cref = '22435';
                 $novoPersonal4->filial = 'Itabaianinha';
                 $novoPersonal4->telefone = '87998983030';
                 $novoPersonal4->id_usuario = $novaEntidade4->id;
@@ -115,10 +115,10 @@ class Controller extends BaseController
             $novoAluno->peso = '70';
             $novoAluno->altura = '1.7';
             $novoAluno->frequencia = '4';
-            $novoAluno->objetivo = 'Resistência';
+            $novoAluno->objetivo = 'Hipertrofia';
             $novoAluno->fumante = '0';
-            $novoAluno->lesao =  ["Peito"];
-            $novoAluno->alteracaoCardiaca = 'leve';
+            $novoAluno->lesao =  ["Não possui"];
+            $novoAluno->alteracaoCardiaca = 'nao';
             $novoAluno->bebidaAlcolica = 0;
             $novoAluno->taxasAltas = 0;
             $novoAluno->diabes = 0;
@@ -151,10 +151,10 @@ class Controller extends BaseController
             $novoAluno2->peso = '90';
             $novoAluno2->altura = '1.80';
             $novoAluno2->frequencia = '6';
-            $novoAluno2->objetivo = 'Resistência';
+            $novoAluno2->objetivo = 'Hipertrofia';
             $novoAluno2->fumante = '0';
             $novoAluno2->lesao =  ["Ombro"];
-            $novoAluno2->alteracaoCardiaca = 'grave';
+            $novoAluno2->alteracaoCardiaca = 'Leve';
             $novoAluno2->bebidaAlcolica = 0;
             $novoAluno2->taxasAltas = 0;
             $novoAluno2->diabes = 0;
@@ -168,7 +168,7 @@ class Controller extends BaseController
             //Aluno 2
             //Aluno 3
             $novoUsuarioAluno3 = new User;
-            $novoUsuarioAluno3->name = 'Guilherme Barbosa';
+            $novoUsuarioAluno3->name = 'Humberto Beltrão';
             $novoUsuarioAluno3->email = 'gb01@gmail.com';
             $novoUsuarioAluno3->password = Hash::make('.');
             $novoUsuarioAluno3->nivelAcesso = 3;
@@ -299,12 +299,12 @@ class Controller extends BaseController
             $novoAluno6->frequencia = '4';
             $novoAluno6->objetivo = 'Emagrecimento';
             $novoAluno6->fumante = '0';
-            $novoAluno6->lesao =  ["Costas", "Tríceps", "Panturrilha"];
-            $novoAluno6->alteracaoCardiaca = 'leve';
+            $novoAluno6->lesao =  ["Trapézio", "Ombro", "Panturrilha", "Abdomen"];
+            $novoAluno6->alteracaoCardiaca = 'grave';
             $novoAluno6->bebidaAlcolica = 0;
-            $novoAluno6->taxasAltas = 0;
+            $novoAluno6->taxasAltas = 1;
             $novoAluno6->diabes = 0;
-            $novoAluno6->hipertenso = 0;
+            $novoAluno6->hipertenso = 1;
             $novoAluno6->imc = (100 / (1.7 * 1.7));
             $novoAluno6->id_usuario = $novoUsuarioAluno6->id;
             $novoAluno6->intensidade = 'Leve';
